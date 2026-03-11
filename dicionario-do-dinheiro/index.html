@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dicionário do Dinheiro | Investidor das Arábias</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --muted: #a7a7a7;
+            --gold: #D4AF37;
+            --text-color: #eee;
+            --bg-dark: #111;
+            --bg-card: #1a1a1a;
+            --radius: 16px;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-family: 'Sora', 'Inter', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section with Popup Button */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Widget Styles Merged */
+        .widget-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(212, 175, 55, 0.09);
+            border-radius: var(--radius);
+            padding: 24px;
+            flex: 1 1 300px;
+            max-width: 350px;
+            transition: transform 0.28s ease;
+        }
+
+        .card:hover { transform: translateY(-6px); }
+
+        .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: rgba(212, 175, 55, 0.12);
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        /* Specialist Card */
+        .specialist-card {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: var(--radius);
+            padding: 32px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .specialist-photo-wrapper {
+            width: 190px;
+            height: 250px;
+            border-radius: var(--radius);
+            background: linear-gradient(45deg, var(--gold), rgba(212, 175, 55, 0.3));
+            padding: 3px;
+        }
+
+        .specialist-photo-wrapper img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: calc(var(--radius) - 3px);
+        }
+
+        /* FAQ Styles */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 20px 20px;
+        }
+
+        /* Popup Styles */
+        .overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8);
+            display: none; justify-content: center; align-items: center; z-index: 9999;
+        }
+
+        .popup {
+            background: #1a1a1a; border-radius: var(--radius); padding: 32px; width: 100%; max-width: 420px; text-align: center;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold); padding: 18px 40px; font-size: 18px; border-radius: var(--radius); cursor: pointer;
+            text-transform: uppercase; font-weight: 600;
+        }
+
+        .popup form { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; text-align: left; }
+        .popup input, .popup select { padding: 12px; border-radius: 8px; background: #111; border: 1px solid rgba(212, 175, 55, 0.2); color: #fff; }
+
+        @media (max-width: 768px) {
+            .specialist-card { flex-direction: column; text-align: center; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <img src="../assets/logo-dazarabia.png" alt="Investidor das Arábias" style="max-width: 250px; margin-bottom: 30px;">
+        <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 40px; max-width: 1000px; margin: 0 auto;">
+            <div style="flex: 1; min-width: 300px; text-align: left;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 20px;">DICIONÁRIO DO DINHEIRO</h1>
+                <p>Aprenda os termos essenciais do mercado financeiro e invista com confiança. O guia definitivo com 109 termos para você dominar o mercado.</p>
+                <button class="btn" id="openPopup">Baixar Dicionário Grátis</button>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <img src="../assets/capa-dicionario.png" alt="Capa Dicionário do Dinheiro" style="max-width: 350px; width: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));">
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Cards Section -->
+        <div class="widget-container">
+            <article class="card">
+                <div class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6M7 13h10"/></svg>
+                </div>
+                <h3>Acompanhe as Notícias</h3>
+                <p>Saiba como as manchetes sobre COPOM, Selic e inflação impactam seu bolso.</p>
+            </article>
+            <article class="card">
+                <div class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18M7 13l4-6 4 8 4-4"/></svg>
+                </div>
+                <h3>Domine o Mercado</h3>
+                <p>Fale de igual para igual com investidores experientes usando os termos corretos.</p>
+            </article>
+            <article class="card">
+                <div class="icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6"/><path d="M15.5 15.5L20 20M10 8v4M8.5 10h3"/></svg>
+                </div>
+                <h3>Identifique Oportunidades</h3>
+                <p>Reconheça ativos subvalorizados e potencialize seus lucros estrategicamente.</p>
+            </article>
+        </div>
+
+        <!-- Author Section -->
+        <div class="specialist-card">
+            <div class="specialist-photo-wrapper">
+                <img src="../assets/eric-zapparoli.jpg" alt="Eric Zapparoli">
+            </div>
+            <div class="specialist-info">
+                <h2>Eric Zapparoli</h2>
+                <p style="color:var(--gold)">@investidordazarabia</p>
+                <p>Investidor internacional com anos de experiência e mais de 121 mil seguidores. Ajuda pessoas a protegerem seu patrimônio globalmente.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <h2 style="text-align:center; color:var(--gold); margin-bottom: 30px;">PERGUNTAS FREQUENTES</h2>
+        <div class="faq-content-wrapper">
+            <div class="faq-item">
+                <div class="faq-question">O eBook é realmente gratuito? <span>+</span></div>
+                <div class="faq-answer"><p>Sim, completamente gratuito. Você recebe o PDF completo no seu email imediatamente.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Quantos termos estão incluídos? <span>+</span></div>
+                <div class="faq-answer"><p>São 109 termos cuidadosamente selecionados para transformar sua visão sobre investimentos.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Como vou receber o material? <span>+</span></div>
+                <div class="faq-answer"><p>Após o preenchimento, o download começará automaticamente e você também receberá no e-mail.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Overlay -->
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <span id="closePopup" style="float:right; cursor:pointer; font-size:24px;">&times;</span>
+            <p style="color:var(--gold); font-size: 1.2rem; font-weight:700;">Receba o material agora</p>
+            <form id="popupForm">
+                <input type="text" name="nome" placeholder="Seu nome" required />
+                <input type="email" name="email" placeholder="Seu e-mail" required />
+                <input type="tel" name="whatsapp" placeholder="WhatsApp (com DDD)" required />
+                <select name="moeda" required>
+                    <option value="BRL">Investir em Reais</option>
+                    <option value="USD">Investir em Dólares</option>
+                </select>
+                <button type="submit" class="btn" style="width:100%; margin-top:10px;">Baixar PDF</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Logic
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                q.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Popup Logic
+        const overlay = document.getElementById('overlay');
+        document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
+        document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+        
+        document.getElementById('popupForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Simulando envio... Redirecionando para página de obrigado.');
+            window.location.href = '../obrigado/index.html';
+        };
+    </script>
+</body>
+</html>

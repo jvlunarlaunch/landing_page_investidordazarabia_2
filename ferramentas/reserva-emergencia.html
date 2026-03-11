@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Emergência | Investidor Dazarábia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="theme-dark">
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon"><i class="ph-fill ph-crown"></i></span>
+                <span class="logo-text">Investidor <span class="text-gold">Dazarábia</span></span>
+            </a>
+            <a href="../index.html" class="btn-secondary">Voltar ao Início</a>
+        </div>
+    </nav>
+
+    <header class="section" style="padding-top: 120px; text-align: center;">
+        <div class="container">
+            <span class="badge">Proteção Patrimonial</span>
+            <h1>Cálculo de <span class="text-gradient-gold">Reserva de Emergência</span></h1>
+            <p>Construa sua paz de espírito calculando seu escudo de sobrevivência definitiva.</p>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container" style="max-width: 900px;">
+            
+            <div id="toolMain">
+                <div class="hero-content" style="grid-template-columns: 1.2fr 1fr; gap: 2rem; display: grid;">
+                    
+                    <div class="glass-card" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 2rem;">1. Suas Despesas Mensais</h3>
+                        <form id="reservaForm" class="tool-form">
+                            <div class="form-group-row">
+                                <div class="form-group w-50">
+                                    <label>Moradia (Aluguel/Luz/Iptu)</label>
+                                    <input type="number" class="expense-val" value="1500">
+                                </div>
+                                <div class="form-group w-50">
+                                    <label>Alimentação (Mercado/Rest.)</label>
+                                    <input type="number" class="expense-val" value="800">
+                                </div>
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-group w-50">
+                                    <label>Saúde (Plano/Remédios)</label>
+                                    <input type="number" class="expense-val" value="400">
+                                </div>
+                                <div class="form-group w-50">
+                                    <label>Transporte / Automóvel</label>
+                                    <input type="number" class="expense-val" value="600">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lazer e Outros (Estilo de Vida)</label>
+                                <input type="number" class="expense-val" value="500">
+                            </div>
+
+                            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 2rem 0;">
+
+                            <h3 style="margin-bottom: 1.5rem;">2. Perfil de Risco</h3>
+                            <div class="form-group">
+                                <label>Qual sua principal ocupação profissional?</label>
+                                <select id="occupType" required>
+                                    <option value="6">Funcionário Público / Renda Vitalícia (6 meses)</option>
+                                    <option value="9">CLT / Registrado (9 meses)</option>
+                                    <option value="12">Autônomo / Freelancer (12 meses)</option>
+                                    <option value="18">Empresário / Renda Variável (18 meses)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quantos dependentes financeiros?</label>
+                                <select id="depCount">
+                                    <option value="0">Nenhum</option>
+                                    <option value="2">1 a 2 pessoas (+2 meses de segurança)</option>
+                                    <option value="4">3 ou mais pessoas (+4 meses de segurança)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary w-100">Gerar Análise Financeira</button>
+                        </form>
+                    </div>
+
+                    <div id="reservaResult" class="glass-card" style="padding: 2rem; position: sticky; top: 120px; height: fit-content;">
+                        <h3 class="text-center" style="margin-bottom: 2rem;">Seu Alvo de Reserva</h3>
+                        
+                        <div class="result-box">
+                            <span>Total Necessário:</span>
+                            <strong class="text-gold" id="resTotal" style="font-size: 2.2rem; display: block;">R$ 0,00</strong>
+                        </div>
+
+                        <div class="breakdown" style="margin-top: 2rem;">
+                            <div class="breakdown-item">
+                                <span>Gasto Mensal Estimado:</span>
+                                <span id="resMonthly">R$ 0,00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Meses de Cobertura:</span>
+                                <span id="resMonths">0 meses</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem; padding: 1.5rem; border: 1px dashed var(--gold-primary); border-radius: 8px;">
+                            <h4 style="color: var(--gold-primary); margin-bottom: 0.5rem; font-size: 0.9rem;">Onde Alocar?</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Esta reserva deve estar em ativos com **Liquidez Imediata**. Sugestão: Tesouro Selic, Fundo DI Simples ou CDB 100% DI.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Investidor Dazarábia. Proteja seu patrimônio com inteligência.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize
+        calculateReserva();
+
+        const resForm = document.getElementById('reservaForm');
+        resForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            calculateReserva();
+        });
+
+        function calculateReserva() {
+            let monthlyGasto = 0;
+            document.querySelectorAll('.expense-val').forEach(input => {
+                monthlyGasto += parseFloat(input.value) || 0;
+            });
+
+            const baseMonths = parseInt(document.getElementById('occupType').value);
+            const extraMonths = parseInt(document.getElementById('depCount').value);
+            
+            const totalMonths = baseMonths + extraMonths;
+            const totalAmount = monthlyGasto * totalMonths;
+
+            document.getElementById('resMonthly').innerText = monthlyGasto.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            document.getElementById('resMonths').innerText = `${totalMonths} meses`;
+            document.getElementById('resTotal').innerText = totalAmount.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+            // Scroll to result on mobile
+            if (window.innerWidth < 768) {
+                document.getElementById('reservaResult').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

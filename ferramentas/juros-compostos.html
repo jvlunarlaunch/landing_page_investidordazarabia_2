@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de Juros Compostos - Investidor Dazarábia. Simule sua liberdade financeira.">
+    <title>Calculadora de Juros Compostos | Investidor Dazarábia</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .tool-page-header {
+            padding: 100px 0 40px;
+            text-align: center;
+        }
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 600px;
+        }
+        .lead-capture-wrapper {
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+        .tool-content {
+            display: none;
+        }
+        .tool-grid-sophisticated {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .tool-grid-sophisticated { grid-template-columns: 1fr; }
+        }
+        .result-highlight {
+            font-size: 3rem;
+            display: block;
+            margin: 1rem 0;
+        }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body class="theme-dark">
+    <!-- Simple Nav -->
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon"><i class="ph-fill ph-crown"></i></span>
+                <span class="logo-text">Investidor <span class="text-gold">Dazarábia</span></span>
+            </a>
+            <a href="../index.html" class="btn-secondary">Voltar ao Início</a>
+        </div>
+    </nav>
+
+    <header class="tool-page-header">
+        <div class="container">
+            <span class="badge">Ferramenta Exclusiva</span>
+            <h1>Calculadora de <span class="text-gradient-gold">Juros Compostos</span></h1>
+            <p>O simulador definitivo para quem busca a independência financeira exponencial.</p>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container tool-container">
+            
+            <!-- Sophisticated Tool -->
+            <div id="toolMain" class="tool-content" style="display: block;">
+                <div class="tool-grid-sophisticated">
+                    <!-- Inputs -->
+                    <div class="glass-card" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1.5rem;">Configurações da Simulação</h3>
+                        <form id="jurosForm" class="tool-form">
+                            <div class="form-group">
+                                <label>Patrimônio Inicial (R$)</label>
+                                <input type="number" id="vInitial" value="5000" step="100">
+                            </div>
+                            <div class="form-group">
+                                <label>Investimento Mensal (Aporte R$)</label>
+                                <input type="number" id="vMonthly" value="1000" step="50">
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-group w-50">
+                                    <label>Rentabilidade (%)</label>
+                                    <input type="number" id="vRate" value="10" step="0.1">
+                                </div>
+                                <div class="form-group w-50">
+                                    <label>Período</label>
+                                    <select id="vRateType">
+                                        <option value="yearly">Ao Ano (a.a.)</option>
+                                        <option value="monthly">Ao Mês (a.m.)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-group w-50">
+                                    <label>Tempo total</label>
+                                    <input type="number" id="vTime" value="10">
+                                </div>
+                                <div class="form-group w-50">
+                                    <label>Unidade</label>
+                                    <select id="vTimeType">
+                                        <option value="years">Anos</option>
+                                        <option value="months">Meses</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label>Inflação Estimada (% ao ano)</label>
+                                <input type="number" id="vInflation" value="4.5" step="0.1">
+                                <small style="color: var(--text-muted)">Ajuste para ver o "poder de compra" real.</small>
+                            </div>
+                            <button type="submit" class="btn-primary w-100">Atualizar Projeção</button>
+                        </form>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="glass-card" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1.5rem;">Seu Resultado Estimado</h3>
+                        <div id="jurosResult">
+                            <div class="result-box" style="margin-bottom: 2rem;">
+                                <span>Valor Total Acumulado:</span>
+                                <strong class="text-gold result-highlight" id="resTotal">R$ 0,00</strong>
+                            </div>
+                            
+                            <div class="breakdown">
+                                <div class="breakdown-item">
+                                    <span>Total Investido</span>
+                                    <span id="resInvested">R$ 0,00</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span>Total em Juros</span>
+                                    <span class="text-gold" id="resInterest">R$ 0,00</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span>Poder de Compra Real</span>
+                                    <span id="resRealPower" style="font-weight: 700;">R$ 0,00</span>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 2rem; background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 8px;">
+                                <h4 style="margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase; color: var(--gold-primary);">Conclusão do Especialista</h4>
+                                <p id="expertComment" style="font-size: 0.9rem; color: var(--text-secondary);">Simule para ver a análise...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="glass-card" style="margin-top: 2rem; padding: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">Crescimento Patrimonial: <span class="text-gold">Compostos vs Simples</span></h3>
+                    <div style="height: 400px; width: 100%;">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+                        O gráfico acima demonstra visualmente como os juros sobre juros aceleram a criação de riqueza comparado ao modelo de juros simples.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Investidor Dazarábia. Dados simulados para fins educacionais.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize
+        let growthChart = null;
+        calculateJuros();
+
+        // Juros Calculation
+        const jurosForm = document.getElementById('jurosForm');
+        
+        jurosForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            calculateJuros();
+        });
+
+        function calculateJuros() {
+            const initial = parseFloat(document.getElementById('vInitial').value) || 0;
+            const monthly = parseFloat(document.getElementById('vMonthly').value) || 0;
+            const rate = parseFloat(document.getElementById('vRate').value) || 0;
+            const rateType = document.getElementById('vRateType').value;
+            const time = parseFloat(document.getElementById('vTime').value) || 0;
+            const timeType = document.getElementById('vTimeType').value;
+            const inflation = parseFloat(document.getElementById('vInflation').value) || 0;
+
+            const months = (timeType === 'years') ? (time * 12) : time;
+            let mRate = 0;
+            if (rateType === 'yearly') {
+                mRate = Math.pow(1 + (rate/100), 1/12) - 1;
+            } else {
+                mRate = rate/100;
+            }
+
+            // Calculation
+            let total = initial * Math.pow(1 + mRate, months);
+            if (mRate > 0) {
+                total += monthly * ((Math.pow(1 + mRate, months) - 1) / mRate);
+            } else {
+                total += monthly * months;
+            }
+
+            const invested = initial + (monthly * months);
+            const interest = total - invested;
+
+            // Inflation Adjustment (Purchasing Power)
+            // Real Rate = (1 + Nominal) / (1 + Inflation) - 1
+            const annualInflation = inflation / 100;
+            const monthlyInflation = Math.pow(1 + annualInflation, 1/12) - 1;
+            const realTotal = total / Math.pow(1 + monthlyInflation, months);
+
+            // Update UI
+            document.getElementById('resTotal').innerText = total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            document.getElementById('resInvested').innerText = invested.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            document.getElementById('resInterest').innerText = interest.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+            document.getElementById('resRealPower').innerText = realTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+            // Expert Comment
+            let comment = "";
+            if (interest > invested) {
+                comment = "Excelente! O efeito bola de neve já superou os seus aportes. Seus juros estão trabalhando mais que você.";
+            } else if (months < 60) {
+                comment = "O curto prazo esconde o poder dos juros. Tente simular para mais de 5 anos para ver a mágica acontecer.";
+            } else {
+                comment = "Belo planejamento. Focar na consistência dos aportes mensais é o que vai acelerar sua liberdade.";
+            }
+            document.getElementById('expertComment').innerText = comment;
+
+            // Render Chart
+            renderChart(initial, monthly, mRate, months);
+        }
+
+        function renderChart(initial, monthly, mRate, months) {
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            
+            // Labels (Show 10 points or yearly)
+            const labels = [];
+            const compoundData = [];
+            const simpleData = [];
+            const step = Math.max(1, Math.floor(months / 12));
+            
+            for (let i = 0; i <= months; i += step) {
+                labels.push(i % 12 === 0 ? `${i/12} anos` : `${i} meses`);
+                
+                // Compound
+                let cTotal = initial * Math.pow(1 + mRate, i);
+                if (mRate > 0) {
+                    cTotal += monthly * ((Math.pow(1 + mRate, i) - 1) / mRate);
+                } else {
+                    cTotal += monthly * i;
+                }
+                compoundData.push(cTotal.toFixed(2));
+
+                // Simple (Interest only on initial + monthly contributions without growth)
+                let sTotal = initial + (monthly * i) + (initial * mRate * i) + (monthly * mRate * (i * (i-1) / 2));
+                // Simplified Simple: Initial + Contributions + (Rate applied only to those values linearly)
+                // Let's use a standard definition: Simple Interest = Principal * Rate * Time
+                let simpleInterestOnInitial = initial * mRate * i;
+                let simpleInterestOnContributions = monthly * mRate * (i * (i-1) / 2); // Sum of contributions 
+                let sTotalValue = initial + (monthly * i) + simpleInterestOnInitial + simpleInterestOnContributions;
+                
+                simpleData.push(sTotalValue.toFixed(2));
+            }
+
+            if (growthChart) {
+                growthChart.destroy();
+            }
+
+            growthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Juros Compostos (Bola de Neve)',
+                            data: compoundData,
+                            borderColor: '#D4AF37',
+                            backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 3,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#D4AF37'
+                        },
+                        {
+                            label: 'Juros Simples (Linear)',
+                            data: simpleData,
+                            borderColor: 'rgba(255, 255, 255, 0.3)',
+                            borderDash: [5, 5],
+                            fill: false,
+                            tension: 0,
+                            borderWidth: 2,
+                            pointRadius: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#fff', font: { family: 'Outfit', size: 14 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) label += ': ';
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { 
+                                color: '#a0a0a0',
+                                callback: function(value) {
+                                    return 'R$ ' + value.toLocaleString('pt-BR');
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#a0a0a0' }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

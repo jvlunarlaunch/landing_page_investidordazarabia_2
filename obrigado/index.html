@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Obrigado - Próximo Passo | Investidor das Arábias</title>
+  <!-- Fonte Sora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* 
+      ========================================
+      RESET E VARIÁVEIS
+      ========================================
+    */
+    :root {
+      --bg-page: #f4f6f9;
+      --bg-card: #ffffff;
+      --gold: #D4AF37;
+      --black: #0a0a0a;
+      --text-main: #1a1a1a;
+      --text-muted: #555555;
+      --radius: 16px;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Sora', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* 
+      ========================================
+      CONTAINER PRINCIPAL
+      ========================================
+    */
+    .thank-you-container {
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 600px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.05);
+      text-align: center;
+      position: relative;
+    }
+
+    /* Faixa Dourada no Topo */
+    .thank-you-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #b88a00, var(--gold), #b88a00);
+    }
+
+    .content-wrapper {
+      padding: 40px 32px;
+    }
+
+    /* 
+      ========================================
+      BARRA DE PROGRESSO
+      ========================================
+    */
+    .progress-wrapper {
+      margin-bottom: 32px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 90%; /* 90% Concluído */
+      background: linear-gradient(90deg, #b88a00, var(--gold));
+      border-radius: 10px;
+      position: relative;
+      /* Animação sutil de listras */
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 20px 20px;
+      animation: moveStripe 1s linear infinite;
+    }
+
+    @keyframes moveStripe {
+      0% { background-position: 0 0; }
+      100% { background-position: 20px 0; }
+    }
+
+    /* 
+      ========================================
+      TEXTOS
+      ========================================
+    */
+    .check-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 24px;
+      color: var(--gold);
+    }
+
+    h1 {
+      font-size: 28px;
+      color: var(--black);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* 
+      ========================================
+      CARD DE CONSULTORIA (CTA)
+      ========================================
+    */
+    .consultancy-offer {
+      background: #fafafa;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .tag-limited {
+      background: var(--black);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      letter-spacing: 0.5px;
+    }
+
+    .offer-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--black);
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .offer-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Botão Preto e Dourado */
+    .btn-gold {
+      display: inline-block;
+      width: 100%;
+      text-decoration: none;
+      background-color: var(--black);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 18px 24px;
+      border-radius: 8px;
+      border: 1px solid var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-gold:hover {
+      background-color: var(--gold);
+      color: var(--black);
+      border-color: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    }
+
+    .scarcity-alert {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #b88a00; /* Dourado escuro para leitura */
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .scarcity-alert svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* 
+      ========================================
+      RESPONSIVIDADE
+      ========================================
+    */
+    @media (max-width: 480px) {
+      .content-wrapper {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+
+      .btn-gold {
+        font-size: 14px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="thank-you-container">
+    <div class="content-wrapper">
+      
+      <!-- Barra de Progresso -->
+      <div class="progress-wrapper">
+        <div class="progress-label">
+          <span>Progresso</span>
+          <span>90%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Ícone de Sucesso -->
+      <div class="check-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h1>Download Iniciado!</h1>
+      <p class="subtitle">
+        Seu material já está a caminho. Enquanto o download termina, preste muita atenção nesta <strong>oportunidade única</strong> abaixo.
+      </p>
+
+      <!-- Oferta de Consultoria -->
+      <div class="consultancy-offer">
+        <span class="tag-limited">Oferta por Tempo Limitado</span>
+        
+        <h2 class="offer-title">Transforme seu Conhecimento em Plano Prático</h2>
+        <p class="offer-text">
+          Você já deu o primeiro passo buscando conhecimento. Agora, tenha um especialista da <strong>Wall Street Wealth Management</strong> desenhando sua estratégia dolarizada pessoalmente.
+        </p>
+
+        <a href="../consultoriawswm/index.html" class="btn-gold">
+          Agendar Sessão Gratuita
+        </a>
+
+        <div class="scarcity-alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>As vagas gratuitas podem encerrar a qualquer momento.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

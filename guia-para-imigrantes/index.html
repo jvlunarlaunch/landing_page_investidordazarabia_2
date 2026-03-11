@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guia de Investimentos para Imigrantes | Investidor das Arábias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gradient-primary: linear-gradient(135deg, #ff3b3b 0%, #0052cc 100%);
+      --bg-page: #f4f6f9;
+      --bg-card: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --radius: 16px;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: var(--gradient-primary);
+      border: none;
+      color: #fff;
+      padding: 18px 40px;
+      font-size: 18px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
+    }
+
+    /* Cards Widget */
+    .widget-container {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin: 60px 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid #e0e0e0;
+      border-radius: var(--radius);
+      padding: 24px;
+      flex: 1 1 280px;
+      max-width: 350px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--gradient-primary);
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    /* Specialist Card */
+    .specialist-card {
+      background: var(--bg-card);
+      border: 1px solid #e0e0e0;
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 60px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    .specialist-photo-wrapper {
+      width: 190px;
+      height: 250px;
+      border-radius: var(--radius);
+      padding: 4px;
+      background: var(--gradient-primary);
+    }
+
+    .specialist-photo-wrapper img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: calc(var(--radius) - 4px);
+    }
+
+    /* FAQ */
+    .faq-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 32px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 24px;
+    }
+
+    /* Popup */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      display: none; justify-content: center; align-items: center; z-index: 9999;
+    }
+
+    .popup {
+      background: #fff; border-radius: var(--radius); padding: 32px; width: 100%; max-width: 420px; text-align: center;
+    }
+
+    .popup form { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; text-align: left; }
+    .popup input, .popup select { padding: 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #f4f6f9; }
+
+    @media (max-width: 768px) {
+      .specialist-card { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <img src="../assets/logo-dazarabia.png" alt="Investidor das Arábias" style="max-width: 250px; margin-bottom: 30px;">
+    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 40px; max-width: 1000px; margin: 0 auto; padding: 20px;">
+        <div style="flex: 1; min-width: 300px; text-align: left;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 20px;">GUIA PARA IMIGRANTES</h1>
+            <p style="color: #555; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px;">
+                Pare de apenas pagar contas. Comece a construir sua liberdade financeira em Dólar. O guia completo para o imigrante que deseja investir nos EUA com segurança e legalidade.
+            </p>
+            <button class="btn" id="openPopup">Baixar Guia Grátis</button>
+        </div>
+        <div style="flex: 1; min-width: 300px;">
+            <img src="../assets/capa-guia.png" alt="Capa Guia para Imigrantes" style="max-width: 350px; width: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));">
+        </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="widget-container">
+      <article class="card">
+        <div class="icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6M7 13h10"/></svg>
+        </div>
+        <h3>Começar do Zero</h3>
+        <p>Aprenda o básico necessário para fazer seu primeiro investimento nos EUA.</p>
+      </article>
+      <article class="card">
+        <div class="icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18M7 13l4-6 4 8 4-4"/></svg>
+        </div>
+        <h3>Multiplique Ganhos</h3>
+        <p>Estratégias inteligentes para garantir seu futuro e de sua família.</p>
+      </article>
+      <article class="card">
+        <div class="icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Proteção Legal</h3>
+        <p>Invista com segurança sem comprometer seu status migratório.</p>
+      </article>
+    </div>
+
+    <div class="specialist-card">
+      <div class="specialist-photo-wrapper">
+        <img src="../assets/eric-zapparoli.jpg" alt="Eric Zapparoli">
+      </div>
+      <div class="specialist-info">
+        <h2>Eric Zapparoli</h2>
+        <p style="font-weight:600; background:var(--gradient-primary); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">@investidordazarabia</p>
+        <p>Especialista em investimentos internacionais, ajudando imigrantes a protegerem seu patrimônio globalmente com segurança.</p>
+      </div>
+    </div>
+
+    <h2 class="faq-title">PERGUNTAS FREQUENTES</h2>
+    <div class="faq-content-wrapper">
+      <div class="faq-item">
+        <div class="faq-question">O Guia é realmente gratuito? <span>+</span></div>
+        <div class="faq-answer"><p>Sim, 100% gratuito. Nossa missão é educar a comunidade imigrante sobre finanças.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Investir prejudica meu visto? <span>+</span></div>
+        <div class="faq-answer"><p>Não, desde que feito legalmente. O guia ensina os caminhos corretos e seguros.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <span id="closePopup" style="float:right; cursor:pointer; font-size:24px;">&times;</span>
+      <p style="font-weight:700; background:var(--gradient-primary); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-size:1.2rem;">Receba seu Guia agora</p>
+      <form id="popupForm">
+        <input type="text" name="nome" placeholder="Seu nome" required />
+        <input type="email" name="email" placeholder="Seu e-mail" required />
+        <input type="tel" name="whatsapp" placeholder="WhatsApp" required />
+        <select name="renda" required>
+          <option value="" disabled selected>Renda mensal (USD)</option>
+          <option value="0-2000">$0 - $2.000</option>
+          <option value="2000-5000">$2.000 - $5.000</option>
+          <option value=">5000">Mais de $5.000</option>
+        </select>
+        <button type="submit" class="btn" style="width:100%; margin-top:10px;">Baixar Guia</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => q.parentElement.classList.toggle('active'));
+    });
+    const overlay = document.getElementById('overlay');
+    document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
+    document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+    document.getElementById('popupForm').onsubmit = (e) => {
+      e.preventDefault();
+      window.location.href = '../obrigado/index.html';
+    };
+  </script>
+</body>
+</html>

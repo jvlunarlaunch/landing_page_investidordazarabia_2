@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Investidor | Investidor Dazarábia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .quiz-container { max-width: 650px; margin: 0 auto; }
+        .question-card { display: none; padding: 2.5rem; }
+        .question-card.active { display: block; animation: fadeIn 0.5s ease; }
+        .options-list { list-style: none; margin-top: 1.5rem; }
+        .option-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .option-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold-primary);
+        }
+        .option-item.selected {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold-primary);
+        }
+        .progress-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gold-gradient);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .allocation-chart {
+            display: flex;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        .allocation-segment { height: 100%; }
+    </style>
+</head>
+<body class="theme-dark">
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon"><i class="ph-fill ph-crown"></i></span>
+                <span class="logo-text">Investidor <span class="text-gold">Dazarábia</span></span>
+            </a>
+            <a href="../index.html" class="btn-secondary">Voltar ao Início</a>
+        </div>
+    </nav>
+
+    <header class="section" style="padding-top: 120px; text-align: center;">
+        <div class="container">
+            <span class="badge">Análise de Risco</span>
+            <h1>Descubra seu <span class="text-gradient-gold">Perfil Estratégico</span></h1>
+            <p>O primeiro passo para o lucro é o autoconhecimento.</p>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container quiz-container">
+            
+            <!-- Quiz Main -->
+            <div id="quizMain">
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+                
+                <div id="q1" class="glass-card question-card active" data-q="1">
+                    <h3>1. Qual sua faixa etária?</h3>
+                    <div class="options-list">
+                        <div class="option-item" data-points="3">Até 30 anos (Foco em acumulação agressiva)</div>
+                        <div class="option-item" data-points="2">Entre 31 e 50 anos (Equilíbrio e construção)</div>
+                        <div class="option-item" data-points="1">Mais de 50 anos (Foco em preservação e renda)</div>
+                    </div>
+                </div>
+
+                <div id="q2" class="glass-card question-card" data-q="2">
+                    <h3>2. Por quanto tempo você pretende manter seus investimentos principais?</h3>
+                    <div class="options-list">
+                        <div class="option-item" data-points="1">Preciso de liquidez imediata (Menos de 1 ano)</div>
+                        <div class="option-item" data-points="2">Médio prazo (2 a 5 anos)</div>
+                        <div class="option-item" data-points="3">Longo prazo (Mais de 5 anos)</div>
+                    </div>
+                </div>
+
+                <div id="q3" class="glass-card question-card" data-q="3">
+                    <h3>3. Qual sua experiência com o mercado financeiro?</h3>
+                    <div class="options-list">
+                        <div class="option-item" data-points="1">Nenhuma, estou começando agora</div>
+                        <div class="option-item" data-points="2">Conheço renda fixa e alguns fundos</div>
+                        <div class="option-item" data-points="3">Invisto em ações, FIIs ou criptoativos</div>
+                    </div>
+                </div>
+
+                <div id="q4" class="glass-card question-card" data-q="4">
+                    <h3>4. Se seu patrimônio caísse 25% em um mês, o que você faria?</h3>
+                    <div class="options-list">
+                        <div class="option-item" data-points="1">Entraria em pânico e resgataria o que sobrou</div>
+                        <div class="option-item" data-points="2">Ficaria desconfortável, mas manteria a estratégia</div>
+                        <div class="option-item" data-points="3">Aproveitaria a "promoção" para investir mais</div>
+                    </div>
+                </div>
+
+                <div id="q5" class="glass-card question-card" data-q="5">
+                    <h3>5. Qual frase melhor define sua relação com o dinheiro?</h3>
+                    <div class="options-list">
+                        <div class="option-item" data-points="1">"Não posso perder nem um centavo do que juntei"</div>
+                        <div class="option-item" data-points="2">"Aceito oscilações em troca de ganhar da inflação"</div>
+                        <div class="option-item" data-points="3">"O risco é o preço que pago pela liberdade financeira"</div>
+                    </div>
+                </div>
+
+                <div id="quizResult" class="glass-card" style="display: none; padding: 2.5rem;">
+                    <div class="text-center">
+                        <h2 id="resTitle" class="text-gold" style="font-size: 2.5rem;">Seu Perfil</h2>
+                        <p id="resDesc" style="color: var(--text-secondary); margin-top: 1rem;"></p>
+                    </div>
+                    
+                    <h4 style="margin-top: 2.5rem;">Sugestão de Alocação de Ativos:</h4>
+                    <div class="allocation-chart" id="allocChart"></div>
+                    <ul class="breakdown" id="allocList"></ul>
+
+                    <button class="btn-primary w-100 mt-3" onclick="location.reload()">Refazer Teste</button>
+                    <a href="../consultoriawswm/" class="btn-primary-outline w-100 mt-3" style="margin-top: 1rem; display: inline-flex;">Agendar Consultoria de Alocação</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const progressFill = document.getElementById('progressFill');
+        let currentStep = 1;
+        let totalScore = 0;
+        const totalSteps = 5;
+
+        updateProgress();
+
+        document.querySelectorAll('.option-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const points = parseInt(item.getAttribute('data-points'));
+                totalScore += points;
+                
+                if (currentStep < totalSteps) {
+                    document.getElementById(`q${currentStep}`).classList.remove('active');
+                    currentStep++;
+                    document.getElementById(`q${currentStep}`).classList.add('active');
+                    updateProgress();
+                } else {
+                    showResult();
+                }
+            });
+        });
+
+        function updateProgress() {
+            const pct = ((currentStep - 1) / totalSteps) * 100;
+            progressFill.style.width = `${pct}%`;
+        }
+
+        function showResult() {
+            document.getElementById(`q${currentStep}`).classList.remove('active');
+            progressFill.parentElement.style.display = 'none';
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.style.display = 'block';
+
+            let profile = "";
+            let desc = "";
+            let allocation = [];
+
+            if (totalScore <= 7) {
+                profile = "Conservador";
+                desc = "Sua prioridade é a segurança. Você valoriza a proteção do capital acima de qualquer lucro obscuro. Sua carteira deve ser blindada em Renda Fixa.";
+                allocation = [
+                    { label: "Tesouro Selic / CDB", val: 80, color: "#D4AF37" },
+                    { label: "Fundos de Inflação", val: 15, color: "#996515" },
+                    { label: "Ações Blue Chips", val: 5, color: "#F3E5AB" }
+                ];
+            } else if (totalScore <= 11) {
+                profile = "Moderado";
+                desc = "Você entende que para crescer é preciso aceitar certa volatilidade. Busca o equilíbrio entre a paz de espírito e o crescimento real do patrimônio.";
+                allocation = [
+                    { label: "Renda Fixa Pós-Fixada", val: 50, color: "#D4AF37" },
+                    { label: "Ações e FIIs", val: 30, color: "#996515" },
+                    { label: "Investimento Exterior", val: 15, color: "#F3E5AB" },
+                    { label: "Alternativos (Cripto/Ouro)", val: 5, color: "#fff" }
+                ];
+            } else {
+                profile = "Arrojado / Visionário";
+                desc = "Você é um predador do mercado. Entende que o risco é o combustível da multiplicação. Seu foco é o longo prazo e operações exponenciais.";
+                allocation = [
+                    { label: "Renda Variável (Ações/Small Caps)", val: 40, color: "#D4AF37" },
+                    { label: "S&P 500 / Global", val: 30, color: "#996515" },
+                    { label: "Criptoativos / Venture Capital", val: 20, color: "#F3E5AB" },
+                    { label: "Renda Fixa (Oportunista)", val: 10, color: "#fff" }
+                ];
+            }
+
+            document.getElementById('resTitle').innerText = profile;
+            document.getElementById('resDesc').innerText = desc;
+
+            const chart = document.getElementById('allocChart');
+            const list = document.getElementById('allocList');
+            chart.innerHTML = "";
+            list.innerHTML = "";
+
+            allocation.forEach(item => {
+                const seg = document.createElement('div');
+                seg.className = "allocation-segment";
+                seg.style.width = `${item.val}%`;
+                seg.style.background = item.color;
+                chart.appendChild(seg);
+
+                const li = document.createElement('li');
+                li.className = "breakdown-item";
+                li.innerHTML = `<span><i class="ph-fill ph-circle" style="color:${item.color}"></i> ${item.label}</span> <strong>${item.val}%</strong>`;
+                list.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
