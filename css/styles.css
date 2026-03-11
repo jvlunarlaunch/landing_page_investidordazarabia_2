@@ -24,6 +24,9 @@
     --glass-border-hover: rgba(212, 175, 55, 0.3);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     
+    /* Logo scaling fix */
+    --logo-height: 40px;
+    
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -31,6 +34,11 @@
     /* Spacing */
     --section-padding: 6rem 0;
     --container-width: 1200px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 * {
@@ -42,6 +50,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -50,6 +59,8 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
+    width: 100%;
 }
 
 /* ==========================================================================
@@ -93,6 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 .section {
     padding: var(--section-padding);
     position: relative;
+    overflow: hidden; /* Changed from overflow-x: hidden to overflow: hidden for stricter clipping */
 }
 
 .section-header {
@@ -930,6 +942,17 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     max-height: 90vh;
     overflow-y: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 500px) {
+    .modal-container {
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
 }
 
 .modal-overlay.active .modal-container.active-modal {
@@ -1139,27 +1162,52 @@ h1, h2, h3, h4, h5, h6 {
 
     .hamburger { display: block; }
     
+    .glow-orb {
+        width: 150px !important;
+        height: 150px !important;
+        filter: blur(40px);
+        max-width: 100%;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        right: auto !important;
+    }
+
     .hero {
         padding-top: 7rem;
         padding-bottom: 4rem;
         min-height: auto;
     }
     
-    .hero-title { font-size: 2.5rem; }
-    .hero-subtitle { font-size: 1.05rem; max-width: 100%; }
-    .hero-cta { flex-direction: column; width: 100%; align-items: center; }
-    .hero-cta a { width: 100%; max-width: 400px; }
+    .hero-title { font-size: 2.2rem !important; }
+    .hero-subtitle { font-size: 1rem !important; max-width: 100% !important; }
+    .hero-cta { flex-direction: column !important; width: 100% !important; align-items: center !important; }
+    .hero-cta a { width: 100% !important; max-width: 320px !important; margin-bottom: 0.5rem; }
     
-    .section-title { font-size: 2rem; }
+    .logo img {
+        max-width: 200px !important;
+        width: auto !important;
+        height: auto !important;
+    }
+    
+    .section-title { font-size: 1.8rem !important; }
+
+    .timeline-item {
+        display: block;
+    }
     
     .timeline-line { left: 40px; }
     .timeline-dot { left: 40px; }
     .timeline-content {
-        width: calc(100% - 90px);
-        margin-left: 90px !important;
+        width: calc(100% - 80px) !important;
+        margin-left: 80px !important;
         text-align: left !important;
     }
 
+    [data-animate="fade-left"],
+    [data-animate="fade-right"] {
+        transform: translateY(20px);
+    }
+    
     .businesses-grid, .tools-grid { grid-template-columns: 1fr; }
     
     .stats-grid {
@@ -1187,8 +1235,10 @@ h1, h2, h3, h4, h5, h6 {
 
     .floating-badge {
         bottom: 1rem;
-        left: -1rem;
+        left: 0;
         padding: 0.8rem 1rem;
+        transform: translateX(0);
+        margin-left: 1rem;
     }
     .floating-badge i { font-size: 1.5rem; }
     .floating-badge strong { font-size: 0.95rem; }
@@ -1199,4 +1249,15 @@ h1, h2, h3, h4, h5, h6 {
 
     .contact-info h2 { font-size: 2.2rem; text-align: center; }
     .contact-info p { text-align: center; }
+
+    .modal-container {
+        width: 95% !important;
+        max-width: 350px !important;
+        padding: 1.5rem !important;
+        margin: 0 auto !important;
+    }
+
+    .footer, .navbar {
+        overflow: hidden;
+    }
 }
