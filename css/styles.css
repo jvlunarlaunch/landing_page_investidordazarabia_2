@@ -1115,6 +1115,10 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0 1.5rem;
     }
 
+    .nav-container {
+        padding: 0 1.5rem;
+    }
+
     .nav-menu {
         position: absolute;
         top: 100%;
@@ -1143,16 +1147,16 @@ h1, h2, h3, h4, h5, h6 {
     
     .hero-title { font-size: 2.5rem; }
     .hero-subtitle { font-size: 1.05rem; max-width: 100%; }
-    .hero-cta { flex-direction: column; width: 100%; }
-    .hero-cta a { width: 100%; }
+    .hero-cta { flex-direction: column; width: 100%; align-items: center; }
+    .hero-cta a { width: 100%; max-width: 400px; }
     
     .section-title { font-size: 2rem; }
     
-    .timeline-line { left: 30px; }
-    .timeline-dot { left: 30px; }
+    .timeline-line { left: 40px; }
+    .timeline-dot { left: 40px; }
     .timeline-content {
-        width: calc(100% - 70px);
-        margin-left: 70px !important;
+        width: calc(100% - 90px);
+        margin-left: 90px !important;
         text-align: left !important;
     }
 
@@ -1180,6 +1184,18 @@ h1, h2, h3, h4, h5, h6 {
 
     .bio-content h3 { font-size: 2rem; text-align: center; }
     .bio-content p { text-align: center; }
+
+    .floating-badge {
+        bottom: 1rem;
+        left: -1rem;
+        padding: 0.8rem 1rem;
+    }
+    .floating-badge i { font-size: 1.5rem; }
+    .floating-badge strong { font-size: 0.95rem; }
+
+    .business-card, .tool-card {
+        padding: 2rem 1.5rem;
+    }
 
     .contact-info h2 { font-size: 2.2rem; text-align: center; }
     .contact-info p { text-align: center; }
