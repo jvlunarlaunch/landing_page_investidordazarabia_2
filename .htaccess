@@ -1,0 +1,12 @@
+# Force index.html as primary
+DirectoryIndex index.html
+
+# Fix Permissions and Access
+Options -Indexes
+Order allow,deny
+Allow from all
+
+# Ensure HTTPS (Optional but recommended)
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

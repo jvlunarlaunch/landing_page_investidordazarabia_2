@@ -22,7 +22,7 @@ jobs:
         server-dir: ${{ secrets.FTP_DIRECTORY }}/
         local-dir: ./
         timeout: 120000 # 2 minutes timeout to prevent control socket drop
-        dangerous-clean-slate: false
+        dangerous-clean-slate: true
         log-level: verbose
         exclude: |
           **/.git*
