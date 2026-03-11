@@ -19,10 +19,10 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ${{ secrets.FTP_DIRECTORY }}/
+        server-dir: public_html/
         local-dir: ./
         timeout: 120000 # 2 minutes timeout to prevent control socket drop
-        dangerous-clean-slate: true
+        dangerous-clean-slate: false
         log-level: verbose
         exclude: |
           **/.git*
