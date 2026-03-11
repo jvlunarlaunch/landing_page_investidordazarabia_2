@@ -749,6 +749,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     font-size: 1.1rem;
     transition: color 0.3s;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .method a:hover {
@@ -773,9 +775,10 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-secondary);
 }
 
-.form-group input, 
-.form-group select, 
+.form-group input,
+.form-group select,
 .form-group textarea {
+    width: 100%;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1rem 1.2rem;
@@ -784,6 +787,17 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-body);
     font-size: 1rem;
     transition: all 0.3s;
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #0a0a0a;
+    color: var(--text-primary);
 }
 
 .form-group input:focus, 
