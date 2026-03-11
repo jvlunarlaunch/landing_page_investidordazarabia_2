@@ -21,8 +21,13 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.FTP_DIRECTORY }}/
         local-dir: ./
+        timeout: 120000 # 2 minutes timeout to prevent control socket drop
+        dangerous-clean-slate: false
+        log-level: verbose
         exclude: |
           **/.git*
           **/.git*/**
           **/node_modules/**
           .env
+          .github/**
+          README.md
