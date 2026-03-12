@@ -484,6 +484,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 50%;
     padding: 2px;
     background: var(--gold-gradient);
+    overflow: hidden;
 }
 
 .frame-content {
@@ -1145,9 +1146,15 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 500px;
         margin: 0 auto;
     }
-    
+
     .stats-grid {
         gap: 1.5rem;
+    }
+
+    /* No layout single-column, animações horizontais causam overflow */
+    [data-animate="fade-left"],
+    [data-animate="fade-right"] {
+        transform: translateY(20px);
     }
 }
 
