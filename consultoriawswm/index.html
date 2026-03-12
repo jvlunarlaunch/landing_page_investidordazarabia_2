@@ -3,424 +3,490 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Simulador de Investimentos | Wall Street Wealth Management</title>
+    <title>Consultoria Exclusiva | Wall Street Wealth Management</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chart.js for Simulator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
-        
-        body, * {
-            font-family: 'Sora', sans-serif;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-        
-        body {
-            background: #111;
-            color: #fff;
-            min-height: 100vh;
-        }
-        
-        .comparacao-section {
-            background: transparent;
-            color: #fff;
-            text-align: center;
-            padding: 2.5rem 1.25rem;
-            min-height: 100vh;
-        }
-        
-        .comparacao-section h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: 0.0625rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .comparacao-section h2 {
-            font-size: 1rem;
-            color: #FFD966;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 2.5rem;
-            line-height: 1.4;
-        }
-        
-        .comparacao-inputs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .comparacao-input {
-            text-align: left;
-        }
-        
-        .comparacao-input label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.375rem;
-            color: #ddd;
-            font-size: 0.875rem;
-        }
-        
-        .comparacao-input input {
-            width: 18.75rem;
-            padding: 0.625rem 1rem;
-            background: #111;
-            border: 0.0625rem solid #333;
-            border-radius: 0.5rem;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-        
-        .comparacao-input input:focus {
-            border-color: #FFD966;
-            box-shadow: 0 0 0.5rem rgba(255, 217, 102, 0.3);
-        }
-        
-        .chart-section {
-            margin: 3.75rem auto;
-            max-width: 75rem;
-            padding: 0 1.25rem;
-        }
-        
-        .chart-container {
-            background: #0f0f0f;
-            border: 0.0625rem solid #333;
-            border-radius: 1rem;
-            padding: 1.875rem 1.25rem;
-            box-shadow: 0 0.5rem 1.875rem rgba(0, 0, 0, 0.4);
-        }
-        
-        .chart-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #FFD966;
-            margin-bottom: 1.25rem;
-            text-align: center;
-        }
-        
-        .chart-wrapper {
-            position: relative;
-            height: 25rem;
-            margin-bottom: 1.25rem;
-        }
-        
-        .comparacao-results {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-        
-        .card {
-            max-width: 25rem;
-            width: 100%;
-            text-align: center;
-            border-radius: 0.75rem;
-            padding: 2rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-0.25rem);
-            box-shadow: 0 0.75rem 1.875rem rgba(0, 0, 0, 0.3);
-        }
-        
-        .card-red {
-            background: #0f0f0f;
-            border: 0.0625rem solid rgba(255, 0, 0, 0.2);
-            box-shadow: 0 0.375rem 1.25rem rgba(255, 0, 0, 0.05);
-        }
-        
-        .card-gold {
-            background: #292720;
-            border: 0.0625rem solid rgba(255, 217, 102, 0.2);
-            box-shadow: 0 0.375rem 1.5625rem rgba(255, 217, 102, 0.12);
-        }
-        
-        .card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.625rem;
-            color: #fff;
-        }
-        
-        .card .value {
-            font-size: 2.625rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-        
-        .card-red .value {
-            color: #ff2a2a;
-        }
-        
-        .card-gold .value {
-            color: #FFD966;
-        }
-        
-        .card p {
-            color: #aaa;
-            font-size: 0.875rem;
-            margin: 0.3125rem 0;
-        }
-        
-        .card-gold .diff {
-            color: #FFD966;
-            margin-top: 0.625rem;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-        
-        .brl-value {
-            font-size: 1rem;
-            color: #888;
-            margin-top: 0.5rem;
-        }
+        /* Simulator Specific Styles Ported Over */
+        .simulator-section { padding: 5rem 0; background: var(--bg-dark); }
+        .comparacao-inputs { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
+        .comparacao-input { text-align: left; width: calc(25% - 1.5rem); min-width: 200px; }
+        .comparacao-input label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; }
+        .comparacao-input input { width: 100%; padding: 0.8rem 1rem; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; outline: none; transition: all 0.3s; font-family: var(--font-body); }
+        .comparacao-input input:focus { border-color: var(--gold-primary); box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+        .chart-container { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; box-shadow: var(--glass-shadow); margin-bottom: 3rem; }
+        .chart-title { font-size: 1.5rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 1.5rem; text-align: center; }
+        .chart-wrapper { position: relative; height: 400px; }
+        .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 800px; margin: 0 auto; }
+        .sim-card { padding: 2rem; border-radius: 12px; text-align: center; }
+        .sim-card.red { background: rgba(255,42,42,0.05); border: 1px solid rgba(255,42,42,0.2); }
+        .sim-card.gold { background: rgba(212,175,55,0.05); border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(212,175,55,0.1); }
+        .sim-card h3 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .sim-card .value { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .sim-card.red .value { color: var(--alert-red); }
+        .sim-card.gold .value { color: var(--gold-primary); }
+        .sim-card .brl { font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .sim-card .desc { font-size: 0.9rem; color: var(--text-secondary); }
+        .sim-card.gold .diff { color: var(--gold-primary); font-weight: 700; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(212,175,55,0.2); }
+        @media(max-width: 768px) { .comparacao-input { width: 100%; } .results-grid { grid-template-columns: 1fr; } .chart-wrapper { height: 300px; } }
 
-        /* FAQ Section Styles */
-        .faq-container {
-            max-width: 56.25rem;
-            margin: 3.75rem auto;
-            padding: 2.5rem 1.25rem;
-        }
-
-        .faq-container h2 {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 3.125rem;
-            background: linear-gradient(135deg, #F9B63C, #FAC864);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
+        /* FAQ Specific Styles */
         .faq-item {
-            background: linear-gradient(135deg, #F9B63C, #FAC864);
-            border-radius: 1rem;
-            margin-bottom: 1.25rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: #000;
+            transition: all 0.3s ease;
         }
-
-        .faq-item:hover {
-            transform: translateY(-0.125rem);
-            box-shadow: 0 0.5rem 1.5625rem rgba(249, 182, 60, 0.3);
-        }
-
+        .faq-item:hover { border-color: var(--gold-primary); background: rgba(212, 175, 55, 0.15); }
         .faq-question {
-            padding: 1.5625rem 1.875rem;
+            padding: 1.5rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1.25rem;
-            user-select: none;
-        }
-
-        .question-text {
-            font-size: 1.1rem;
             font-weight: 600;
-            flex: 1;
+            font-size: 1.1rem;
+            color: var(--gold-primary);
         }
-
-        .icon-wrapper {
-            width: 2rem;
-            height: 2rem;
-            flex-shrink: 0;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .icon-wrapper {
-            transform: rotate(180deg);
-        }
-
+        .faq-icon { transition: transform 0.3s ease; font-size: 1.5rem; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 1.875rem;
+            padding: 0 1.5rem;
+            color: var(--text-secondary);
         }
-
         .faq-item.active .faq-answer {
-            max-height: 31.25rem;
-            padding: 0 1.875rem 1.5625rem 1.875rem;
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem 1.5rem;
         }
 
-        .answer-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            font-weight: 400;
-            opacity: 0.9;
+        /* Nav Header */
+        .wswm-header {
+            padding: 1.5rem 0;
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            z-index: 10;
         }
-        
-        @media (max-width: 768px) {
-            .comparacao-section h1 {
-                font-size: 2rem;
-            }
-            
-            .comparacao-section h2 {
-                font-size: 0.9375rem;
-                margin-bottom: 1.875rem;
-                line-height: 1.6;
-            }
-            
-            .comparacao-inputs {
-                gap: 1.25rem;
-                margin-bottom: 1.875rem;
-            }
-            
-            .comparacao-input {
-                width: calc(100% - 2.5rem);
-            }
-            
-            .comparacao-input input {
-                width: 100%;
-                max-width: none;
-            }
-            
-            .chart-section {
-                margin: 2.5rem auto;
-                padding: 0 0.9375rem;
-            }
-            
-            .chart-container {
-                padding: 1.25rem 0.3125rem;
-            }
-            
-            .chart-title {
-                font-size: 1.125rem;
-            }
-            
-            .chart-wrapper {
-                height: 18.75rem;
-            }
-            
-            .comparacao-results {
-                gap: 1.25rem;
-            }
-            
-            .card {
-                padding: 1.5rem;
-                max-width: 100%;
-            }
-            
-            .card .value {
-                font-size: 2rem;
-            }
-            
-            .card h3 {
-                font-size: 1.125rem;
-            }
-
-            .faq-container h2 {
-                font-size: 2.25rem;
-            }
+        .header-content {
+            display: flex; justify-content: center; align-items: center;
         }
+        .wswm-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .flags { display: flex; gap: 0.5rem; font-size: 1.2rem; }
     </style>
 </head>
 <body>
-    <header style="background: #000; padding: 20px; text-align: center; border-bottom: 1px solid #333;">
-        <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-            <img src="../assets/logo-wswm.png" alt="Wall Street Wealth Management" style="max-width: 200px;">
-            <img src="../assets/selo-imigrantes.png" alt="Exclusivo para Imigrantes" style="max-width: 120px;">
+
+    <!-- Header / Logo -->
+    <header class="wswm-header">
+        <div class="container header-content">
+            <div class="wswm-logo text-gradient">
+                WALL STREET WEALTH MANAGEMENT
+                <div class="flags">🇧🇷🇺🇸</div>
+            </div>
         </div>
     </header>
-    <div class="comparacao-section">
-        <h1>SIMULADOR DE INVESTIMENTOS</h1>
-        <h2>SÓ JUNTANDO DINHEIRO VS INVESTINDO ESTRATEGICAMENTE</h2>
-        
-        <div class="comparacao-inputs">
-            <div class="comparacao-input">
-                <label>Aporte Inicial (USD)</label>
-                <input type="number" id="initialAmount" value="1000" />
+
+    <!-- Hero Section -->
+    <section class="section" style="min-height: 100vh; display: flex; align-items: center; padding-top: 8rem;">
+        <div class="container text-center">
+            <div class="hero-badge">
+                <i class="ph-fill ph-globe-hemisphere-west"></i> EXCLUSIVO PARA IMIGRANTES
             </div>
-            <div class="comparacao-input">
-                <label>Aporte Mensal (USD)</label>
-                <input type="number" id="monthly" value="300" />
-            </div>
-            <div class="comparacao-input">
-                <label>Período (Anos)</label>
-                <input type="number" id="years" value="15" /> 
-            </div>
-            <div class="comparacao-input">
-                <label>Taxa de Juros Anual USD (%)</label>
-                <input type="number" id="annualRate" value="13" />
+            
+            <h1 class="hero-title">
+                A única consultoria exclusiva para imigrantes construírem a <span class="text-gradient">Liberdade Financeira.</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Receba uma estratégia de investimentos 100% alinhada com seus objetivos pessoais e construa sua independência financeira com uma equipe profissional de consultores à sua disposição.
+            </p>
+            
+            <a href="#contato" class="btn-primary">
+                FALE COM UM CONSULTOR AGORA <i class="ph-bold ph-arrow-right"></i>
+            </a>
+            
+            <div class="social-proof">
+                <div class="social-proof-item"><i class="ph-fill ph-users text-gold" style="font-size: 1.5rem;"></i> +70 Clientes Satisfeitos</div>
+                <div class="social-proof-item"><i class="ph-fill ph-trend-up text-gold" style="font-size: 1.5rem;"></i> +19% de Rentabilidade Média</div>
             </div>
         </div>
-        
-        <div class="chart-section">
+    </section>
+
+    <!-- Para Você Section -->
+    <section class="section section-darker">
+        <div class="container text-center">
+            <h2 class="section-title">Para você:</h2>
+            <div class="grid-3" style="margin-bottom: 4rem;">
+                <div class="card-glass text-center">
+                    <div class="feature-icon center"><i class="ph-fill ph-anchor"></i></div>
+                    <h3>Ter mais tranquilidade financeira</h3>
+                </div>
+                <div class="card-glass text-center">
+                    <div class="feature-icon center"><i class="ph-fill ph-house-line"></i></div>
+                    <h3>Realizar objetivos pessoais</h3>
+                </div>
+                <div class="card-glass text-center">
+                    <div class="feature-icon center"><i class="ph-fill ph-beach-tent"></i></div>
+                    <h3>Construir a aposentadoria</h3>
+                </div>
+            </div>
+            <a href="#contato" class="btn-primary">FALE COM UM CONSULTOR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Warning Block -->
+    <section class="section" style="padding: 2rem 0;">
+        <div class="container">
+            <div class="alert-box">
+                <i class="ph-fill ph-warning alert-icon left"></i>
+                <i class="ph-fill ph-warning alert-icon right"></i>
+                <p style="color: var(--alert-red); margin-bottom: 0.5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">Atenção</p>
+                <p>Se você ainda não tem uma estratégia clara para seus investimentos nos EUA, cada mês que passa é dinheiro deixado na mesa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulator Intro / Dictionary Section -->
+    <section class="section">
+        <div class="container text-center">
+            <h2 class="section-title">Tudo por causa de uma fórmula simples:<br><span class="text-gradient">O Juros Compostos.</span></h2>
+            
+            <div class="dict-card card-glass">
+                <div class="dict-term">Juros compostos</div>
+                <div class="dict-def">substantivo masculino, plural</div>
+                <div class="dict-body">
+                    Sistema de capitalização em que os juros de cada período são incorporados ao capital inicial, de modo que, nos períodos seguintes, os novos juros incidem sobre o montante acumulado (capital + juros já adicionados).
+                </div>
+                <div class="formula-box">
+                    <p style="color: var(--text-secondary); font-family: var(--font-body); font-size: 0.9rem; margin-bottom: 0.5rem;">Fórmula matemática comumente expressa por:</p>
+                    <div style="font-size: 2rem; color: var(--gold-primary); text-align: center; margin: 1rem 0;">M = C · (1+i)ⁿ</div>
+                    <p style="color: var(--text-secondary); font-family: var(--font-body); font-size: 0.9rem;">em que M é o montante, C o capital inicial, i a taxa de juros e n o número de períodos de capitalização.</p>
+                </div>
+            </div>
+            
+            <a href="#contato" class="btn-primary" style="margin-top: 2rem;">FALE COM UM CONSULTOR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Simulator Section (Existing App logic integrated) -->
+    <section class="section simulator-section">
+        <div class="container">
+            <h2 class="section-title text-center text-gradient" style="text-transform: uppercase;">SIMULADOR DE INVESTIMENTOS</h2>
+            <p class="text-center text-secondary" style="margin-top: -2rem; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 1px;">SÓ JUNTANDO DINHEIRO VS INVESTINDO ESTRATEGICAMENTE</p>
+            
+            <div class="comparacao-inputs">
+                <div class="comparacao-input">
+                    <label>Aporte Inicial (USD)</label>
+                    <input type="number" id="initialAmount" value="1000" />
+                </div>
+                <div class="comparacao-input">
+                    <label>Aporte Mensal (USD)</label>
+                    <input type="number" id="monthly" value="300" />
+                </div>
+                <div class="comparacao-input">
+                    <label>Período (Anos)</label>
+                    <input type="number" id="years" value="15" /> 
+                </div>
+                <div class="comparacao-input">
+                    <label>Taxa de Juros Anual USD (%)</label>
+                    <input type="number" id="annualRate" value="13" />
+                </div>
+            </div>
+            
             <div class="chart-container">
                 <div class="chart-title">Evolução do Patrimônio</div>
                 <div class="chart-wrapper">
                     <canvas id="investmentChart"></canvas>
                 </div>
             </div>
-        </div>
-        
-        <div class="comparacao-results">
-            <div class="card card-red">
-                <h3>Somente Juntando</h3>
-                <div class="value" id="simpleValue">$0</div>
-                <p class="brl-value" id="simpleBRL">R$ 0,00</p>
-                <p>Valor total após o período sem juros compostos</p>
+            
+            <div class="results-grid">
+                <div class="sim-card red">
+                    <h3>Somente Juntando</h3>
+                    <div class="value" id="simpleValue">$0</div>
+                    <div class="brl" id="simpleBRL">R$ 0,00</div>
+                    <div class="desc">Valor total após o período sem juros compostos</div>
+                </div>
+                <div class="sim-card gold">
+                    <h3>Investindo Estrategicamente</h3>
+                    <div class="value" id="compoundValue">$0</div>
+                    <div class="brl" id="compoundBRL">R$ 0,00</div>
+                    <div class="desc" id="ratesText">Com 13% (USD) e 19% (BRL) ao ano</div>
+                    <div class="diff" id="difference">Diferença: +$0</div>
+                </div>
             </div>
-            <div class="card card-gold">
-                <h3>Investindo Estrategicamente</h3>
-                <div class="value" id="compoundValue">$0</div>
-                <p class="brl-value" id="compoundBRL">R$ 0,00</p>
-                <p id="ratesText">Com 13% (USD) e 19% (BRL) ao ano</p>
-                <div class="diff" id="difference">Diferença: +$0</div>
-            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="faq-container">
-        <h2>Perguntas Frequentes</h2>
-        
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <div class="question-text">Como funciona o serviço?</div>
-                <div class="icon-wrapper">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <!-- Riscos Section -->
+    <section class="section section-darker">
+        <div class="container text-center">
+            <h2 class="section-title">Riscos que você corre por <span class="text-gradient">não ter uma consultoria exclusiva</span> e especializada:</h2>
+            
+            <div class="grid-2" style="margin-bottom: 4rem;">
+                <div class="card-glass risk-card text-left">
+                    <h3><i class="ph-bold ph-x-circle"></i> Perder o visto ou o green card</h3>
+                    <p>Investir sem orientação especializada pode resultar em danos graves por estar sem a conformidade com as leis fiscais e o IRS (Receita Federal Americana).</p>
+                </div>
+                <div class="card-glass risk-card text-left">
+                    <h3><i class="ph-bold ph-x-circle"></i> Multas Severas do IRS</h3>
+                    <p>Imigrantes não-residentes fiscais possuem regras específicas. Erros na declaração de ganhos de capital podem gerar penalidades financeiras pesadas e bloqueio de contas.</p>
                 </div>
             </div>
-            <div class="faq-answer">
-                <div class="answer-text">
-                    Nosso serviço é totalmente online e simplificado. Após a contratação, você terá acesso imediato à plataforma com todos os recursos premium disponíveis.
+            
+             <a href="#contato" class="btn-primary">FALE COM UM CONSULTOR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section class="section">
+        <div class="container text-center">
+            <h2 class="section-title">Como funciona nossa consultoria:</h2>
+            
+            <div class="grid-3" style="text-align: left;">
+                <div class="card-glass">
+                    <div class="feature-icon"><i class="ph-fill ph-magnifying-glass"></i></div>
+                    <h3 style="margin-bottom: 1rem;">1. Raio-X</h3>
+                    <p style="color: var(--text-secondary);">Analisamos detalhadamente o seu perfil, suas necessidades e seus objetivos de curto, médio e longo prazo.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon"><i class="ph-fill ph-lightning"></i></div>
+                    <h3 style="margin-bottom: 1rem;">2. Plano de Ação</h3>
+                    <p style="color: var(--text-secondary);">Desenvolvemos individualmente um plano de ação com a estratégia e os ativos, garantindo que todos seus objetivos sejam realizados.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon"><i class="ph-fill ph-user-focus"></i></div>
+                    <h3 style="margin-bottom: 1rem;">3. Follow Up Individual</h3>
+                    <p style="color: var(--text-secondary);">Após o plano de ação, nossos consultores estarão ao seu lado para adaptar estratégias, tirar dúvidas e te orientar 24 horas por dia.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-                <div class="question-text">Quais são as formas de pagamento?</div>
-                <div class="icon-wrapper">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <!-- Deliverables Section -->
+    <section class="section section-darker">
+        <div class="container text-center">
+            <h2 class="section-title">O que você vai <span class="text-gradient">receber.</span></h2>
+            
+            <div class="grid-5-special" style="margin-bottom: 4rem; text-align: center;">
+                <div class="card-glass">
+                    <div class="feature-icon center"><i class="ph-fill ph-check-circle"></i></div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Análise Individual Detalhada</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Avaliação completa do seu perfil financeiro e objetivos pessoais.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon center"><i class="ph-fill ph-clock"></i></div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Estratégia de Invest. Personalizada</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Plano único criado especificamente para sua situação.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon center"><i class="ph-fill ph-phone-call"></i></div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Suporte 24 horas por dia</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Acesso direto aos consultores a qualquer momento.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon center"><i class="ph-fill ph-clipboard-text"></i></div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Relatórios Semanais</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Acompanhamento detalhado dos seus investimentos.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon center"><i class="ph-fill ph-info"></i></div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Informações Atualizadas</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Notificações sobre oportunidades e mudanças no mercado.</p>
                 </div>
             </div>
-            <div class="faq-answer">
-                <div class="answer-text">
-                    Aceitamos cartão de crédito, débito, PIX e boleto bancário. Todas as transações são processadas com segurança.
+            
+            <a href="#contato" class="btn-primary">FALE COM UM CONSULTOR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Differentials Section -->
+    <section class="section">
+        <div class="container text-center">
+            <h2 class="section-title">Por que somos <span class="text-gradient">diferentes:</span></h2>
+            
+            <div class="grid-3" style="text-align: left; margin-bottom: 2rem;">
+                <div class="card-glass">
+                    <div class="feature-icon"><i class="ph-fill ph-globe-hemisphere-west"></i></div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Especialização Exclusiva em Imigrantes</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Não atendemos americanos. Não atendemos turistas. APENAS imigrantes brasileiros que enfrentam os mesmos desafios que você.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon"><i class="ph-fill ph-shield-check"></i></div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Única Consultoria com Blindagem Fiscal</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Somos os únicos que integram construção de patrimônio com proteção legal do seu status imigratório.</p>
+                </div>
+                <div class="card-glass">
+                    <div class="feature-icon"><i class="ph-fill ph-phone"></i></div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Follow-up Individual e Exclusivo</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Falar com o consultor não é uma burocracia. Você terá acesso ao número pessoal do consultor, onde ele vai te atender dia e noite.</p>
+                </div>
+            </div>
+            
+            <div class="card-glass text-center" style="max-width: 900px; margin: 0 auto 4rem auto;">
+                <div class="feature-icon center"><i class="ph-fill ph-heart-straight"></i></div>
+                <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Sem comissões para os nossos consultores</h3>
+                <p style="color: var(--text-secondary); font-size: 1.1rem;">Nosso modelo é diferente de assessorias de investimentos que indicam produtos somente para ganharem comissão. No nosso caso, lucramos apenas com a venda da consultoria.</p>
+            </div>
+            
+            <a href="#contato" class="btn-primary">FALE COM UM CONSULTOR AGORA</a>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="section section-darker" style="text-align: center;">
+        <div class="container">
+            <i class="ph-fill ph-medal guarantee-icon"></i>
+            <h2 class="section-title" style="margin-bottom: 1rem;">Garantia de <span class="text-gradient">Rentabilidade</span></h2>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 1rem auto; color: var(--text-secondary);">
+                Caso seu retorno em dólar não supere o retorno da bolsa brasileira BOVESPA no período completo da consultoria, devolveremos seu dinheiro.
+            </p>
+            <p style="color: var(--gold-primary); font-weight: 600; margin-bottom: 3rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Simples assim, sem letras miúdas.</p>
+            
+            <a href="#contato" class="btn-primary">FALE COM UM CONSULTOR AGORA</a>
+        </div>
+    </section>
+    
+    <!-- Quote Section -->
+    <section class="section text-center" style="padding: 8rem 0;">
+        <div class="container">
+            <i class="ph-fill ph-quotes text-gold" style="font-size: 3rem; margin-bottom: 2rem;"></i>
+            <div class="quote-section">
+                "O tempo passa rápido, e assegurar o seu futuro agora é uma decisão inteligente."
+            </div>
+            <i class="ph-bold ph-arrow-down text-gold" style="font-size: 2rem; margin-top: 4rem; animation: bounce 2s infinite;"></i>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" style="padding-top: 0;" id="contato">
+        <div class="container">
+            <div class="final-cta-card">
+                <h2>Transforme o seu futuro financeiro</h2>
+                <p>Fale com um de nossos consultores especializados:</p>
+                <a href="#" class="btn-primary btn-dark">
+                    INICIAR ANÁLISE GRATUITA <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dúvidas -->
+    <section class="section section-darker text-center">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 1rem;">Ainda restam <span class="text-gradient">Dúvidas?</span></h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Fale com um de nossos consultores! Eles estão prontos para responder qualquer dúvida.</p>
+            
+            <a href="#" class="btn-primary" style="background: transparent; border: 2px solid var(--gold-primary); color: var(--gold-primary);">
+                <i class="ph-fill ph-whatsapp-logo" style="font-size: 1.5rem;"></i> FALAR COM UM CONSULTOR
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title text-center text-gradient">Perguntas Frequentes</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Como funciona o serviço?
+                        <i class="ph-bold ph-caret-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Nosso serviço envolve uma análise profunda (Raio-X) seguida da montagem de um plano de ação estratégico e acompanhamento individual contínuo pelo WhatsApp e reuniões agendadas.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Quais são as formas de pagamento?
+                        <i class="ph-bold ph-caret-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Aceitamos pagamentos via métodos americanos (Zelle, Wire) e também métodos brasileiros para sua conveniência (PIX, Cartão de Crédito parcelado).
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Posso cancelar a qualquer momento?
+                        <i class="ph-bold ph-caret-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        A consultoria é estruturada por um período contratual para garantir a implementação e maturação da estratégia. Detalhes de cancelamento são definidos no contrato antes do início.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Existe período de teste gratuito?
+                        <i class="ph-bold ph-caret-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Não trabalhamos com testes gratuitos devido à natureza hiper-personalizada da análise inicial e do plano de ação elaborado pelos nossos estrategistas.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        O suporte está incluído no plano?
+                        <i class="ph-bold ph-caret-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Sim, 100%. O diferencial da nossa consultoria é justamente o acompanhamento e follow-up contínuo com seu consultor dedicado.
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- Footer -->
+    <footer style="background: var(--bg-darker); padding: 2rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">&copy; 2026 Wall Street Wealth Management. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <style>
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-20px);} 60% {transform: translateY(-10px);} }
+    </style>
     <script>
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+            
+            // Open clicked if it wasn't already open
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Simulator Logic (Preserved from original)
         let exchangeRate = 5.45;
         
         function calculateCompoundData(initial, monthly, years, annualRate) {
@@ -489,9 +555,9 @@
                     datasets: [{
                         label: `Estratégia USD (${annualRateUSD}%)`,
                         data: compoundDataUSD,
-                        borderColor: "#FFD966",
+                        borderColor: "#D4AF37",
                         fill: true,
-                        backgroundColor: "rgba(255, 217, 102, 0.1)",
+                        backgroundColor: "rgba(212, 175, 55, 0.1)",
                         tension: 0.4
                     }, {
                         label: "Somente Juntando (USD)",
@@ -501,18 +567,26 @@
                         tension: 0.4
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#ffffff' } }
+                    },
+                    scales: {
+                        y: { ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                    }
+                }
             });
-        }
-
-        function toggleFaq(element) {
-            element.parentElement.classList.toggle('active');
         }
 
         document.getElementById("initialAmount").addEventListener("input", updateSimulation);
         document.getElementById("monthly").addEventListener("input", updateSimulation);
         document.getElementById("years").addEventListener("input", updateSimulation);
         document.getElementById("annualRate").addEventListener("input", updateSimulation);
+        
+        // Initialize simulator right away
         updateSimulation();
     </script>
 </body>
