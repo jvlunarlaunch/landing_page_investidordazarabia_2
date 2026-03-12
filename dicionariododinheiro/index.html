@@ -263,8 +263,21 @@
         document.getElementById('leadCaptureForm-Dict').addEventListener('submit', function(e) {
             e.preventDefault();
             const email = document.getElementById('email').value;
-            if(email) {
-                alert('Tudo certo! Recebemos seu email. (Integração de DB pendente).');
+            const nome = document.getElementById('nome').value;
+
+            if(email && nome) {
+                // Future point: Call Supabase Insert here.
+                
+                // Show message
+                alert('Tudo certo! Recebemos seu email. O download do Dicionário começará agora.');
+
+                // Trigger Download
+                const link = document.createElement('a');
+                link.href = '../assets/Dicionario-do-Dinheiro-Investidor-Dazarabia.pdf';
+                link.download = 'Dicionario-do-Dinheiro-Eric-Zapparoli.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }
         });
     </script>
