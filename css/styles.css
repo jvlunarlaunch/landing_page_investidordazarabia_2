@@ -36,9 +36,15 @@
     --container-width: 1200px;
 }
 
+/* Visibility Utilities */
+.desktop-only { display: block; }
+.mobile-hero-image-section { display: none; }
+
+/* Media Elements */
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 * {
@@ -1168,6 +1174,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+    .mobile-hero-image-section { 
+        display: block !important; 
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+        background-color: var(--bg-dark);
+    }
     :root {
         --section-padding: 4rem 0;
     }
