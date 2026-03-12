@@ -50,7 +50,6 @@ img {
 html, body {
     scroll-behavior: smooth;
     font-size: 16px;
-    overflow-x: hidden !important;
     position: relative;
     width: 100%;
     max-width: 100%; /* Changed from 100vw to 100% to prevent overflow */
@@ -61,6 +60,7 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-primary);
     line-height: 1.6;
+    overflow-x: hidden !important; /* Only applied to body to prevent double scrollbars */
 }
 
 /* ==========================================================================
@@ -1167,7 +1167,6 @@ h1, h2, h3, h4, h5, h6 {
         padding: 0 1.5rem;
         width: 100% !important;
         max-width: 100% !important;
-        overflow-x: hidden;
     }
 
     .nav-container {
