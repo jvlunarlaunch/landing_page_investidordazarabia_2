@@ -1142,10 +1142,10 @@ h1, h2, h3, h4, h5, h6 {
 
     .hero-title { font-size: 3.5rem; }
     
-    .hero-content, .bio-grid, .contact-wrapper {
+    /* .hero-content, .bio-grid, .contact-wrapper {
         grid-template-columns: 1fr;
         gap: 3rem;
-    }
+    } */
     
     .businesses-grid, .tools-grid {
         grid-template-columns: repeat(2, 1fr);
