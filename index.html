@@ -44,7 +44,7 @@
         <div class="glow-orb hero-orb-1"></div>
         <div class="glow-orb hero-orb-2"></div>
         <div class="container hero-content">
-            <div class="hero-text" data-animate="fade-up">
+            <div class="hero-text" data-animate="fade-up" style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 900px; margin: 0 auto;">
                 <span class="badge">Proteção Patrimonial e Investimentos</span>
                 <h1 class="hero-title">Seu patrimônio está protegido — ou está à mercê do <span class="text-gradient-gold">próximo pacote fiscal?</span></h1>
                 <p class="hero-subtitle">Eric Zapparoli saiu da periferia de SP, foi parar em Jeddah e aprendeu na prática como construir patrimônio em moeda forte, investir no exterior e não depender do Brasil para ter liberdade financeira.</p>
@@ -53,28 +53,10 @@
                     <a href="#jornada" class="btn-secondary">Ver a Jornada</a>
                 </div>
             </div>
-            <div class="hero-visual desktop-only" data-animate="fade-left">
-                <div class="glass-card portrait-card">
-                    <div class="portrait-image-wrapper">
-                        <img src="assets/eric-zapparoli.jpg" alt="Eric Zaparoli" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
 
-    <!-- Mobile Hero Image Section -->
-    <section class="section mobile-hero-image-section">
-        <div class="container">
-            <div class="hero-visual" style="max-width: 400px; margin: 0 auto;">
-                <div class="glass-card portrait-card">
-                    <div class="portrait-image-wrapper">
-                        <img src="assets/eric-zapparoli.jpg" alt="Eric Zaparoli" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- About Section -->
     <section class="section bio-section" id="about">
@@ -84,6 +66,12 @@
                 <!-- Header part -->
                 <div class="bio-header" data-animate="fade-up">
                     <h2 class="section-title">Quem é <span class="text-gold">Eric Zapparoli</span>?</h2>
+                    
+                    <div class="bio-image-wrapper" style="margin: 2rem auto; width: 220px; height: 220px; border-radius: 50%; padding: 4px; background: var(--gold-gradient); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <div style="width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid var(--bg-dark);">
+                            <img src="assets/eric-zapparoli.jpg" alt="Eric Zapparoli" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
                     <div style="font-size: 1.15rem; color: var(--text-secondary); margin-top: 1.5rem;">
                         <p>O garoto que cresceu com banheiro externo e decidiu que não ia repetir a história da família.</p>
                     </div>

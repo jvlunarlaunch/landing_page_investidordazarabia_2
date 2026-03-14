@@ -333,9 +333,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     align-items: center;
+    text-align: center;
 }
 
 .badge {
