@@ -52,6 +52,47 @@ body {
 .section { padding: 5rem 0; position: relative; }
 .section-darker { background-color: var(--bg-darker); }
 
+/* ---------- PREMIUM BACKGROUNDS ---------- */
+
+.bg-grid {
+    background-color: #0b0b0b;
+    background-image:
+        linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px),
+        linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+}
+
+.bg-mesh {
+    background:
+        radial-gradient(at 20% 30%, #d4af3720 0px, transparent 60%),
+        radial-gradient(at 80% 70%, #f7e27a20 0px, transparent 60%),
+        #0a0a0a;
+}
+
+.bg-particles {
+    background:
+        radial-gradient(circle at 10% 20%, rgba(212,175,55,0.2) 2px, transparent 3px),
+        radial-gradient(circle at 70% 60%, rgba(212,175,55,0.15) 2px, transparent 3px),
+        radial-gradient(circle at 40% 80%, rgba(247,226,122,0.15) 2px, transparent 3px),
+        #0a0a0a;
+    background-size: 200px 200px;
+}
+
+.bg-steel-dark {
+    background: linear-gradient(90deg, #0b0b0b, #141414, #0e0e0e, #161616, #0b0b0b);
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-steel-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.025), rgba(255,255,255,0.025) 1px, transparent 1px, transparent 3px);
+    opacity: 0.4;
+    pointer-events: none;
+}
+
 /* Buttons */
 .btn-primary {
     display: inline-flex;
@@ -92,6 +133,69 @@ body {
     transition: transform 0.3s;
 }
 .card-glass:hover { transform: translateY(-5px); border-color: var(--gold-primary); }
+
+/* ---------- CARD 1 (SHADOW + GLOW ATRÁS) ---------- */
+.card-glow {
+    background: #111;
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 25px 70px rgba(212, 175, 55, 0.35);
+    transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+    transform: translateY(-10px);
+}
+
+.card-glow::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, var(--gold-primary), #f7e27a, var(--gold-primary));
+    border-radius: 20px;
+    filter: blur(20px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* ---------- CARD 2 (GRADIENT PREMIUM) ---------- */
+.card-gradient {
+    background: linear-gradient(135deg, #1a1a1a, #0c0c0c);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-gradient:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-primary);
+}
+
+.card-gradient::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--gold-primary) 0%, transparent 70%);
+    opacity: 0.08;
+    pointer-events: none;
+}
 
 /* Specific Component Styles */
 .hero-badge {
