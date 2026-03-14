@@ -9,12 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     
     <!-- Chart.js for Simulator -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
@@ -78,11 +79,28 @@
         }
 
         /* Nav Header */
+        .top-banner {
+            background: var(--gold-primary);
+            color: var(--bg-darker);
+            padding: 0.6rem 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 100;
+            line-height: 1.2;
+        }
+        .top-banner span { display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+        
         .wswm-header {
-            padding: 1.5rem 0;
+            padding: 1rem 0;
             position: absolute;
-            top: 0; left: 0; width: 100%;
+            top: 2.5rem; /* Default for desktop */
+            left: 0; width: 100%;
             z-index: 10;
+            transition: top 0.3s;
         }
         .header-content {
             display: flex; justify-content: center; align-items: center;
@@ -95,16 +113,37 @@
             align-items: center;
             gap: 1rem;
         }
-        .flags { display: flex; gap: 0.5rem; font-size: 1.2rem; }
+        /* Fix flags color - ensure they don't inherit gradient */
+        .flags { 
+            display: flex; 
+            gap: 0.5rem; 
+            font-size: 1.25rem;
+            filter: none !important;
+            -webkit-text-fill-color: initial !important;
+        }
+
+        @media (max-width: 768px) {
+            .top-banner { font-size: 0.75rem; padding: 0.8rem 1rem; }
+            .top-banner span { display: block; text-align: center; }
+            .wswm-header { top: 8.5rem; }
+            .wswm-logo { font-size: 1.1rem; flex-direction: column; gap: 0.3rem; text-align: center; }
+            .flags { font-size: 1.1rem; }
+            section.section:first-of-type { padding-top: 15rem !important; }
+            .risk-card { text-align: left !important; }
+        }
     </style>
 </head>
-<body>
+<body style="padding-top: 0;">
 
-    <!-- Header / Logo -->
+    <!-- Banner / Header -->
+    <div class="top-banner">
+        <span><i class="ph-fill ph-star"></i> 1ª Sessão Estratégica Gratuita - Vagas Limitadas</span>
+    </div>
+
     <header class="wswm-header">
         <div class="container header-content">
-            <div class="wswm-logo text-gradient">
-                WALL STREET WEALTH MANAGEMENT
+            <div class="wswm-logo">
+                <span class="text-gradient">WALL STREET WEALTH MANAGEMENT</span>
                 <div class="flags">🇧🇷🇺🇸</div>
             </div>
         </div>
@@ -150,7 +189,11 @@
                     <h3>Realizar objetivos pessoais</h3>
                 </div>
                 <div class="card-glass text-center">
-                    <div class="feature-icon center"><i class="ph-fill ph-beach-tent"></i></div>
+                    <div class="feature-icon center">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.36407 6.364C9.87878 2.84929 15.5773 2.84929 19.092 6.364L12.728 12.728M6.36407 6.364C2.84935 9.87872 2.84935 15.5772 6.36407 19.0919L12.728 12.728M6.36407 6.364C6.36407 6.364 12.0417 6.38489 15.5564 9.89961M6.36407 6.364C6.36407 6.364 6.38483 12.0417 9.89955 15.5565M12.728 12.728L20 20.0001" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3>Construir a aposentadoria</h3>
                 </div>
             </div>
@@ -589,5 +632,149 @@
         // Initialize simulator right away
         updateSimulation();
     </script>
+    <!-- Quiz Popup -->
+    <div class="quiz-overlay" id="consultancyQuizOverlay">
+        <div class="quiz-container">
+            <button class="quiz-close" id="quizClose"><i class="ph ph-x"></i></button>
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar"></div>
+            </div>
+
+            <!-- Step 0: Contact Info -->
+            <div class="quiz-step active" id="step-0">
+                <h3>Como podemos te chamar?</h3>
+                <div class="quiz-input-group">
+                    <label>Seu Nome</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="quiz-input-group">
+                    <label>Seu WhatsApp</label>
+                    <input type="tel" id="whatsapp" placeholder="+55 (00) 00000-0000" required>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-next">PRÓXIMO <i class="ph-bold ph-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 1: Patrimônio -->
+            <div class="quiz-step">
+                <h3>Qual seu patrimônio total aproximado?</h3>
+                <div class="quiz-options" data-field="patrimonio">
+                    <button class="quiz-option" data-value="até 100k">Até R$ 100 mil</button>
+                    <button class="quiz-option" data-value="100k-500k">R$ 100 mil a R$ 500 mil</button>
+                    <button class="quiz-option" data-value="500k-1m">R$ 500 mil a R$ 1 milhão</button>
+                    <button class="quiz-option" data-value="1m-5m">R$ 1 milhão a R$ 5 milhões</button>
+                    <button class="quiz-option" data-value="acima 5m">Acima de R$ 5 milhões</button>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-prev">VOLTAR</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Renda -->
+            <div class="quiz-step">
+                <h3>Qual sua renda mensal aproximada (em Reais)?</h3>
+                <div class="quiz-options" data-field="renda">
+                    <button class="quiz-option" data-value="até 5k">Até R$ 5.000</button>
+                    <button class="quiz-option" data-value="5k-15k">R$ 5.000 a R$ 15.000</button>
+                    <button class="quiz-option" data-value="15k-30k">R$ 15.000 a R$ 30.000</button>
+                    <button class="quiz-option" data-value="acima 30k">Acima de R$ 30.000</button>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-prev">VOLTAR</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Idade -->
+            <div class="quiz-step">
+                <h3>Em qual faixa etária você se encontra?</h3>
+                <div class="quiz-options" data-field="idade">
+                    <button class="quiz-option" data-value="menos 25">Menos de 25 anos</button>
+                    <button class="quiz-option" data-value="25-35">25 a 35 anos</button>
+                    <button class="quiz-option" data-value="36-45">36 a 45 anos</button>
+                    <button class="quiz-option" data-value="46-55">46 a 55 anos</button>
+                    <button class="quiz-option" data-value="acima 55">Acima de 55 anos</button>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-prev">VOLTAR</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Ocupação -->
+            <div class="quiz-step">
+                <h3>Qual sua ocupação atual?</h3>
+                <div class="quiz-options" data-field="ocupacao">
+                    <button class="quiz-option" data-value="empresário">Empresário / Empreendedor</button>
+                    <button class="quiz-option" data-value="público">Funcionário Público</button>
+                    <button class="quiz-option" data-value="clt">CLT / Setor Privado</button>
+                    <button class="quiz-option" data-value="liberal">Autônomo / Profissional Liberal</button>
+                    <button class="quiz-option" data-value="outro">Outros</button>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-prev">VOLTAR</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Mora no exterior -->
+            <div class="quiz-step">
+                <h3>Você mora atualmente no exterior?</h3>
+                <div class="quiz-options" data-field="mora_exterior">
+                    <button class="quiz-option" data-value="sim">Sim, moro fora</button>
+                    <button class="quiz-option" data-value="não">Não, moro no Brasil</button>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-prev">VOLTAR</button>
+                </div>
+            </div>
+
+            <!-- Step 6: País (Conditional) -->
+            <div class="quiz-step">
+                <h3>Em qual país você mora?</h3>
+                <div class="quiz-input-group">
+                    <label>Selecione o País / Moeda</label>
+                    <select id="pais_select">
+                        <option value="" selected disabled>Escolha uma opção</option>
+                        <option value="EUA (Dólar)">EUA (Dólar)</option>
+                        <option value="Portugal (Euro)">Portugal (Euro)</option>
+                        <option value="Arábia Saudita (Rial)">Arábia Saudita (Rial)</option>
+                        <option value="Inglaterra (Libra)">Inglaterra (Libra)</option>
+                        <option value="Canadá (Dólar Canadense)">Canadá (Dólar Canadense)</option>
+                        <option value="Austrália (Dólar Australiano)">Austrália (Dólar Australiano)</option>
+                        <option value="Alemanha (Euro)">Alemanha (Euro)</option>
+                        <option value="Espanha (Euro)">Espanha (Euro)</option>
+                        <option value="França (Euro)">França (Euro)</option>
+                        <option value="Itália (Euro)">Itália (Euro)</option>
+                        <option value="outro">Outro...</option>
+                    </select>
+                </div>
+                <div class="quiz-input-group" id="otherCountryGroup" style="display: none;">
+                    <label>Qual país?</label>
+                    <input type="text" id="pais_outro" placeholder="Digite o nome do país">
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-prev">VOLTAR</button>
+                    <button class="btn-quiz-next">PRÓXIMO</button>
+                </div>
+            </div>
+
+            <!-- Step 7: Mensagem -->
+            <div class="quiz-step">
+                <h3>Como a WSWM pode te ajudar?</h3>
+                <div class="quiz-input-group">
+                    <label>Conte um pouco sobre o que você procura na consultoria:</label>
+                    <textarea id="mensagem" rows="4" placeholder="Sua mensagem..." required></textarea>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-quiz-prev">VOLTAR</button>
+                    <button class="btn-quiz-next btn-submit-quiz">SOLICITAR CONSULTORIA <i class="ph-bold ph-paper-plane-tilt"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/consultancy-quiz.js"></script>
 </body>
 </html>
