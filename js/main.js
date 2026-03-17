@@ -119,18 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (leadUnlockForm) {
-        leadUnlockForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = leadUnlockForm.querySelector('button');
-            const url = redirectInput.value;
-
-            btn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Liberando...';
-            
-            // Simulation of lead capture
-            setTimeout(() => {
-                window.location.href = url;
-            }, 800);
-        });
-    }
+    // NOTA: O tratamento de 'submit' do leadUnlockForm foi movido para js/unified-quiz.js
+    // para suportar a experiência de múltiplas etapas (quiz).
 });

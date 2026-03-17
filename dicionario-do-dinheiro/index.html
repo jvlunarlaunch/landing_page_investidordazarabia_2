@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88J00CNEMC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-88J00CNEMC');
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dicionário do Dinheiro | Investidor das Arábias</title>
@@ -258,18 +267,16 @@
         <div class="popup">
             <span id="closePopup" style="float:right; cursor:pointer; font-size:24px;">&times;</span>
             <p style="color:var(--gold); font-size: 1.2rem; font-weight:700;">Receba o material agora</p>
-            <form id="popupForm">
-                <input type="text" name="nome" placeholder="Seu nome" required />
-                <input type="email" name="email" placeholder="Seu e-mail" required />
-                <input type="tel" name="whatsapp" placeholder="WhatsApp (com DDD)" required />
-                <select name="moeda" required>
-                    <option value="BRL">Investir em Reais</option>
-                    <option value="USD">Investir em Dólares</option>
-                </select>
-                <button type="submit" class="btn" style="width:100%; margin-top:10px;">Baixar PDF</button>
-            </form>
+            <form id="popupForm"></form>
+            <input type="hidden" id="toolRedirectUrl" value="../obrigado/index.html">
         </div>
     </div>
+
+    <!-- Supabase SDK & Config -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-integration.js"></script>
+    <script src="../js/unified-quiz.js"></script>
 
     <script>
         // FAQ Logic
@@ -281,14 +288,16 @@
 
         // Popup Logic
         const overlay = document.getElementById('overlay');
-        document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
-        document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+        const openBtn = document.getElementById('openPopup');
+        if (openBtn) openBtn.onclick = () => overlay.style.display = 'flex';
         
-        document.getElementById('popupForm').onsubmit = (e) => {
-            e.preventDefault();
-            alert('Simulando envio... Redirecionando para página de obrigado.');
-            window.location.href = '../obrigado/index.html';
-        };
+        document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.initUnifiedQuiz) {
+                window.leadQuiz = window.initUnifiedQuiz('popupForm', 'overlay');
+            }
+        });
     </script>
 </body>
 </html>

@@ -49,7 +49,7 @@ body {
     margin: 0 auto;
     padding: 0 2rem;
 }
-.section { padding: 5rem 0; position: relative; }
+.section { padding: 4rem 0; position: relative; }
 .section-darker { background-color: var(--bg-darker); }
 
 /* ---------- PREMIUM BACKGROUNDS ---------- */
@@ -495,17 +495,36 @@ body {
 }
 .quiz-input-group input, .quiz-input-group textarea, .quiz-input-group select {
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 1.2rem;
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--glass-border);
-    border-radius: 8px;
+    border-radius: 12px;
     color: var(--text-primary);
     font-family: inherit;
     font-size: 1.1rem;
     outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
-.quiz-input-group input:focus, .quiz-input-group textarea:focus {
+
+.quiz-input-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2rem;
+    padding-right: 3rem;
+    cursor: pointer;
+}
+
+.quiz-input-group select option {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.quiz-input-group input:focus, .quiz-input-group textarea:focus, .quiz-input-group select:focus {
     border-color: var(--gold-primary);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .quiz-nav {
@@ -540,7 +559,7 @@ body {
 
 @media (max-width: 768px) {
     .container { padding: 0 1.5rem; }
-    .section { padding: 3.5rem 0; }
+    .section { padding: 2.5rem 0; }
     
     .hero-title {
         font-size: 2.2rem;

@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88J00CNEMC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-88J00CNEMC');
+    </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Guia de Investimentos para Imigrantes | Investidor das Arábias</title>
@@ -265,32 +274,33 @@
     <div class="popup">
       <span id="closePopup" style="float:right; cursor:pointer; font-size:24px;">&times;</span>
       <p style="font-weight:700; background:var(--gradient-primary); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-size:1.2rem;">Receba seu Guia agora</p>
-      <form id="popupForm">
-        <input type="text" name="nome" placeholder="Seu nome" required />
-        <input type="email" name="email" placeholder="Seu e-mail" required />
-        <input type="tel" name="whatsapp" placeholder="WhatsApp" required />
-        <select name="renda" required>
-          <option value="" disabled selected>Renda mensal (USD)</option>
-          <option value="0-2000">$0 - $2.000</option>
-          <option value="2000-5000">$2.000 - $5.000</option>
-          <option value=">5000">Mais de $5.000</option>
-        </select>
-        <button type="submit" class="btn" style="width:100%; margin-top:10px;">Baixar Guia</button>
-      </form>
+      <form id="popupForm"></form>
+      <input type="hidden" id="toolRedirectUrl" value="../obrigado/index.html">
     </div>
   </div>
+
+  <!-- Supabase SDK & Config -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/supabase-integration.js"></script>
+  <script src="../js/unified-quiz.js"></script>
 
   <script>
     document.querySelectorAll('.faq-question').forEach(q => {
       q.addEventListener('click', () => q.parentElement.classList.toggle('active'));
     });
+    
     const overlay = document.getElementById('overlay');
-    document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
+    const openBtn = document.getElementById('openPopup');
+    if (openBtn) openBtn.onclick = () => overlay.style.display = 'flex';
+    
     document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
-    document.getElementById('popupForm').onsubmit = (e) => {
-      e.preventDefault();
-      window.location.href = '../obrigado/index.html';
-    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.initUnifiedQuiz) {
+            window.leadQuiz = window.initUnifiedQuiz('popupForm', 'overlay');
+        }
+    });
   </script>
 </body>
 </html>

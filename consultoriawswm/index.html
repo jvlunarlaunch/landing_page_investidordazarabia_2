@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88J00CNEMC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-88J00CNEMC');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Consultoria Exclusiva | Wall Street Wealth Management</title>
@@ -648,7 +657,11 @@
                     <input type="text" id="nome" placeholder="Digite seu nome completo" required>
                 </div>
                 <div class="quiz-input-group">
-                    <label>Seu WhatsApp</label>
+                    <label>E-mail</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
+                <div class="quiz-input-group">
+                    <label>Seu WhatsApp (com código do país)</label>
                     <input type="tel" id="whatsapp" placeholder="+55 (00) 00000-0000" required>
                 </div>
                 <div class="quiz-nav">
@@ -673,12 +686,22 @@
 
             <!-- Step 2: Renda -->
             <div class="quiz-step">
-                <h3>Qual sua renda mensal aproximada (em Reais)?</h3>
+                <h3>Qual sua renda mensal aproximada?</h3>
                 <div class="quiz-options" data-field="renda">
-                    <button class="quiz-option" data-value="até 5k">Até R$ 5.000</button>
-                    <button class="quiz-option" data-value="5k-15k">R$ 5.000 a R$ 15.000</button>
-                    <button class="quiz-option" data-value="15k-30k">R$ 15.000 a R$ 30.000</button>
-                    <button class="quiz-option" data-value="acima 30k">Acima de R$ 30.000</button>
+                    <button class="quiz-option" data-value="até 5k">Até 5.000 (moeda local)</button>
+                    <button class="quiz-option" data-value="5k-15k">5.000 a 15.000</button>
+                    <button class="quiz-option" data-value="15k-30k">15.000 a 30.000</button>
+                    <button class="quiz-option" data-value="acima 30k">Acima de 30.000</button>
+                </div>
+                <div class="quiz-input-group" style="margin-top: 2rem;">
+                    <label>Em qual moeda?</label>
+                    <select id="moeda" required>
+                        <option value="BRL">BRL (R$)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="AED">AED</option>
+                        <option value="OUTRA">Outra</option>
+                    </select>
                 </div>
                 <div class="quiz-nav">
                     <button class="btn-quiz-prev">VOLTAR</button>

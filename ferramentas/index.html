@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88J00CNEMC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-88J00CNEMC');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ferramentas Gratuitas - Investidor Dazarábia. Simule juros compostos, teste seu perfil e calcule sua reserva.">
+    <title>Ferramentas | Investidor Dazarábia</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Icons (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="theme-dark">
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo-dazarabia.png" alt="Investidor Dazarábia" style="height: 40px; width: auto;">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#about" class="nav-link">Sobre</a></li>
+                <li><a href="../index.html#filosofia" class="nav-link">Filosofia</a></li>
+                <li><a href="../index.html#jornada" class="nav-link">Jornada</a></li>
+                <li><a href="../index.html#ecossistema" class="nav-link">Ecossistema</a></li>
+                <li><a href="#" class="nav-link active">Ferramentas</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="ph ph-list"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero bg-steel-dark" style="min-height: 60vh; display: flex; align-items: center;">
+        <div class="glow-orb hero-orb-1"></div>
+        <div class="glow-orb hero-orb-2"></div>
+        <div class="container">
+            <div class="hero-text text-center" data-animate="fade-up" style="max-width: 900px; margin: 0 auto;">
+                <span class="badge">Acesso Gratuito</span>
+                <h1 class="hero-title">Ferramentas de <span class="text-gradient-gold">Gestão e Planejamento</span></h1>
+                <p class="hero-subtitle">Simule, calcule e decida com base em dados reais. O conhecimento é a sua maior proteção contra a inflação e a má gestão financeira.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tools Section -->
+    <section class="section tools-section bg-particles" id="explorar">
+        <div class="container">
+            <div class="tools-grid">
+                <!-- Tool 1 -->
+                <div class="tool-card glass-card" data-animate="fade-up" style="transition-delay: 0.1s;">
+                    <div class="card-icon">
+                        <i class="ph-fill ph-calculator text-gold"></i>
+                    </div>
+                    <h3>Calculadora de Juros Compostos</h3>
+                    <p>Coloque seus números aqui e veja com seus próprios olhos o que acontece quando o dinheiro começa a trabalhar por você — e não você por ele.</p>
+                    <button class="btn-primary-outline w-100 unlock-tool" data-target="juros-compostos.html">Acessar Ferramenta</button>
+                </div>
+
+                <!-- Tool 2 -->
+                <div class="tool-card glass-card" data-animate="fade-up" style="transition-delay: 0.2s;">
+                    <div class="card-icon">
+                        <i class="ph-fill ph-target text-gold"></i>
+                    </div>
+                    <h3>Teste de Perfil do Investidor</h3>
+                    <p>Antes de investir qualquer coisa, entenda como você pensa. Perfil errado é estratégia errada — e resultado errado.</p>
+                    <button class="btn-primary-outline w-100 unlock-tool" data-target="perfil-investidor.html">Fazer o Teste</button>
+                </div>
+
+                <!-- Tool 3 -->
+                <div class="tool-card glass-card" data-animate="fade-up" style="transition-delay: 0.3s;">
+                    <div class="card-icon">
+                        <i class="ph-fill ph-shield-check text-gold"></i>
+                    </div>
+                    <h3>Reserva de Emergência</h3>
+                    <p>Quanto você precisa guardar antes de começar a investir de verdade? Quem pula essa etapa geralmente volta para a estaca zero na primeira emergência.</p>
+                    <button class="btn-primary-outline w-100 unlock-tool" data-target="reserva-emergencia.html">Calcular Agora</button>
+                </div>
+
+                <!-- Tool 4 (Extra if needed, but keeping original 3 for now as requested) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Unlock Modal (Universal structure) -->
+    <div class="quiz-overlay" id="leadModalOverlay">
+        <div class="quiz-container">
+            <button class="quiz-close" id="closeLeadModal"><i class="ph ph-x"></i></button>
+            <form id="leadUnlockForm" class="unified-quiz-form">
+                <!-- Dynamic Quiz Content -->
+            </form>
+            <input type="hidden" id="toolRedirectUrl" value="">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content" style="justify-content: center; text-align: center;">
+                <div class="footer-brand">
+                    <img src="../assets/logo-dazarabia.png" alt="Investidor Dazarábia" style="height: 40px; width: auto; margin-bottom: 1.5rem;">
+                    <p>Acelerando sua liberdade financeira através de investimentos globais e proteção de patrimônio.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Investidor Dazarábia. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/supabase-integration.js"></script>
+    <script src="../js/unified-quiz.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize the quiz system for this page
+            if (window.initUnifiedQuiz) {
+                window.initUnifiedQuiz('leadUnlockForm', 'leadModalOverlay');
+            }
+        });
+    </script>
+</body>
+</html>

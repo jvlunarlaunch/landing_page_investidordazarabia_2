@@ -34,39 +34,11 @@ async function sendLeadToSupabase(data) {
     }
 }
 
-// Interceptação automática de formulários conhecidos
+// Interceptação automática de formulários conhecidos (Calculadoras e ferramentas específicas)
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Formulário de Desbloqueio de Ferramentas (index.html)
-    const leadUnlockForm = document.getElementById('leadUnlockForm');
-    if (leadUnlockForm) {
-        leadUnlockForm.addEventListener('submit', async () => {
-            const data = {
-                nome: document.getElementById('unlockName')?.value,
-                email: document.getElementById('unlockEmail')?.value,
-                whatsapp: document.getElementById('unlockPhone')?.value,
-                origem: 'Home - Desbloqueio de Ferramenta'
-            };
-            await sendLeadToSupabase(data);
-        });
-    }
-
-    // 2. Formulários Popup (Dicionário e Guia para Imigrantes)
-    const popupForms = document.querySelectorAll('#popupForm');
-    popupForms.forEach(form => {
-        form.addEventListener('submit', async (e) => {
-            const elements = form.elements;
-            const data = {
-                nome: elements['nome']?.value,
-                email: elements['email']?.value,
-                whatsapp: elements['whatsapp']?.value,
-                renda: elements['renda']?.value || null,
-                moeda: elements['moeda']?.value || null,
-                origem: document.title || window.location.pathname
-            };
-            await sendLeadToSupabase(data);
-        });
-    });
+    // NOTA: Os formulários de captura de leads (leadUnlockForm e popupForm) 
+    // agora são gerenciados pelo js/unified-quiz.js para uma experiência multi-step.
 
     // 3. Calculadoras (Opcional - Captura os parâmetros da simulação)
     const jurosForm = document.getElementById('jurosForm');

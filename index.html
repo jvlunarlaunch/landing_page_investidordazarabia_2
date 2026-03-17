@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88J00CNEMC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-88J00CNEMC');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Página Oficial - Investidor Dazarábia. Conheça a história, negócios e trajetória de sucesso.">
@@ -31,7 +40,7 @@
                 <li><a href="#filosofia" class="nav-link">Filosofia</a></li>
                 <li><a href="#jornada" class="nav-link">Jornada</a></li>
                 <li><a href="#ecossistema" class="nav-link">Ecossistema</a></li>
-                <li><a href="#ferramentas" class="nav-link">Ferramentas</a></li>
+                <li><a href="/ferramentas/" class="nav-link">Ferramentas</a></li>
             </ul>
             <div class="hamburger">
                 <i class="ph ph-list"></i>
@@ -92,7 +101,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="section stats-section bg-mesh" style="padding-top: 0; padding-bottom: 6rem;">
+    <section class="section stats-section bg-mesh" style="padding-top: 0; padding-bottom: 4rem;">
         <div class="container">
             <style>
                 .stats-responsive-grid {
@@ -251,47 +260,6 @@
         </div>
     </section>
 
-    <!-- Free Tools / Lead Magnets Section -->
-    <section class="section tools-section bg-particles" id="ferramentas">
-        <div class="container">
-            <div class="section-header text-center" data-animate="fade-up">
-                <h2 class="section-title">Ferramentas <span class="text-gold">Gratuitas</span></h2>
-                <p class="section-description">Simule, calcule, decida. Sem precisar de gerente de banco para isso.</p>
-            </div>
-
-            <div class="tools-grid">
-                <!-- Tool 1 -->
-                <div class="tool-card glass-card" data-animate="fade-up" style="transition-delay: 0.1s;">
-                    <div class="card-icon">
-                        <i class="ph-fill ph-calculator text-gold"></i>
-                    </div>
-                    <h3>Calculadora de Juros Compostos</h3>
-                    <p>Coloca seus números aqui e vê com seus próprios olhos o que acontece quando o dinheiro começa a trabalhar por você — e não você por ele.</p>
-                    <button class="btn-primary-outline w-100 unlock-tool" data-target="ferramentas/juros-compostos.html">Acessar Ferramenta</button>
-                </div>
-
-                <!-- Tool 2 -->
-                <div class="tool-card glass-card" data-animate="fade-up" style="transition-delay: 0.2s;">
-                    <div class="card-icon">
-                        <i class="ph-fill ph-target text-gold"></i>
-                    </div>
-                    <h3>Teste de Perfil do Investidor</h3>
-                    <p>Antes de investir qualquer coisa, entenda como você pensa. Perfil errado é estratégia errada — e resultado errado.</p>
-                    <button class="btn-primary-outline w-100 unlock-tool" data-target="ferramentas/perfil-investidor.html">Fazer o Teste</button>
-                </div>
-
-                <!-- Tool 3 -->
-                <div class="tool-card glass-card" data-animate="fade-up" style="transition-delay: 0.3s;">
-                    <div class="card-icon">
-                        <i class="ph-fill ph-shield-check text-gold"></i>
-                    </div>
-                    <h3>Reserva de Emergência</h3>
-                    <p>Quanto você precisa guardar antes de começar a investir de verdade? Quem pula essa etapa geralmente volta para a estaca zero na primeira emergência.</p>
-                    <button class="btn-primary-outline w-100 unlock-tool" data-target="ferramentas/reserva-emergencia.html">Calcular Agora</button>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <!-- Footer -->
@@ -327,23 +295,9 @@
                 <h3>Liberar <span class="text-gold">Acesso</span></h3>
                 <p>Preencha seus dados para acessar as ferramentas exclusivas.</p>
             </div>
-            <div class="modal-body">
-                <form id="leadUnlockForm" class="contact-form">
-                    <div class="form-group">
-                        <label>Nome Completo</label>
-                        <input type="text" id="unlockName" placeholder="Seu nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail Principal</label>
-                        <input type="email" id="unlockEmail" placeholder="seu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp</label>
-                        <input type="tel" id="unlockPhone" placeholder="(00) 00000-0000" required>
-                    </div>
-                    <input type="hidden" id="toolRedirectUrl">
-                    <button type="submit" class="btn-primary w-100">Acessar Grátis <i class="ph-bold ph-lock-key-open"></i></button>
-                </form>
+                <!-- Container para o Quiz Unificado -->
+                <form id="leadUnlockForm"></form>
+                <input type="hidden" id="toolRedirectUrl">
             </div>
         </div>
     </div>
@@ -352,8 +306,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase-config.js"></script>
     <script src="js/supabase-integration.js"></script>
+    <script src="js/unified-quiz.js"></script>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.initUnifiedQuiz) {
+                window.leadQuiz = window.initUnifiedQuiz('leadUnlockForm', 'leadModalOverlay');
+            }
+        });
+    </script>
 </body>
 </html>

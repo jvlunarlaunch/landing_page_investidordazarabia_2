@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             email: formData.email || '',
             patrimonio: formData.patrimonio,
             renda: formData.renda,
+            moeda: formData.moeda,
             idade: formData.idade,
             ocupacao: formData.ocupacao,
             mora_exterior: formData.mora_exterior === 'sim',
