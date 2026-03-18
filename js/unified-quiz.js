@@ -126,7 +126,7 @@ class UnifiedQuiz {
                     <label style="font-size: 0.85rem; color: var(--text-secondary);">Código do País:</label>
                     <select class="quiz-input-field" id="quiz-ddi_select"></select>
                 </div>
-                <div style="display: flex; gap: 0.5rem;">
+                <div class="quiz-input-row" style="display: flex; gap: 0.5rem;">
                     <input type="text" class="quiz-input-field" id="quiz-ddi" style="width: 80px;" placeholder="+55">
                     <input type="tel" class="quiz-input-field" id="quiz-phone" style="flex: 1;" placeholder="(00) 00000-0000" required>
                 </div>
@@ -181,7 +181,7 @@ class UnifiedQuiz {
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--gold-primary); font-weight: 600;">Moeda:</label>
                     <select class="quiz-input-field" id="quiz-currency_select"></select>
                 </div>
-                <div style="display: flex; gap: 0.5rem;">
+                <div class="quiz-input-row" style="display: flex; gap: 0.5rem;">
                     <input type="text" class="quiz-input-field" id="quiz-income" style="flex: 1;" placeholder="Valor (Ex: 5.000)" required>
                 </div>
                 <div id="quiz_currency_other_group" class="other-input-group">

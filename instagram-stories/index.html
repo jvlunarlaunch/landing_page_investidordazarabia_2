@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WSWM Instagram Stories — Painel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-grad: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #996515 100%);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      min-height: 100vh;
+      padding: 60px 40px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    header h1 {
+      font-size: 2rem; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--gold-grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p {
+      color: #666; font-size: .95rem; margin-top: 10px;
+      letter-spacing: 1px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    @media (max-width: 1200px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      body { padding: 40px 20px; }
+    }
+    .card {
+      border: 1px solid rgba(212,175,55,.2);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0d0d0d;
+      transition: border-color .3s, transform .3s;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+    }
+    .preview {
+      aspect-ratio: 9/16;
+      background: #111;
+      position: relative;
+      overflow: hidden;
+    }
+    .preview iframe {
+      width: 1080px; height: 1920px;
+      border: none;
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .card-info {
+      padding: 20px 24px;
+    }
+    .card-title {
+      font-size: 1rem; font-weight: 700;
+      color: #fff; margin-bottom: 6px;
+    }
+    .card-sub {
+      font-size: .8rem; color: #666;
+    }
+    .card-btn {
+      display: block;
+      margin: 16px 24px 20px;
+      padding: 12px;
+      background: rgba(212,175,55,.08);
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 8px;
+      color: var(--gold);
+      font-size: .85rem;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      transition: background .3s;
+    }
+    .card-btn:hover { background: rgba(212,175,55,.15); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>WSWM Instagram Stories</h1>
+  <p>Destaques do Instagram · Sequências navegáveis (← →, swipe, dots) · Canvas 1080 × 1920 px</p>
+</header>
+
+<div class="grid" id="grid">
+
+  <div class="card">
+    <div class="preview">
+      <iframe src="comece-aqui.html" scrolling="no"></iframe>
+    </div>
+    <div class="card-info">
+      <div class="card-title">Comece Aqui</div>
+      <div class="card-sub">4 stories · Urgência · 3 Passos · CTA</div>
+    </div>
+    <a href="comece-aqui.html" target="_blank" class="card-btn">Abrir Sequência →</a>
+  </div>
+
+  <div class="card">
+    <div class="preview">
+      <iframe src="resultados.html" scrolling="no"></iframe>
+    </div>
+    <div class="card-info">
+      <div class="card-title">Resultados</div>
+      <div class="card-sub">5 stories · +19% · Comparativo · Garantia · CTA</div>
+    </div>
+    <a href="resultados.html" target="_blank" class="card-btn">Abrir Sequência →</a>
+  </div>
+
+  <div class="card">
+    <div class="preview">
+      <iframe src="nossa-historia.html" scrolling="no"></iframe>
+    </div>
+    <div class="card-info">
+      <div class="card-title">Nossa História</div>
+      <div class="card-sub">4 stories · Origem · Diferenciais · Missão</div>
+    </div>
+    <a href="nossa-historia.html" target="_blank" class="card-btn">Abrir Sequência →</a>
+  </div>
+
+  <div class="card">
+    <div class="preview">
+      <iframe src="materiais-gratuitos.html" scrolling="no"></iframe>
+    </div>
+    <div class="card-info">
+      <div class="card-title">Materiais Gratuitos</div>
+      <div class="card-sub">4 stories · Dicionário · Guia · Ferramentas</div>
+    </div>
+    <a href="materiais-gratuitos.html" target="_blank" class="card-btn">Abrir Sequência →</a>
+  </div>
+
+</div>
+
+<script>
+  function scaleIframes() {
+    document.querySelectorAll('.preview').forEach(preview => {
+      const w     = preview.clientWidth;
+      const s     = w / 1080;
+      const iframe = preview.querySelector('iframe');
+      iframe.style.transformOrigin = 'top left';
+      iframe.style.transform       = `scale(${s})`;
+      preview.style.height         = (1920 * s) + 'px';
+    });
+  }
+  scaleIframes();
+  window.addEventListener('resize', scaleIframes);
+</script>
+
+</body>
+</html>

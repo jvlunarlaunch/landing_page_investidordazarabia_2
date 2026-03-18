@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WSWM · Resultados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    .slide {
+      width: 1080px; height: 1920px;
+      position: fixed; top: 0; left: 0;
+      display: none; overflow: hidden; transform-origin: top left;
+      font-family: var(--font); color: var(--white);
+      flex-direction: column; align-items: center;
+      padding: 110px 90px 130px;
+    }
+    .slide.active { display: flex; }
+
+    /* topo: logo + divisor */
+    .top-cluster { display: flex; flex-direction: column; align-items: center; gap: 36px; width: 100%; flex-shrink: 0; }
+
+    /* área central — cresce e centraliza o conteúdo */
+    .cc { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 0; }
+
+    /* rodapé */
+    .bottom { display: flex; flex-direction: column; align-items: center; gap: 26px; width: 100%; flex-shrink: 0; }
+
+    /* ── Nav ──────────────────────────────────────────── */
+    .nav-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.7); border: 1px solid rgba(212,175,55,.25);
+      color: #D4AF37; font-size: 2.4rem; width: 52px; height: 110px;
+      cursor: pointer; z-index: 900; transition: background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-btn:hover { background: rgba(212,175,55,.12); }
+    .prev-btn { left: 0; border-radius: 0 12px 12px 0; }
+    .next-btn { right: 0; border-radius: 12px 0 0 12px; }
+    .counter {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      color: #D4AF37; font-size: .8rem; font-weight: 700; letter-spacing: 3px;
+      background: rgba(0,0,0,.8); padding: 7px 20px; border-radius: 20px;
+      border: 1px solid rgba(212,175,55,.2); z-index: 900; font-family: 'Sora', sans-serif;
+    }
+    .dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 900; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,55,.3); cursor: pointer; transition: all .3s; }
+    .dot.active { background: #D4AF37; transform: scale(1.4); }
+
+    /* ── Componentes dos slides ──────────────────────── */
+    .eyebrow     { font-size: 24px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .eyebrow-g   { font-size: 24px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .sec-title   { font-size: 78px; font-weight: 800; letter-spacing: -2px; text-align: center; line-height: .92; margin-top: 10px; }
+
+    /* S1 capa */
+    .big-num  { display: flex; align-items: flex-start; line-height: 1; margin-top: 8px; }
+    .num-main { font-size: 260px; font-weight: 800; letter-spacing: -12px; line-height: .85; }
+    .num-suf  { font-size: 96px;  font-weight: 800; margin-top: 22px; }
+    .num-lbl  { font-size: 32px; font-weight: 600; color: var(--gray); letter-spacing: 3px; text-transform: uppercase; text-align: center; margin-top: 18px; }
+    .sub-row  { display: flex; gap: 22px; width: 100%; margin-top: 52px; }
+    .sub-pill { flex: 1; background: rgba(212,175,55,.06); border: 1px solid var(--border); border-radius: 16px; padding: 28px 16px; text-align: center; }
+    .sub-pill .pv { font-size: 44px; font-weight: 800; }
+    .sub-pill .pl { font-size: 20px; color: var(--gray); margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* S2 números */
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; width: 100%; margin-top: 44px; }
+    .s-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 44px 28px; text-align: center; }
+    .s-card .sv { font-size: 64px; font-weight: 800; line-height: 1; }
+    .s-card .sl { font-size: 20px; font-weight: 600; color: var(--gray); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 12px; line-height: 1.4; }
+    .hi-row { width: 100%; margin-top: 24px; background: rgba(212,175,55,.06); border: 1px solid var(--border-strong); border-radius: 20px; padding: 32px 44px; display: flex; align-items: center; gap: 24px; }
+    .hi-row .ico { font-size: 40px; color: var(--gold); flex-shrink: 0; }
+    .hi-row p { font-size: 26px; font-weight: 600; line-height: 1.4; }
+
+    /* S3 diferença */
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%; margin-top: 44px; }
+    .col { border-radius: 24px; padding: 40px 28px; }
+    .col.red  { background: rgba(255,42,42,.05); border: 1px solid rgba(255,42,42,.2); }
+    .col.gld  { background: rgba(212,175,55,.06); border: 1px solid var(--border-strong); }
+    .col-lbl  { font-size: 19px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 22px; text-align: center; }
+    .col.red .col-lbl { color: #ff6b6b; }
+    .col.gld .col-lbl { color: var(--gold); }
+    .col-val  { font-size: 50px; font-weight: 800; line-height: 1; text-align: center; margin-bottom: 10px; }
+    .col.red .col-val { color: #ff6b6b; }
+    .col.gld .col-val { background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .col-desc { font-size: 19px; color: var(--gray); text-align: center; line-height: 1.4; }
+    .diff-banner { width: 100%; margin-top: 22px; background: var(--gold-grad); border-radius: 20px; padding: 30px 44px; text-align: center; }
+    .diff-banner .dv { font-size: 52px; font-weight: 800; color: #000; }
+    .diff-banner .dl { font-size: 21px; font-weight: 700; color: rgba(0,0,0,.65); text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+    .scenario { font-size: 21px; color: var(--gray); text-align: center; margin-top: 16px; }
+
+    /* S4 garantia */
+    .medal-icon { font-size: 120px; color: var(--gold); text-align: center; }
+    .guar-title { font-size: 80px; font-weight: 800; letter-spacing: -3px; text-align: center; line-height: .9; margin-top: 14px; }
+    .guar-sub   { font-size: 30px; color: var(--gray); text-align: center; line-height: 1.6; margin-top: 24px; font-weight: 400; }
+    .cond-list  { width: 100%; display: flex; flex-direction: column; gap: 18px; margin-top: 44px; }
+    .cond-item  { display: flex; align-items: flex-start; gap: 22px; background: rgba(212,175,55,.04); border: 1px solid var(--border); border-radius: 18px; padding: 28px 34px; }
+    .cond-item .ci { font-size: 30px; color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+    .cond-item p { font-size: 26px; line-height: 1.5; }
+    .fine-print { font-size: 24px; font-weight: 700; color: var(--gold); text-align: center; margin-top: 36px; text-transform: uppercase; letter-spacing: 2px; }
+
+    /* S5 CTA */
+    .proof-list { width: 100%; display: flex; flex-direction: column; margin-top: 44px; }
+    .proof-row  { display: flex; align-items: center; gap: 24px; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .proof-row:last-child { border-bottom: none; }
+    .proof-num  { font-size: 52px; font-weight: 800; min-width: 160px; line-height: 1; }
+    .proof-desc { font-size: 26px; color: var(--gray); line-height: 1.4; }
+    .cta-card   { width: 100%; margin-top: 44px; background: var(--gold-grad); border-radius: 24px; padding: 48px 44px; text-align: center; }
+    .cta-card h3 { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .cta-card p  { font-size: 24px; color: rgba(0,0,0,.7); }
+  </style>
+</head>
+<body>
+
+<!-- ── S1: Capa ───────────────────────────────────────────────── -->
+<div class="slide active bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-t" style="opacity:.7;"></div>
+  <div class="glow glow-b" style="opacity:.4;"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow">Rentabilidade Média</div>
+    <div class="big-num">
+      <div class="num-main gradient">+19</div>
+      <div class="num-suf gradient">%</div>
+    </div>
+    <div class="num-lbl">ao ano em dólar</div>
+    <div class="sub-row">
+      <div class="sub-pill"><div class="pv gradient">+70</div><div class="pl">Clientes</div></div>
+      <div class="sub-pill"><div class="pv gradient">100%</div><div class="pl">Garantia</div></div>
+      <div class="sub-pill"><div class="pv gradient">24h</div><div class="pl">Suporte</div></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="badge"><i class="ph-fill ph-trend-up"></i> Resultados Reais</div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S2: Nossos Números ─────────────────────────────────────── -->
+<div class="slide bg-grid">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow-g">O que entregamos</div>
+    <div class="sec-title gradient">NOSSOS<br>NÚMEROS</div>
+    <div class="stats-grid">
+      <div class="s-card"><div class="sv gradient">+70</div><div class="sl">Clientes<br>Satisfeitos</div></div>
+      <div class="s-card"><div class="sv gradient">+19%</div><div class="sl">Rentab.<br>USD/ano</div></div>
+      <div class="s-card"><div class="sv gradient">24h</div><div class="sl">Suporte<br>Dedicado</div></div>
+      <div class="s-card"><div class="sv gradient">0</div><div class="sl">Comissão<br>por Produto</div></div>
+    </div>
+    <div class="hi-row">
+      <div class="ico"><i class="ph-fill ph-medal"></i></div>
+      <p>Se não superar a BOVESPA no período, devolvemos seu dinheiro.</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S3: A Diferença ────────────────────────────────────────── -->
+<div class="slide bg-steel">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow-g">Veja o impacto real</div>
+    <div class="sec-title gradient">A<br>DIFERENÇA</div>
+    <div class="compare">
+      <div class="col red">
+        <div class="col-lbl">Sem estratégia</div>
+        <div class="col-val">$54k</div>
+        <div class="col-desc">Apenas juntando $300/mês por 15 anos</div>
+      </div>
+      <div class="col gld">
+        <div class="col-lbl">Com WSWM</div>
+        <div class="col-val">$196k</div>
+        <div class="col-desc">Investindo $300/mês a 13% ao ano</div>
+      </div>
+    </div>
+    <div class="diff-banner">
+      <div class="dv">+$142.000</div>
+      <div class="dl">de patrimônio a mais</div>
+    </div>
+    <div class="scenario">*Simulação: $1.000 inicial + $300/mês · 15 anos · 13% ao ano em USD</div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S4: Garantia ───────────────────────────────────────────── -->
+<div class="slide bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="medal-icon"><i class="ph-fill ph-medal"></i></div>
+    <div class="guar-title gradient">GARANTIA DE<br>RENTABILIDADE</div>
+    <div class="guar-sub">A única consultoria que garante seu retorno por contrato.</div>
+    <div class="cond-list">
+      <div class="cond-item"><div class="ci"><i class="ph-fill ph-check-circle"></i></div><p>Seu retorno em dólar <strong>supera a BOVESPA</strong> no período da consultoria.</p></div>
+      <div class="cond-item"><div class="ci"><i class="ph-fill ph-check-circle"></i></div><p>Se não superar, <strong>devolvemos 100%</strong> do valor da consultoria.</p></div>
+      <div class="cond-item"><div class="ci"><i class="ph-fill ph-check-circle"></i></div><p>Sem letras miúdas. Sem burocracia. <strong>Simples assim.</strong></p></div>
+    </div>
+    <div class="fine-print"><i class="ph-fill ph-seal-check" style="margin-right:10px;"></i>Garantia por escrito no contrato</div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S5: CTA ────────────────────────────────────────────────── -->
+<div class="slide bg-dark-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow-g">Seja o próximo</div>
+    <div class="sec-title gradient">SUA VEZ<br>DE CRESCER</div>
+    <p style="font-size:30px;color:var(--gray);text-align:center;line-height:1.6;margin-top:18px;font-weight:400;">Mais de 70 imigrantes já transformaram sua vida financeira com a WSWM.</p>
+    <div class="proof-list">
+      <div class="proof-row"><div class="proof-num gradient">+19%</div><div class="proof-desc">rentabilidade média ao ano em dólar</div></div>
+      <div class="proof-row"><div class="proof-num gradient">+70</div><div class="proof-desc">famílias com patrimônio crescendo nos EUA</div></div>
+      <div class="proof-row"><div class="proof-num gradient">100%</div><div class="proof-desc">garantia de rentabilidade por contrato</div></div>
+    </div>
+    <div class="cta-card">
+      <h3>1ª Sessão Gratuita</h3>
+      <p>Análise completa do seu perfil financeiro — vagas limitadas</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="badge"><i class="ph-fill ph-rocket-launch"></i> Comece Hoje</div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<div class="counter" id="counter">1 / 5</div>
+<button class="nav-btn prev-btn" onclick="go(-1)">‹</button>
+<button class="nav-btn next-btn" onclick="go(1)">›</button>
+<div class="dots" id="dots"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let cur = 0;
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+  function go(dir) { goTo(cur + dir); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+  function scale() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const s  = Math.min(vw / 1080, vh / 1920);
+    const ox = (vw - 1080 * s) / 2;
+    const oy = (vh - 1920 * s) / 2;
+    slides.forEach(el => {
+      el.style.transformOrigin = 'top left';
+      el.style.transform = `translate(${ox}px, ${oy}px) scale(${s})`;
+    });
+  }
+  scale();
+  window.addEventListener('resize', scale);
+</script>
+</body>
+</html>

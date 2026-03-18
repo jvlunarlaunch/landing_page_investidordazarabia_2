@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WSWM · Comece Aqui</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    /* ── Slide canvas ──────────────────────────────────── */
+    .slide {
+      width: 1080px; height: 1920px;
+      position: fixed; top: 0; left: 0;
+      display: none; overflow: hidden;
+      transform-origin: top left;
+      font-family: var(--font); color: var(--white);
+      flex-direction: column; align-items: center;
+      padding: 110px 90px 140px;
+    }
+    .slide.active { display: flex; }
+
+    /* ── Nav shell ─────────────────────────────────────── */
+    .nav-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.7); border: 1px solid rgba(212,175,55,.25);
+      color: #D4AF37; font-size: 2.4rem; width: 52px; height: 110px;
+      cursor: pointer; z-index: 900;
+      transition: background .2s; display: flex; align-items: center; justify-content: center;
+    }
+    .nav-btn:hover { background: rgba(212,175,55,.12); }
+    .prev-btn { left: 0; border-radius: 0 12px 12px 0; }
+    .next-btn { right: 0; border-radius: 12px 0 0 12px; }
+    .counter {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      color: #D4AF37; font-size: .8rem; font-weight: 700; letter-spacing: 3px;
+      background: rgba(0,0,0,.8); padding: 7px 20px; border-radius: 20px;
+      border: 1px solid rgba(212,175,55,.2); z-index: 900; font-family: 'Sora', sans-serif;
+    }
+    .dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 900; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,55,.3); cursor: pointer; transition: all .3s; }
+    .dot.active { background: #D4AF37; transform: scale(1.4); }
+
+    /* ── Three-section layout ──────────────────────────── */
+    .top-cluster { display: flex; flex-direction: column; align-items: center; gap: 36px; width: 100%; flex-shrink: 0; }
+    .cc { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 0; }
+    .bottom { display: flex; flex-direction: column; align-items: center; gap: 28px; width: 100%; flex-shrink: 0; }
+
+    /* ── S1 layout ─────────────────────────────────────── */
+    .hero-icon {
+      width: 230px; height: 230px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,.2) 0%, rgba(212,175,55,.04) 70%);
+      border: 2px solid var(--border-strong);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 108px;
+      margin-bottom: 8px; position: relative; flex-shrink: 0;
+    }
+    .hero-icon::before { content:""; position:absolute; inset:-20px; border-radius:50%; border:1px solid var(--border); }
+    .hero-icon::after  { content:""; position:absolute; inset:-40px; border-radius:50%; border:1px dashed rgba(212,175,55,.12); }
+
+    .main-title { font-size: 128px; font-weight: 800; line-height: .9; letter-spacing: -4px; text-align: center; margin-top: 28px; }
+    .subtitle   { font-size: 32px; color: var(--gray); text-align: center; line-height: 1.55; max-width: 840px; font-weight: 400; margin-top: 24px; }
+    .steps      { width: 100%; display: flex; flex-direction: column; gap: 22px; margin-top: 52px; }
+
+    /* ── S2 layout ─────────────────────────────────────── */
+    .eyebrow { font-size: 24px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .big-q   { font-size: 72px; font-weight: 800; letter-spacing: -2px; text-align: center; margin-top: 12px; line-height: 1; }
+
+    .risk-block { width: 100%; display: flex; flex-direction: column; gap: 22px; margin-top: 48px; }
+    .risk-item {
+      background: rgba(255,42,42,.04); border: 1px solid rgba(255,42,42,.2);
+      border-left: 4px solid #ff2a2a; border-radius: 0 18px 18px 0; padding: 32px 40px;
+    }
+    .risk-item h3 { font-size: 28px; font-weight: 700; color: #ff6b6b; margin-bottom: 8px; }
+    .risk-item p  { font-size: 24px; color: var(--gray); line-height: 1.5; }
+
+    .truth-box {
+      width: 100%; margin-top: 40px;
+      background: rgba(212,175,55,.06); border: 1px solid var(--border-strong);
+      border-radius: 20px; padding: 40px 48px; text-align: center;
+    }
+    .truth-box p { font-size: 30px; font-weight: 700; line-height: 1.5; }
+
+    /* ── S3 layout ─────────────────────────────────────── */
+    .section-title { font-size: 80px; font-weight: 800; letter-spacing: -2px; text-align: center; margin-top: 10px; line-height: .92; }
+    .step-cards { width: 100%; display: flex; flex-direction: column; gap: 28px; margin-top: 52px; }
+    .step-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 44px 48px; position: relative;
+    }
+    .step-n {
+      position: absolute; top: -22px; left: 48px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--gold-grad); color: var(--bg-black);
+      font-weight: 800; font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-card h3 { font-size: 30px; font-weight: 700; margin-bottom: 10px; }
+    .step-card p  { font-size: 24px; color: var(--gray); line-height: 1.5; }
+
+    /* ── S4 layout ─────────────────────────────────────── */
+    .big-icon    { font-size: 100px; color: var(--gold); text-align: center; margin-bottom: 32px; }
+    .cta-title   { font-size: 86px; font-weight: 800; letter-spacing: -3px; text-align: center; line-height: .92; }
+    .cta-sub     { font-size: 30px; color: var(--gray); text-align: center; line-height: 1.6; max-width: 840px; margin-top: 28px; font-weight: 400; }
+    .cta-card    { width: 100%; margin-top: 60px; background: var(--gold-grad); border-radius: 24px; padding: 52px 48px; text-align: center; }
+    .cta-card h3 { font-size: 36px; font-weight: 800; color: #000; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .cta-card p  { font-size: 26px; color: rgba(0,0,0,.7); line-height: 1.4; }
+  </style>
+</head>
+<body>
+
+<!-- ── Slide 1: Capa ─────────────────────────────────────────── -->
+<div class="slide active bg-grid">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="hero-icon"><i class="ph-fill ph-compass"></i></div>
+    <div class="main-title gradient">COMECE<br>AQUI</div>
+    <div class="subtitle">Tudo que você precisa saber para investir nos EUA com segurança e estratégia</div>
+    <div class="steps">
+      <div class="row-item"><div class="row-num">1</div><div><div class="row-text">Entenda o mercado americano</div><div class="row-sub">Conteúdo gratuito para te orientar</div></div></div>
+      <div class="row-item"><div class="row-num">2</div><div><div class="row-text">Monte sua estratégia pessoal</div><div class="row-sub">Planejamento alinhado aos seus objetivos</div></div></div>
+      <div class="row-item"><div class="row-num">3</div><div><div class="row-text">Invista com proteção fiscal</div><div class="row-sub">Segurança para imigrantes no exterior</div></div></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="badge"><i class="ph-fill ph-star"></i> Exclusivo para Imigrantes</div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Slide 2: Urgência ─────────────────────────────────────── -->
+<div class="slide bg-steel">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow">Por que isso importa agora?</div>
+    <div class="big-q gradient">Seu dinheiro<br>está parado?</div>
+    <div class="risk-block">
+      <div class="risk-item">
+        <h3><i class="ph-bold ph-warning"></i> Sem estratégia, você perde</h3>
+        <p>Cada mês sem um plano é dinheiro que poderia estar crescendo com juros compostos nos EUA.</p>
+      </div>
+      <div class="risk-item">
+        <h3><i class="ph-bold ph-warning"></i> Risco fiscal real</h3>
+        <p>Imigrantes têm regras específicas com o IRS. Investir sem orientação pode gerar multas severas.</p>
+      </div>
+      <div class="risk-item">
+        <h3><i class="ph-bold ph-warning"></i> A inflação não espera</h3>
+        <p>Dinheiro parado na conta corrente perde poder de compra a cada ano que passa.</p>
+      </div>
+    </div>
+    <div class="truth-box">
+      <p>A boa notícia: <span class="gradient">é possível mudar isso</span> com a estratégia certa.</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Slide 3: Os 3 Passos ──────────────────────────────────── -->
+<div class="slide bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow">Seu roteiro de início</div>
+    <div class="section-title gradient">OS 3<br>PASSOS</div>
+    <div class="step-cards">
+      <div class="step-card">
+        <div class="step-n">1</div>
+        <h3><i class="ph-fill ph-book-open" style="color:var(--gold);margin-right:10px;"></i>Eduque-se</h3>
+        <p>Acesse nossos materiais gratuitos: Dicionário do Dinheiro, Guia para Imigrantes e ferramentas online — tudo sem custo.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">2</div>
+        <h3><i class="ph-fill ph-chart-line" style="color:var(--gold);margin-right:10px;"></i>Simule seu futuro</h3>
+        <p>Use nossa calculadora de juros compostos para ver o impacto real de investir estrategicamente nos EUA.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">3</div>
+        <h3><i class="ph-fill ph-phone-call" style="color:var(--gold);margin-right:10px;"></i>Fale com um consultor</h3>
+        <p>A 1ª Sessão Estratégica é gratuita. Um especialista analisa sua situação e monta um plano personalizado.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Slide 4: CTA ───────────────────────────────────────────── -->
+<div class="slide bg-dark-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="big-icon"><i class="ph-fill ph-rocket-launch"></i></div>
+    <div class="cta-title gradient">O MOMENTO<br>É AGORA</div>
+    <div class="cta-sub">O primeiro passo não custa nada. A 1ª Sessão Estratégica com nossos consultores é 100% gratuita.</div>
+    <div class="cta-card">
+      <h3>1ª Sessão Gratuita</h3>
+      <p>Vagas limitadas — análise completa do seu perfil financeiro sem compromisso</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<div class="counter" id="counter">1 / 4</div>
+<button class="nav-btn prev-btn" onclick="go(-1)">‹</button>
+<button class="nav-btn next-btn" onclick="go(1)">›</button>
+<div class="dots" id="dots"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let cur = 0;
+
+  // Build dots
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+  function go(dir) { goTo(cur + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+
+  // Scale: cada .slide É o canvas
+  function scale() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const s  = Math.min(vw / 1080, vh / 1920);
+    const ox = (vw - 1080 * s) / 2;
+    const oy = (vh - 1920 * s) / 2;
+    slides.forEach(el => {
+      el.style.transformOrigin = 'top left';
+      el.style.transform = `translate(${ox}px, ${oy}px) scale(${s})`;
+    });
+  }
+  scale();
+  window.addEventListener('resize', scale);
+</script>
+</body>
+</html>
