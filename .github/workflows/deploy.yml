@@ -13,13 +13,14 @@ jobs:
     - name: Get latest code
       uses: actions/checkout@v4
 
-    - name: SFTP Deploy
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        port: 22
-        local_path: '.'
-        remote_path: ${{ secrets.FTP_DIRECTORY || './' }}
-        sftp_only: true
+        protocol: ftp
+        port: 21
+        local-dir: ./
+        server-dir: ${{ secrets.FTP_DIRECTORY || './' }}
+        timeout: 600000
