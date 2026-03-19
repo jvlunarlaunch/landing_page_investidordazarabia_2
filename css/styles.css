@@ -1631,3 +1631,137 @@ select.quiz-input-field option {
         margin-bottom: 0.5rem !important;
     }
 }
+
+/* ==========================================================================
+   Tools Callout Section (White Background)
+   ========================================================================== */
+.tools-callout-section {
+    background-color: #ffffff !important;
+    padding: 5rem 0;
+    color: #000000;
+}
+
+.tools-callout-section .container {
+    z-index: 5;
+}
+
+.bg-white {
+    background-color: #ffffff !important;
+}
+
+.callout-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.callout-text {
+    flex: 1;
+}
+
+.callout-title {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: #000000;
+    line-height: 1.2;
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+.text-gold-alt {
+    color: #D4AF37;
+}
+
+.text-black {
+    color: #000000;
+}
+
+.callout-subtitle {
+    font-size: 1.25rem;
+    color: #444444;
+    max-width: 650px;
+    line-height: 1.6;
+}
+
+.btn-tools {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1.2rem 2.8rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    font-family: var(--font-heading);
+    white-space: nowrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn-tools i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-tools:hover {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: #000000;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.25);
+}
+
+.btn-tools:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+    .callout-content-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 2.5rem;
+    }
+    
+    .callout-subtitle {
+        margin: 0 auto;
+    }
+    
+    .callout-title {
+        font-size: 2.4rem;
+    }
+    
+    .callout-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .callout-title {
+        font-size: 2rem;
+    }
+    
+    .callout-subtitle {
+        font-size: 1.15rem;
+    }
+    
+    .btn-tools {
+        width: 100%;
+        padding: 1.1rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tools-callout-section {
+        padding: 4rem 0;
+    }
+    
+    .callout-title {
+        font-size: 1.75rem;
+    }
+}
