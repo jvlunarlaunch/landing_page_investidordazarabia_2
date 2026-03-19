@@ -13,25 +13,13 @@ jobs:
     - name: Get latest code
       uses: actions/checkout@v4
 
-    - name: FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      env:
-        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    - name: SFTP Deploy
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftps
-        port: 21
-        server-dir: ./
-        local-dir: ./
-        timeout: 300000
-        dangerous-clean-slate: false
-        log-level: verbose
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          .env
-          .github/**
-          README.md
+        port: 22
+        local_path: './*'
+        remote_path: ${{ secrets.FTP_DIRECTORY || './' }}
+        sftp_only: true
