@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WSWM · Consultoria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    .slide {
+      width: 1080px; height: 1920px;
+      position: fixed; top: 0; left: 0;
+      display: none; overflow: hidden; transform-origin: top left;
+      font-family: var(--font); color: var(--white);
+      flex-direction: column; align-items: center;
+      padding: 110px 90px 130px;
+    }
+    .slide.active { display: flex; }
+
+    .top-cluster { display: flex; flex-direction: column; align-items: center; gap: 36px; width: 100%; flex-shrink: 0; }
+    .cc { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 0; }
+    .bottom { display: flex; flex-direction: column; align-items: center; gap: 26px; width: 100%; flex-shrink: 0; }
+
+    /* Nav */
+    .nav-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.7); border: 1px solid rgba(212,175,55,.25);
+      color: #D4AF37; font-size: 2.4rem; width: 52px; height: 110px;
+      cursor: pointer; z-index: 900; transition: background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-btn:hover { background: rgba(212,175,55,.12); }
+    .prev-btn { left: 0; border-radius: 0 12px 12px 0; }
+    .next-btn { right: 0; border-radius: 12px 0 0 12px; }
+    .counter {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      color: #D4AF37; font-size: .8rem; font-weight: 700; letter-spacing: 3px;
+      background: rgba(0,0,0,.8); padding: 7px 20px; border-radius: 20px;
+      border: 1px solid rgba(212,175,55,.2); z-index: 900; font-family: 'Sora', sans-serif;
+    }
+    .dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 900; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,55,.3); cursor: pointer; transition: all .3s; }
+    .dot.active { background: #D4AF37; transform: scale(1.4); }
+
+    /* S1 Cover */
+    .main-title { font-size: 100px; font-weight: 800; line-height: .9; letter-spacing: -4px; text-align: center; margin-top: 28px; }
+    .subtitle   { font-size: 29px; color: var(--gray); text-align: center; line-height: 1.6; max-width: 840px; font-weight: 400; margin-top: 22px; }
+    .sub-row    { display: flex; gap: 20px; width: 100%; margin-top: 48px; }
+    .sub-pill   { flex: 1; background: rgba(212,175,55,.06); border: 1px solid var(--border); border-radius: 16px; padding: 28px 12px; text-align: center; }
+    .sub-pill .pv { font-size: 38px; font-weight: 800; }
+    .sub-pill .pl { font-size: 17px; color: var(--gray); margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; line-height: 1.3; }
+
+    /* Shared */
+    .eyebrow   { font-size: 24px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .eyebrow-g { font-size: 24px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .sec-title { font-size: 72px; font-weight: 800; letter-spacing: -2px; text-align: center; line-height: .92; margin-top: 12px; }
+    .truth-box { width: 100%; margin-top: 36px; background: rgba(212,175,55,.06); border: 1px solid var(--border-strong); border-radius: 20px; padding: 34px 44px; text-align: center; }
+    .truth-box p { font-size: 27px; font-weight: 700; line-height: 1.5; }
+
+    /* S2 — lista de serviços */
+    .service-list { width: 100%; display: flex; flex-direction: column; gap: 20px; margin-top: 38px; }
+
+    /* S3 — zero comissão */
+    .big-zero { font-size: 210px; font-weight: 800; letter-spacing: -10px; line-height: .85; text-align: center; margin-top: 6px; }
+    .zero-lbl { font-size: 28px; font-weight: 600; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-top: 10px; }
+    .compare  { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%; margin-top: 34px; }
+    .col      { border-radius: 22px; padding: 36px 26px; }
+    .col.red  { background: rgba(255,42,42,.05); border: 1px solid rgba(255,42,42,.2); }
+    .col.gld  { background: rgba(212,175,55,.06); border: 1px solid var(--border-strong); }
+    .col-lbl  { font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; text-align: center; }
+    .col.red .col-lbl { color: #ff6b6b; }
+    .col.gld .col-lbl { color: var(--gold); }
+    .col-desc { font-size: 22px; color: var(--gray); text-align: center; line-height: 1.4; }
+
+    /* S4 — proteção */
+    .cond-list { width: 100%; display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
+    .cond-item { display: flex; align-items: flex-start; gap: 22px; background: rgba(212,175,55,.04); border: 1px solid var(--border); border-radius: 18px; padding: 30px 36px; }
+    .cond-item .ci { font-size: 34px; color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+    .cond-item p { font-size: 26px; line-height: 1.5; }
+
+    /* S5 — CTA */
+    .big-icon  { font-size: 100px; color: var(--gold); text-align: center; margin-bottom: 24px; }
+    .cta-title { font-size: 82px; font-weight: 800; letter-spacing: -3px; text-align: center; line-height: .92; }
+    .cta-sub   { font-size: 29px; color: var(--gray); text-align: center; line-height: 1.6; max-width: 840px; margin-top: 24px; font-weight: 400; }
+    .cta-card  { width: 100%; margin-top: 52px; background: var(--gold-grad); border-radius: 24px; padding: 48px 44px; text-align: center; }
+    .cta-card h3 { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .cta-card p  { font-size: 24px; color: rgba(0,0,0,.7); }
+  </style>
+</head>
+<body>
+
+<!-- ── S1: Cover ──────────────────────────────────────────────── -->
+<div class="slide active bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-t" style="opacity:.7;"></div>
+  <div class="glow glow-b" style="opacity:.4;"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="badge"><i class="ph-fill ph-briefcase"></i> Consultoria Exclusiva</div>
+    <div class="main-title gradient">CONSULTORIA<br>WSWM</div>
+    <div class="subtitle">A única consultoria financeira feita para imigrantes brasileiros no exterior — com garantia de rentabilidade por contrato.</div>
+    <div class="sub-row">
+      <div class="sub-pill"><div class="pv gradient">R$10M+</div><div class="pl">Sob Gestão</div></div>
+      <div class="sub-pill"><div class="pv gradient">+19%</div><div class="pl">ao ano USD</div></div>
+      <div class="sub-pill"><div class="pv gradient">100%</div><div class="pl">Garantia</div></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S2: O que você recebe ─────────────────────────────────── -->
+<div class="slide bg-grid">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow-g">O que está incluso</div>
+    <div class="sec-title gradient">O QUE VOCÊ<br>RECEBE</div>
+    <div class="service-list">
+      <div class="row-item">
+        <div class="row-icon"><i class="ph-fill ph-magnifying-glass"></i></div>
+        <div><div class="row-text">Raio-X Financeiro</div><div class="row-sub">Diagnóstico completo da sua situação atual</div></div>
+      </div>
+      <div class="row-item">
+        <div class="row-icon"><i class="ph-fill ph-target"></i></div>
+        <div><div class="row-text">Estratégia Personalizada</div><div class="row-sub">Plano com ativos específicos para o seu perfil</div></div>
+      </div>
+      <div class="row-item">
+        <div class="row-icon"><i class="ph-fill ph-headset"></i></div>
+        <div><div class="row-text">Suporte 24/7</div><div class="row-sub">Acesso direto ao seu consultor, quando precisar</div></div>
+      </div>
+      <div class="row-item">
+        <div class="row-icon"><i class="ph-fill ph-chart-bar"></i></div>
+        <div><div class="row-text">Relatórios Semanais</div><div class="row-sub">Acompanhamento detalhado dos seus investimentos</div></div>
+      </div>
+      <div class="row-item">
+        <div class="row-icon"><i class="ph-fill ph-bell-ringing"></i></div>
+        <div><div class="row-text">Alertas de Mercado</div><div class="row-sub">Notificações de oportunidades em tempo real</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S3: Zero comissão ──────────────────────────────────────── -->
+<div class="slide bg-steel">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow">Sem conflito de interesse</div>
+    <div class="big-zero gradient">R$0</div>
+    <div class="zero-lbl">de comissão por produto</div>
+    <div class="compare">
+      <div class="col red">
+        <div class="col-lbl">Consultor Comum</div>
+        <div class="col-desc">Ganha por produto vendido. Você é o produto.</div>
+      </div>
+      <div class="col gld">
+        <div class="col-lbl">Consultor WSWM</div>
+        <div class="col-desc">Ganha pela consultoria. Seu sucesso é o nosso resultado.</div>
+      </div>
+    </div>
+    <div class="truth-box">
+      <p>Recomendamos o que é melhor para <span class="gradient">você</span> — não o que paga mais comissão.</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S4: Proteção completa ──────────────────────────────────── -->
+<div class="slide bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow">Além dos investimentos</div>
+    <div class="sec-title gradient">PROTEÇÃO<br>COMPLETA</div>
+    <div class="cond-list">
+      <div class="cond-item">
+        <div class="ci"><i class="ph-fill ph-shield-check"></i></div>
+        <p><strong>Proteção fiscal integrada</strong> — estratégia que respeita as regras do IRS sem abrir mão do crescimento do patrimônio.</p>
+      </div>
+      <div class="cond-item">
+        <div class="ci"><i class="ph-fill ph-identification-card"></i></div>
+        <p><strong>Status imigratório preservado</strong> — nenhuma operação que comprometa sua permanência legal nos EUA.</p>
+      </div>
+      <div class="cond-item">
+        <div class="ci"><i class="ph-fill ph-globe"></i></div>
+        <p><strong>Onde quer que você esteja</strong> — EUA, Arábia Saudita, Emirados, Qatar, Portugal, Inglaterra, Irlanda.</p>
+      </div>
+    </div>
+    <div class="truth-box">
+      <p>Seu dinheiro cresce. <span class="gradient">Seu visto fica intacto.</span></p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S5: CTA ────────────────────────────────────────────────── -->
+<div class="slide bg-dark-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="big-icon"><i class="ph-fill ph-phone-call"></i></div>
+    <div class="cta-title gradient">1ª SESSÃO<br>GRATUITA</div>
+    <div class="cta-sub">Análise completa do seu perfil financeiro. Sem custo. Sem compromisso. Vagas limitadas.</div>
+    <div class="cta-card">
+      <h3>Fale com um Consultor Agora</h3>
+      <p>Link na bio · @investidordazarabia</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="badge"><i class="ph-fill ph-star"></i> Exclusivo para Imigrantes</div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<div class="counter" id="counter">1 / 5</div>
+<button class="nav-btn prev-btn" onclick="go(-1)">‹</button>
+<button class="nav-btn next-btn" onclick="go(1)">›</button>
+<div class="dots" id="dots"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let cur = 0;
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+  function go(dir) { goTo(cur + dir); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+  function scale() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const s  = Math.min(vw / 1080, vh / 1920);
+    const ox = (vw - 1080 * s) / 2;
+    const oy = (vh - 1920 * s) / 2;
+    slides.forEach(el => {
+      el.style.transformOrigin = 'top left';
+      el.style.transform = `translate(${ox}px, ${oy}px) scale(${s})`;
+    });
+  }
+  scale();
+  window.addEventListener('resize', scale);
+</script>
+</body>
+</html>

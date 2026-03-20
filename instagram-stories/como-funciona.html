@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WSWM · Como Funciona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    .slide {
+      width: 1080px; height: 1920px;
+      position: fixed; top: 0; left: 0;
+      display: none; overflow: hidden; transform-origin: top left;
+      font-family: var(--font); color: var(--white);
+      flex-direction: column; align-items: center;
+      padding: 110px 90px 130px;
+    }
+    .slide.active { display: flex; }
+
+    .top-cluster { display: flex; flex-direction: column; align-items: center; gap: 36px; width: 100%; flex-shrink: 0; }
+    .cc { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 0; }
+    .bottom { display: flex; flex-direction: column; align-items: center; gap: 26px; width: 100%; flex-shrink: 0; }
+
+    /* Nav */
+    .nav-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.7); border: 1px solid rgba(212,175,55,.25);
+      color: #D4AF37; font-size: 2.4rem; width: 52px; height: 110px;
+      cursor: pointer; z-index: 900; transition: background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-btn:hover { background: rgba(212,175,55,.12); }
+    .prev-btn { left: 0; border-radius: 0 12px 12px 0; }
+    .next-btn { right: 0; border-radius: 12px 0 0 12px; }
+    .counter {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      color: #D4AF37; font-size: .8rem; font-weight: 700; letter-spacing: 3px;
+      background: rgba(0,0,0,.8); padding: 7px 20px; border-radius: 20px;
+      border: 1px solid rgba(212,175,55,.2); z-index: 900; font-family: 'Sora', sans-serif;
+    }
+    .dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 900; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,55,.3); cursor: pointer; transition: all .3s; }
+    .dot.active { background: #D4AF37; transform: scale(1.4); }
+
+    /* Shared */
+    .eyebrow-g { font-size: 24px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .sec-title { font-size: 74px; font-weight: 800; letter-spacing: -2px; text-align: center; line-height: .92; margin-top: 12px; }
+    .truth-box { width: 100%; background: rgba(212,175,55,.06); border: 1px solid var(--border-strong); border-radius: 20px; padding: 34px 44px; text-align: center; }
+    .truth-box p { font-size: 27px; font-weight: 700; line-height: 1.5; }
+
+    /* S1 Cover */
+    .hero-icon {
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,.2) 0%, rgba(212,175,55,.04) 70%);
+      border: 2px solid var(--border-strong);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 100px;
+      margin-bottom: 8px; position: relative; flex-shrink: 0;
+    }
+    .hero-icon::before { content:""; position:absolute; inset:-18px; border-radius:50%; border:1px solid var(--border); }
+    .main-title { font-size: 108px; font-weight: 800; line-height: .9; letter-spacing: -4px; text-align: center; margin-top: 24px; }
+    .subtitle   { font-size: 29px; color: var(--gray); text-align: center; line-height: 1.6; max-width: 840px; font-weight: 400; margin-top: 20px; }
+    .flow-steps { display: flex; align-items: center; gap: 0; width: 100%; margin-top: 52px; }
+    .flow-step  { flex: 1; text-align: center; }
+    .flow-step .fn { width: 72px; height: 72px; border-radius: 50%; background: var(--gold-grad); color: #000; font-weight: 800; font-size: 30px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+    .flow-step .fl { font-size: 22px; font-weight: 700; color: var(--white); }
+    .flow-step .fs { font-size: 18px; color: var(--gray); margin-top: 4px; }
+    .flow-arrow { font-size: 36px; color: var(--gold); opacity: .5; flex-shrink: 0; }
+
+    /* Etapa slides */
+    .step-badge {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: var(--gold-grad); color: #000;
+      font-size: 48px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-bottom: 4px;
+      box-shadow: 0 0 40px rgba(212,175,55,.25);
+    }
+    .step-of { font-size: 22px; font-weight: 700; color: var(--gray); letter-spacing: 3px; text-transform: uppercase; text-align: center; margin-top: 10px; }
+    .item-list { width: 100%; display: flex; flex-direction: column; gap: 20px; margin-top: 38px; }
+    .item-row {
+      display: flex; align-items: flex-start; gap: 22px;
+      background: rgba(212,175,55,.04); border: 1px solid var(--border);
+      border-radius: 18px; padding: 28px 36px;
+    }
+    .item-row .ic { font-size: 32px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+    .item-row p { font-size: 26px; line-height: 1.5; }
+
+    /* S4 CTA */
+    .cta-card { width: 100%; margin-top: 44px; background: var(--gold-grad); border-radius: 24px; padding: 46px 44px; text-align: center; }
+    .cta-card h3 { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .cta-card p  { font-size: 24px; color: rgba(0,0,0,.7); }
+  </style>
+</head>
+<body>
+
+<!-- ── S1: Cover ──────────────────────────────────────────────── -->
+<div class="slide active bg-grid">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="hero-icon"><i class="ph-fill ph-path"></i></div>
+    <div class="main-title gradient">COMO<br>FUNCIONA</div>
+    <div class="subtitle">Do diagnóstico à execução — com acompanhamento contínuo e suporte dedicado em cada etapa.</div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="fn">1</div>
+        <div class="fl">Raio-X</div>
+        <div class="fs">Diagnóstico</div>
+      </div>
+      <div class="flow-arrow"><i class="ph-bold ph-arrow-right"></i></div>
+      <div class="flow-step">
+        <div class="fn">2</div>
+        <div class="fl">Estratégia</div>
+        <div class="fs">Plano de ação</div>
+      </div>
+      <div class="flow-arrow"><i class="ph-bold ph-arrow-right"></i></div>
+      <div class="flow-step">
+        <div class="fn">3</div>
+        <div class="fl">Acompanha&shy;mento</div>
+        <div class="fs">Contínuo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="badge"><i class="ph-fill ph-compass"></i> Exclusivo para Imigrantes</div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S2: Etapa 1 — Raio-X ──────────────────────────────────── -->
+<div class="slide bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-t" style="opacity:.6;"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="step-badge">1</div>
+    <div class="step-of">Etapa 1 de 3</div>
+    <div class="sec-title gradient">RAIO-X<br>FINANCEIRO</div>
+    <div class="item-list">
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-currency-dollar"></i></div>
+        <p>Análise de renda, gastos e patrimônio atual — o que entra, o que sai, o que sobra.</p>
+      </div>
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-flag"></i></div>
+        <p>Mapeamento de objetivos de curto, médio e longo prazo — o que você quer construir e quando.</p>
+      </div>
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-scales"></i></div>
+        <p>Perfil de risco individual — quanto de volatilidade faz sentido para o seu momento.</p>
+      </div>
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-identification-card"></i></div>
+        <p>Restrições específicas de imigrante — visto, IRS, remessas e situação fiscal.</p>
+      </div>
+    </div>
+    <div class="truth-box" style="margin-top:32px;">
+      <p>Sem diagnóstico correto, qualquer estratégia é <span class="gradient">chute.</span></p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S3: Etapa 2 — Estratégia ──────────────────────────────── -->
+<div class="slide bg-steel">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="step-badge">2</div>
+    <div class="step-of">Etapa 2 de 3</div>
+    <div class="sec-title gradient">ESTRATÉGIA<br>PERSONALIZADA</div>
+    <div class="item-list">
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-list-checks"></i></div>
+        <p>Plano de ação com ativos específicos recomendados para o seu perfil e horizonte.</p>
+      </div>
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-chart-pie"></i></div>
+        <p>Alocação equilibrada — ações, fundos e carteira dolarizada alinhados aos seus objetivos.</p>
+      </div>
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-shield-check"></i></div>
+        <p>Proteção fiscal integrada — estrutura que respeita o IRS e evita dupla tributação.</p>
+      </div>
+    </div>
+    <div class="truth-box" style="margin-top:32px;">
+      <p>Não existe estratégia pronta. A sua é <span class="gradient">construída para você.</span></p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S4: Etapa 3 — Acompanhamento + CTA ────────────────────── -->
+<div class="slide bg-dark-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="step-badge">3</div>
+    <div class="step-of">Etapa 3 de 3</div>
+    <div class="sec-title gradient">ACOMPANHA&shy;MENTO<br>CONTÍNUO</div>
+    <div class="item-list">
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-headset"></i></div>
+        <p>Suporte 24/7 via contato direto com o seu consultor dedicado.</p>
+      </div>
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-chart-bar"></i></div>
+        <p>Relatórios semanais detalhados com o desempenho dos seus investimentos.</p>
+      </div>
+      <div class="item-row">
+        <div class="ic"><i class="ph-fill ph-bell-ringing"></i></div>
+        <p>Alertas de mercado e ajustes estratégicos conforme as oportunidades aparecem.</p>
+      </div>
+    </div>
+    <div class="cta-card">
+      <h3>1ª Sessão Gratuita</h3>
+      <p>Comece pelo diagnóstico — sem custo, sem compromisso</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<div class="counter" id="counter">1 / 4</div>
+<button class="nav-btn prev-btn" onclick="go(-1)">‹</button>
+<button class="nav-btn next-btn" onclick="go(1)">›</button>
+<div class="dots" id="dots"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let cur = 0;
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+  function go(dir) { goTo(cur + dir); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+  function scale() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const s  = Math.min(vw / 1080, vh / 1920);
+    const ox = (vw - 1080 * s) / 2;
+    const oy = (vh - 1920 * s) / 2;
+    slides.forEach(el => {
+      el.style.transformOrigin = 'top left';
+      el.style.transform = `translate(${ox}px, ${oy}px) scale(${s})`;
+    });
+  }
+  scale();
+  window.addEventListener('resize', scale);
+</script>
+</body>
+</html>

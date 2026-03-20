@@ -36,11 +36,18 @@
                 <img src="assets/logo-dazarabia.png" alt="Investidor Dazarábia" style="height: 40px; width: auto;">
             </a>
             <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">Sobre</a></li>
-                <li><a href="#filosofia" class="nav-link">Filosofia</a></li>
-                <li><a href="#jornada" class="nav-link">Jornada</a></li>
-                <li><a href="#ecossistema" class="nav-link">Ecossistema</a></li>
-                <li><a href="/ferramentas/" class="nav-link">Ferramentas</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="nav.about">Sobre</a></li>
+                <li><a href="#filosofia" class="nav-link" data-i18n="nav.philosophy">Filosofia</a></li>
+                <li><a href="#jornada" class="nav-link" data-i18n="nav.journey">Jornada</a></li>
+                <li><a href="#ecossistema" class="nav-link" data-i18n="nav.ecosystem">Ecossistema</a></li>
+                <li><a href="/ferramentas/" class="nav-link" data-i18n="nav.tools">Ferramentas</a></li>
+                <!-- Language Switcher will be injected here or added manually -->
+                <li class="desktop-only">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="pt">PT</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
+                </li>
             </ul>
             <div class="hamburger">
                 <i class="ph ph-list"></i>
@@ -54,12 +61,12 @@
         <div class="glow-orb hero-orb-2"></div>
         <div class="container hero-content">
             <div class="hero-text" data-animate="fade-up" style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 900px; margin: 0 auto;">
-                <span class="badge">Proteção Patrimonial e Investimentos</span>
-                <h1 class="hero-title">Seu patrimônio está protegido — ou está à mercê do <span class="text-gradient-gold">próximo imposto?</span></h1>
-                <p class="hero-subtitle">Eric Zapparoli saiu de um cortiço de SP, foi parar na Arábia Saudita e aprendeu na prática como construir patrimônio em moeda forte, investir no exterior e não depender do Brasil para ter liberdade financeira.</p>
+                <span class="badge" data-i18n="hero.badge">Proteção Patrimonial e Investimentos</span>
+                <h1 class="hero-title" data-i18n="hero.title" data-i18n-html>Seu patrimônio está protegido — ou está à mercê do <span class="text-gradient-gold">próximo imposto?</span></h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">Eric Zapparoli saiu de um cortiço de SP, foi parar na Arábia Saudita e aprendeu na prática como construir patrimônio em moeda forte, investir no exterior e não depender do Brasil para ter liberdade financeira.</p>
                 <div class="hero-cta">
-                    <a href="#ecossistema" class="btn-primary">Quero Proteger Meu Patrimônio <i class="ph-bold ph-shield-check"></i></a>
-                    <a href="#jornada" class="btn-secondary">Ver a Jornada</a>
+                    <a href="#ecossistema" class="btn-primary" data-i18n="hero.cta_primary" data-i18n-html>Quero Proteger Meu Patrimônio <i class="ph-bold ph-shield-check"></i></a>
+                    <a href="#jornada" class="btn-secondary" data-i18n="hero.cta_secondary">Ver a Jornada</a>
                 </div>
             </div>
         </div>
@@ -72,8 +79,8 @@
         <div class="glow-orb orb-3"></div>
         <div class="container">
             <div class="section-header text-center" data-animate="fade-up">
-                <h2 class="section-title">O <span class="text-gold">Ecossistema</span></h2>
-                <p class="section-description">Três frentes para quem quer construir patrimônio real — e parar de depender do próximo pacote fiscal.</p>
+                <h2 class="section-title" data-i18n="ecosystem.title" data-i18n-html>O <span class="text-gold">Ecossistema</span></h2>
+                <p class="section-description" data-i18n="ecosystem.description">Três frentes para quem quer construir patrimônio real — e parar de depender do próximo pacote fiscal.</p>
             </div>
 
             <div class="businesses-grid">
@@ -82,9 +89,9 @@
                     <div class="card-icon">
                         <i class="ph-fill ph-strategy text-gold"></i>
                     </div>
-                    <h3>Consultoria WSWM</h3>
-                    <p>Estratégia personalizada para quem quer sair do real, construir patrimônio em dólar e não ver a inflação e o governo comer em silêncio.</p>
-                    <a href="/consultoriawswm/" class="card-link">Conhecer a Consultoria <i class="ph-bold ph-arrow-right"></i></a>
+                    <h3 data-i18n="ecosystem.card1_title">Consultoria WSWM</h3>
+                    <p data-i18n="ecosystem.card1_desc">Estratégia personalizada para quem quer sair do real, construir patrimônio em dólar e não ver a inflação e o governo comer em silêncio.</p>
+                    <a href="/consultoriawswm/" class="card-link" data-i18n="ecosystem.card1_link" data-i18n-html>Conhecer a Consultoria <i class="ph-bold ph-arrow-right"></i></a>
                 </div>
 
                 <!-- Card 2 -->
@@ -92,9 +99,9 @@
                     <div class="card-icon">
                         <i class="ph-fill ph-book-open-text text-gold"></i>
                     </div>
-                    <h3>Dicionário do Dinheiro</h3>
-                    <p>109 termos do mercado financeiro explicados sem jargão — para você parar de aceitar resposta vaga do gerente do banco.</p>
-                    <a href="/dicionario-do-dinheiro/" class="card-link">Baixar Grátis <i class="ph-bold ph-arrow-right"></i></a>
+                    <h3 data-i18n="ecosystem.card2_title">Dicionário do Dinheiro</h3>
+                    <p data-i18n="ecosystem.card2_desc">109 termos do mercado financeiro explicados sem jargão — para você parar de aceitar resposta vaga do gerente do banco.</p>
+                    <a href="/dicionario-do-dinheiro/" class="card-link" data-i18n="ecosystem.card2_link" data-i18n-html>Baixar Grátis <i class="ph-bold ph-arrow-right"></i></a>
                 </div>
 
                 <!-- Card 3 -->
@@ -102,9 +109,9 @@
                     <div class="card-icon">
                         <i class="ph-fill ph-airplane-tilt text-gold"></i>
                     </div>
-                    <h3>Guia Para Imigrantes</h3>
-                    <p>Já está fora do Brasil? Este é o guia que eu queria ter tido: como investir nos EUA com legalidade sem comprometer o visto.</p>
-                    <a href="/guia-para-imigrantes/" class="card-link">Baixar Grátis <i class="ph-bold ph-arrow-right"></i></a>
+                    <h3 data-i18n="ecosystem.card3_title">Guia Para Imigrantes</h3>
+                    <p data-i18n="ecosystem.card3_desc">Já está fora do Brasil? Este é o guia que eu queria ter tido: como investir nos EUA com legalidade sem comprometer o visto.</p>
+                    <a href="/guia-para-imigrantes/" class="card-link" data-i18n="ecosystem.card3_link" data-i18n-html>Baixar Grátis <i class="ph-bold ph-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -115,11 +122,11 @@
         <div class="container">
             <div class="callout-content-wrapper" data-animate="fade-up">
                 <div class="callout-text">
-                    <h2 class="callout-title">Potencialize sua <span class="text-gold-alt">estratégia</span> com nossas <span class="text-black">ferramentas gratuitas</span></h2>
-                    <p class="callout-subtitle">Calculadoras de juros compostos, simuladores de liberdade financeira e guias exclusivos para investidores.</p>
+                    <h2 class="callout-title" data-i18n="tools_callout.title" data-i18n-html>Potencialize sua <span class="text-gold-alt">estratégia</span> com nossas <span class="text-black">ferramentas gratuitas</span></h2>
+                    <p class="callout-subtitle" data-i18n="tools_callout.subtitle">Calculadoras de juros compostos, simuladores de liberdade financeira e guias exclusivos para investidores.</p>
                 </div>
                 <div class="callout-action">
-                    <a href="/ferramentas/" class="btn-tools">Ver Ferramentas <i class="ph-bold ph-arrow-right"></i></a>
+                    <a href="/ferramentas/" class="btn-tools" data-i18n="tools_callout.btn" data-i18n-html>Ver Ferramentas <i class="ph-bold ph-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -132,7 +139,7 @@
                 
                 <!-- Header part -->
                 <div class="bio-header" data-animate="fade-up">
-                    <h2 class="section-title">Quem é <span class="text-gold">Eric Zapparoli</span>?</h2>
+                    <h2 class="section-title" data-i18n="about.title" data-i18n-html>Quem é <span class="text-gold">Eric Zapparoli</span>?</h2>
                     
                     <div class="bio-image-wrapper" style="margin: 2rem auto; width: 220px; height: 220px; border-radius: 50%; padding: 4px; background: var(--gold-gradient); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                         <div style="width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid var(--bg-dark);">
@@ -140,18 +147,18 @@
                         </div>
                     </div>
                     <div style="font-size: 1.15rem; color: var(--text-secondary); margin-top: 1.5rem;">
-                        <p>O garoto que cresceu em uma kitnet e decidiu que não ia repetir a história da família.</p>
+                        <p data-i18n="about.intro">O garoto que cresceu em uma kitnet e decidiu que não ia repetir a história da família.</p>
                     </div>
                 </div>
                 
                 <!-- Content part -->
                 <div class="bio-body" data-animate="fade-up" data-delay="100">
-                    <h3 style="font-size: 2rem; margin-bottom: 2rem; color: var(--text-primary);">Visão, Execução e <span class="text-gold">Patrimônio Real</span></h3>
+                    <h3 style="font-size: 2rem; margin-bottom: 2rem; color: var(--text-primary);" data-i18n="about.subtitle" data-i18n-html>Visão, Execução e <span class="text-gold">Patrimônio Real</span></h3>
                     <div style="font-size: 1.15rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
-                        <p>Vila California, São Paulo. Filho único que cresceu sem pai mas aprendeu a ser forte na vida desde pequeno. Sempre estudei pois sabia que essa era minha única alternativa até conseguir meu primeiro emprego em 2005. R$180 reais por 4 horas de trabalho.</p>
-                        <p>Mas em 2016 minha vida mudou, uma empresa da Arábia Saudita achou meu currículo no LinkedIn — porque eu coloquei o perfil em inglês. Aceitei na hora. Saí sozinho, com medo, com fé, e com a certeza de que o Brasil não ia me dar nada, eu precisava conquistar sozinho.</p>
-                        <p>Dez anos depois: Jeddah, +R$10 milhões sob gestão, família constituída, 36 paises visitados. Sem herança. Sem atalho. Sem método de 7 passos.</p>
-                        <p>O que aprendi sobre geopolítica, culturas, moeda forte, investimento no exterior e proteção de patrimônio — é isso que você encontra aqui. Sem conversa fiada.</p>
+                        <p data-i18n="about.p1">Vila California, São Paulo. Filho único que cresceu sem pai mas aprendeu a ser forte na vida desde pequeno. Sempre estudei pois sabia que essa era minha única alternativa até conseguir meu primeiro emprego em 2005. R$180 reais por 4 horas de trabalho.</p>
+                        <p data-i18n="about.p2">Mas em 2016 minha vida mudou, uma empresa da Arábia Saudita achou meu currículo no LinkedIn — porque eu coloquei o perfil em inglês. Aceitei na hora. Saí sozinho, com medo, com fé, e com a certeza de que o Brasil não ia me dar nada, eu precisava conquistar sozinho.</p>
+                        <p data-i18n="about.p3">Dez anos depois: Jeddah, +R$10 milhões sob gestão, família constituída, 36 paises visitados. Sem herança. Sem atalho. Sem método de 7 passos.</p>
+                        <p data-i18n="about.p4">O que aprendi sobre geopolítica, culturas, moeda forte, investimento no exterior e proteção de patrimônio — é isso que você encontra aqui. Sem conversa fiada.</p>
                     </div>
                 </div>
             </div>
@@ -181,16 +188,16 @@
             </style>
             <div class="stats-responsive-grid" data-animate="fade-up">
                 <div class="stat-item" style="text-align: center;">
-                    <h4 class="stat-number text-gold" style="font-size: 3rem; margin-bottom: 0.5rem;">+10</h4>
-                    <span class="stat-label">Anos construindo fora</span>
+                    <h4 class="stat-number text-gold" style="font-size: 3rem; margin-bottom: 0.5rem;" data-i18n="stats.stat1_num">+10</h4>
+                    <span class="stat-label" data-i18n="stats.stat1_label">Anos construindo fora</span>
                 </div>
                 <div class="stat-item" style="text-align: center;">
-                    <h4 class="stat-number text-gold" style="font-size: 3rem; margin-bottom: 0.5rem;">+R$10M</h4>
-                    <span class="stat-label">Sob Gestão</span>
+                    <h4 class="stat-number text-gold" style="font-size: 3rem; margin-bottom: 0.5rem;" data-i18n="stats.stat2_num">+R$10M</h4>
+                    <span class="stat-label" data-i18n="stats.stat2_label">Sob Gestão</span>
                 </div>
                 <div class="stat-item" style="text-align: center;">
-                    <h4 class="stat-number text-gold" style="font-size: 3rem; margin-bottom: 0.5rem;">+120k</h4>
-                    <span class="stat-label">No Instagram</span>
+                    <h4 class="stat-number text-gold" style="font-size: 3rem; margin-bottom: 0.5rem;" data-i18n="stats.stat3_num">+120k</h4>
+                    <span class="stat-label" data-i18n="stats.stat3_label">No Instagram</span>
                 </div>
             </div>
         </div>
@@ -200,26 +207,26 @@
     <section class="section philosophy-section bg-grid" id="filosofia">
         <div class="container">
             <div class="section-header text-center" data-animate="fade-up">
-                <h2 class="section-title">Visão, Execução e <span class="text-gold">Patrimônio Real</span></h2>
+                <h2 class="section-title" data-i18n="philosophy.title" data-i18n-html>Visão, Execução e <span class="text-gold">Patrimônio Real</span></h2>
             </div>
             <div class="businesses-grid">
                 <div class="business-card glass-card" data-animate="fade-up">
                     <div class="card-icon">
                         <i class="ph-fill ph-currency-dollar text-gold"></i>
                     </div>
-                    <p>"Quem não tem dólar é louco." <br><br> Proteger patrimônio em moeda forte não é luxo — é o mínimo de quem não quer trabalhar de graça para a inflação.</p>
+                    <p data-i18n="philosophy.card1" data-i18n-html>"Quem não tem dólar é louco." <br><br> Proteger patrimônio em moeda forte não é luxo — é o mínimo de quem não quer trabalhar de graça para a inflação.</p>
                 </div>
                 <div class="business-card glass-card" data-animate="fade-up" style="transition-delay: 0.1s;">
                     <div class="card-icon">
                         <i class="ph-fill ph-chart-line-up text-gold"></i>
                     </div>
-                    <p>"O primeiro R$100 mil são os mais difíceis." <br><br> Depois que passa disso, o dinheiro começa a trabalhar por você — não o contrário.</p>
+                    <p data-i18n="philosophy.card2" data-i18n-html>"O primeiro R$100 mil são os mais difíceis." <br><br> Depois que passa disso, o dinheiro começa a trabalhar por você — não o contrário.</p>
                 </div>
                 <div class="business-card glass-card" data-animate="fade-up" style="transition-delay: 0.2s;">
                     <div class="card-icon">
                         <i class="ph-fill ph-globe text-gold"></i>
                     </div>
-                    <p>"Sair do real não exige sair do Brasil." <br><br> Há estruturas acessíveis para pessoa física que já garantem exposição a moeda forte — e a maioria não sabe que existem.</p>
+                    <p data-i18n="philosophy.card3" data-i18n-html>"Sair do real não exige sair do Brasil." <br><br> Há estruturas acessíveis para pessoa física que já garantem exposição a moeda forte — e a maioria não sabe que existem.</p>
                 </div>
             </div>
         </div>
@@ -229,8 +236,8 @@
     <section class="section timeline-section bg-mesh" id="jornada">
         <div class="container">
             <div class="section-header text-center" data-animate="fade-up">
-                <h2 class="section-title">A <span class="text-gold">Jornada</span></h2>
-                <p class="section-description">A trajetória de quem saiu da periferia para o mercado global.</p>
+                <h2 class="section-title" data-i18n="journey.title" data-i18n-html>A <span class="text-gold">Jornada</span></h2>
+                <p class="section-description" data-i18n="journey.description">A trajetória de quem saiu da periferia para o mercado global.</p>
             </div>
             
             <div class="timeline">
@@ -239,36 +246,36 @@
                 <div class="timeline-item" data-animate="fade-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content right">
-                        <span class="timeline-date">Etapa 1</span>
-                        <h3>Os Primeiros Passos</h3>
-                        <p>Estudando desde os 10 anos, inglês, escola pública, faculdade pública, horas e horas me capacitando, Primeiro salário, R$180 reais. Não sabia nada sobre investimento. Mas sabia que não queria aquela vida para sempre — e que esperar o Brasil resolver não era um plano.</p>
+                        <span class="timeline-date" data-i18n="journey.step1_date">Etapa 1</span>
+                        <h3 data-i18n="journey.step1_title">Os Primeiros Passos</h3>
+                        <p data-i18n="journey.step1_desc">Estudando desde os 10 anos, inglês, escola pública, faculdade pública, horas e horas me capacitando, Primeiro salário, R$180 reais. Não sabia nada sobre investimento. Mas sabia que não queria aquela vida para sempre — e que esperar o Brasil resolver não era um plano.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item" data-animate="fade-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content left">
-                        <span class="timeline-date">Etapa 2</span>
-                        <h3>A Virada</h3>
-                        <p>Uma empresa árabe achou meu perfil no LinkedIn. Eu tinha colocado em inglês por tentativa. Eles me ligaram com proposta. Embarquei. Sem rede, sem apoio, sem ninguém que tivesse feito aquilo antes na minha família.</p>
+                        <span class="timeline-date" data-i18n="journey.step2_date">Etapa 2</span>
+                        <h3 data-i18n="journey.step2_title">A Virada</h3>
+                        <p data-i18n="journey.step2_desc">Uma empresa árabe achou meu perfil no LinkedIn. Eu tinha colocado em inglês por tentativa. Eles me ligaram com proposta. Embarquei. Sem rede, sem apoio, sem ninguém que tivesse feito aquilo antes na minha família.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item" data-animate="fade-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content right">
-                        <span class="timeline-date">Etapa 3</span>
-                        <h3>Construindo Fora</h3>
-                        <p>Aprendi que moeda forte não é especulação — é proteção. Fui alocando devagar, errando, ajustando. Em 10 anos, R$0 viraram mais de R$2 milhões de patrimônio e mais de R$10 milhões sob gestão. Não foi exponencial milagrosa. Foi consistência com estratégia.</p>
+                        <span class="timeline-date" data-i18n="journey.step3_date">Etapa 3</span>
+                        <h3 data-i18n="journey.step3_title">Construindo Fora</h3>
+                        <p data-i18n="journey.step3_desc">Aprendi que moeda forte não é especulação — é proteção. Fui alocando devagar, errando, ajustando. Em 10 anos, R$0 viraram mais de R$2 milhões de patrimônio e mais de R$10 milhões sob gestão. Não foi exponencial milagrosa. Foi consistência com estratégia.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item" data-animate="fade-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content left">
-                        <span class="timeline-date">Etapa 4</span>
-                        <h3>Retorno</h3>
-                        <p>Não voltei para o Brasil. Voltei para quem ainda está lá. Com o que aprendi sobre geopolítica, mercado, investimento no exterior e patrimônio real. Para dizer o que ninguém no Brasil vai te dizer — porque ninguém está olhando de fora.</p>
+                        <span class="timeline-date" data-i18n="journey.step4_date">Etapa 4</span>
+                        <h3 data-i18n="journey.step4_title">Retorno</h3>
+                        <p data-i18n="journey.step4_desc">Não voltei para o Brasil. Voltei para quem ainda está lá. Com o que aprendi sobre geopolítica, mercado, investimento no exterior e patrimônio real. Para dizer o que ninguém no Brasil vai te dizer — porque ninguém está olhando de fora.</p>
                     </div>
                 </div>
             </div>
@@ -286,13 +293,13 @@
                     <img src="assets/logo-dazarabia.png" alt="Investidor Dazarábia" style="height: 35px; width: auto;">
                 </div>
                 <div class="footer-links">
-                    <a href="#about">Sobre</a>
-                    <a href="#jornada">Jornada</a>
-                    <a href="#ecossistema">Ecossistema</a>
+                    <a href="#about" data-i18n="footer.about">Sobre</a>
+                    <a href="#jornada" data-i18n="footer.journey">Jornada</a>
+                    <a href="#ecossistema" data-i18n="footer.ecosystem">Ecossistema</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Investidor Dazarábia Ecosystem. Todos os direitos reservados.</p>
+                <p data-i18n="footer.rights" data-i18n-html>&copy; 2026 Investidor Dazarábia Ecosystem. Todos os direitos reservados.</p>
                 <div class="social-links">
                     <a href="https://instagram.com/investidordazarabia" target="_blank" title="Instagram"><i class="ph-fill ph-instagram-logo"></i> @investidordazarabia</a>
                     <a href="#"><i class="ph-fill ph-youtube-logo"></i></a>
@@ -308,8 +315,8 @@
         <div class="modal-container glass-card active-modal" style="display: block; max-width: 450px;">
             <button class="modal-close" id="closeLeadModal"><i class="ph ph-x"></i></button>
             <div class="modal-header">
-                <h3>Liberar <span class="text-gold">Acesso</span></h3>
-                <p>Preencha seus dados para acessar as ferramentas exclusivas.</p>
+                <h3 data-i18n="modal.title" data-i18n-html>Liberar <span class="text-gold">Acesso</span></h3>
+                <p data-i18n="modal.subtitle">Preencha seus dados para acessar as ferramentas exclusivas.</p>
             </div>
                 <!-- Container para o Quiz Unificado -->
                 <form id="leadUnlockForm"></form>
@@ -325,6 +332,7 @@
     <script src="js/unified-quiz.js"></script>
 
     <!-- Scripts -->
+    <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

@@ -1,0 +1,198 @@
+{
+  "pt": {
+    "nav": {
+      "about": "Sobre",
+      "philosophy": "Filosofia",
+      "journey": "Jornada",
+      "ecosystem": "Ecossistema",
+      "tools": "Ferramentas"
+    },
+    "hero": {
+      "badge": "Proteção Patrimonial e Investimentos",
+      "title": "Seu patrimônio está protegido — ou está à mercê do <span class=\"text-gradient-gold\">próximo imposto?</span>",
+      "subtitle": "Eric Zapparoli saiu de um cortiço de SP, foi parar na Arábia Saudita e aprendeu na prática como construir patrimônio em moeda forte, investir no exterior e não depender do Brasil para ter liberdade financeira.",
+      "cta_primary": "Quero Proteger Meu Patrimônio <i class=\"ph-bold ph-shield-check\"></i>",
+      "cta_secondary": "Ver a Jornada"
+    },
+    "ecosystem": {
+      "title": "O <span class=\"text-gold\">Ecossistema</span>",
+      "description": "Três frentes para quem quer construir patrimônio real — e parar de depender do próximo pacote fiscal.",
+      "card1_title": "Consultoria WSWM",
+      "card1_desc": "Estratégia personalizada para quem quer sair do real, construir patrimônio em dólar e não ver a inflação e o governo comer em silêncio.",
+      "card1_link": "Conhecer a Consultoria <i class=\"ph-bold ph-arrow-right\"></i>",
+      "card2_title": "Dicionário do Dinheiro",
+      "card2_desc": "109 termos do mercado financeiro explicados sem jargão — para você parar de aceitar resposta vaga do gerente do banco.",
+      "card2_link": "Baixar Grátis <i class=\"ph-bold ph-arrow-right\"></i>",
+      "card3_title": "Guia Para Imigrantes",
+      "card3_desc": "Já está fora do Brasil? Este é o guia que eu queria ter tido: como investir nos EUA com legalidade sem comprometer o visto.",
+      "card3_link": "Baixar Grátis <i class=\"ph-bold ph-arrow-right\"></i>"
+    },
+    "tools_callout": {
+      "title": "Potencialize sua <span class=\"text-gold-alt\">estratégia</span> com nossas <span class=\"text-black\">ferramentas gratuitas</span>",
+      "subtitle": "Calculadoras de juros compostos, simuladores de liberdade financeira e guias exclusivos para investidores.",
+      "btn": "Ver Ferramentas <i class=\"ph-bold ph-arrow-right\"></i>"
+    },
+    "about": {
+      "title": "Quem é <span class=\"text-gold\">Eric Zapparoli</span>?",
+      "intro": "O garoto que cresceu em uma kitnet e decidiu que não ia repetir a história da família.",
+      "subtitle": "Visão, Execução e <span class=\"text-gold\">Patrimônio Real</span>",
+      "p1": "Vila California, São Paulo. Filho único que cresceu sem pai mas aprendeu a ser forte na vida desde pequeno. Sempre estudei pois sabia que essa era minha única alternativa até conseguir meu primeiro emprego em 2005. R$180 reais por 4 horas de trabalho.",
+      "p2": "Mas em 2016 minha vida mudou, uma empresa da Arábia Saudita achou meu currículo no LinkedIn — porque eu coloquei o perfil em inglês. Aceitei na hora. Saí sozinho, com medo, com fé, e com a certeza de que o Brasil não ia me dar nada, eu precisava conquistar sozinho.",
+      "p3": "Dez anos depois: Jeddah, +R$10 milhões sob gestão, família constituída, 36 paises visitados. Sem herança. Sem atalho. Sem método de 7 passos.",
+      "p4": "O que aprendi sobre geopolítica, culturas, moeda forte, investimento no exterior e proteção de patrimônio — é isso que você encontra aqui. Sem conversa fiada."
+    },
+    "stats": {
+      "stat1_num": "+10",
+      "stat1_label": "Anos construindo fora",
+      "stat2_num": "+R$10M",
+      "stat2_label": "Sob Gestão",
+      "stat3_num": "+120k",
+      "stat3_label": "No Instagram"
+    },
+    "philosophy": {
+      "title": "Visão, Execução e <span class=\"text-gold\">Patrimônio Real</span>",
+      "card1": "\"Quem não tem dólar é louco.\" <br><br> Proteger patrimônio em moeda forte não é luxo — é o mínimo de quem não quer trabalhar de graça para a inflação.",
+      "card2": "\"O primeiro R$100 mil são os mais difíceis.\" <br><br> Depois que passa disso, o dinheiro começa a trabalhar por você — não o contrário.",
+      "card3": "\"Sair do real não exige sair do Brasil.\" <br><br> Há estruturas acessíveis para pessoa física que já garantem exposição a moeda forte — e a maioria não sabe que existem."
+    },
+    "journey": {
+      "title": "A <span class=\"text-gold\">Jornada</span>",
+      "description": "A trajetória de quem saiu da periferia para o mercado global.",
+      "step1_date": "Etapa 1",
+      "step1_title": "Os Primeiros Passos",
+      "step1_desc": "Estudando desde os 10 anos, inglês, escola pública, faculdade pública, horas e horas me capacitando, Primeiro salário, R$180 reais. Não sabia nada sobre investimento. Mas sabia que não queria aquela vida para sempre — e que esperar o Brasil resolver não era um plano.",
+      "step2_date": "Etapa 2",
+      "step2_title": "A Virada",
+      "step2_desc": "Uma empresa árabe achou meu perfil no LinkedIn. Eu tinha colocado em inglês por tentativa. Eles me ligaram com proposta. Embarquei. Sem rede, sem apoio, sem ninguém que tivesse feito aquilo antes na minha família.",
+      "step3_date": "Etapa 3",
+      "step3_title": "Construindo Fora",
+      "step3_desc": "Aprendi que moeda forte não é especulação — é proteção. Fui alocando devagar, errando, ajustando. Em 10 anos, R$0 viraram mais de R$2 milhões de patrimônio e mais de R$10 milhões sob gestão. Não foi exponencial milagrosa. Foi consistência com estratégia.",
+      "step4_date": "Etapa 4",
+      "step4_title": "Retorno",
+      "step4_desc": "Não voltei para o Brasil. Voltei para quem ainda está lá. Com o que aprendi sobre geopolítica, mercado, investimento no exterior e patrimônio real. Para dizer o que ninguém no Brasil vai te dizer — porque ninguém está olhando de fora."
+    },
+    "footer": {
+      "about": "Sobre",
+      "journey": "Jornada",
+      "ecosystem": "Ecossistema",
+      "rights": "&copy; 2026 Investidor Dazarábia Ecosystem. Todos os direitos reservados."
+    },
+    "modal": {
+      "title": "Liberar <span class=\"text-gold\">Acesso</span>",
+      "subtitle": "Preencha seus dados para acessar as ferramentas exclusivas."
+    }
+  },
+  "en": {
+    "nav": {
+      "about": "About",
+      "philosophy": "Philosophy",
+      "journey": "Journey",
+      "ecosystem": "Ecosystem",
+      "tools": "Tools"
+    },
+    "hero": {
+      "badge": "Asset Protection and Investments",
+      "title": "Is your wealth protected — or is it at the mercy of the <span class=\"text-gradient-gold\">next tax?</span>",
+      "subtitle": "Eric Zapparoli left a tenement in SP, ended up in Saudi Arabia and learned in practice how to build wealth in hard currency, invest abroad and not depend on Brazil for financial freedom.",
+      "cta_primary": "I Want to Protect My Wealth <i class=\"ph-bold ph-shield-check\"></i>",
+      "cta_secondary": "See the Journey"
+    },
+    "ecosystem": {
+      "title": "The <span class=\"text-gold\">Ecosystem</span>",
+      "description": "Three fronts for those who want to build real wealth — and stop depending on the next fiscal package.",
+      "card1_title": "WSWM Consulting",
+      "card1_desc": "Personalized strategy for those who want to get out of the Real, build wealth in Dollars and not see inflation and the government eat it in silence.",
+      "card1_link": "Learn About Consulting <i class=\"ph-bold ph-arrow-right\"></i>",
+      "card2_title": "Money Dictionary",
+      "card2_desc": "109 financial market terms explained without jargon — so you stop accepting vague answers from the bank manager.",
+      "card2_link": "Download for Free <i class=\"ph-bold ph-arrow-right\"></i>",
+      "card3_title": "Immigrant Guide",
+      "card3_desc": "Already outside Brazil? This is the guide I wish I had: how to invest in the US legally without compromising your visa.",
+      "card3_link": "Download for Free <i class=\"ph-bold ph-arrow-right\"></i>"
+    },
+    "tools_callout": {
+      "title": "Boost your <span class=\"text-gold-alt\">strategy</span> with our <span class=\"text-black\">free tools</span>",
+      "subtitle": "Compound interest calculators, financial freedom simulators and exclusive guides for investors.",
+      "btn": "View Tools <i class=\"ph-bold ph-arrow-right\"></i>"
+    },
+    "about": {
+      "title": "Who is <span class=\"text-gold\">Eric Zapparoli</span>?",
+      "intro": "The boy who grew up in a studio apartment and decided he wasn't going to repeat his family's history.",
+      "subtitle": "Vision, Execution and <span class=\"text-gold\">Real Wealth</span>",
+      "p1": "Vila California, São Paulo. Only child who grew up without a father but learned to be strong in life from a young age. I always studied because I knew that was my only alternative until I got my first job in 2005. R$180 for 4 hours of work.",
+      "p2": "But in 2016 my life changed, a Saudi Arabian company found my resume on LinkedIn — because I put my profile in English. I accepted immediately. I left alone, afraid, with faith, and with the certainty that Brazil was not going to give me anything, I needed to conquer it alone.",
+      "p3": "Ten years later: Jeddah, +R$10 million under management, family established, 36 countries visited. No inheritance. No shortcuts. No 7-step method.",
+      "p4": "What I learned about geopolitics, cultures, hard currency, offshore investment and wealth protection — that's what you find here. No small talk."
+    },
+    "stats": {
+      "stat1_num": "+10",
+      "stat1_label": "Years building abroad",
+      "stat2_num": "+R$10M",
+      "stat2_label": "Under Management",
+      "stat3_num": "+120k",
+      "stat3_label": "On Instagram"
+    },
+    "philosophy": {
+      "title": "Vision, Execution and <span class=\"text-gold\">Real Wealth</span>",
+      "card1": "\"Anyone who doesn't have dollars is crazy.\" <br><br> Protecting wealth in hard currency is not a luxury — it's the minimum for anyone who doesn't want to work for free for inflation.",
+      "card2": "\"The first R$100k are the hardest.\" <br><br> After that, the money starts working for you — not the other way around.",
+      "card3": "\"Leaving the Real doesn't require leaving Brazil.\" <br><br> There are accessible structures for individuals that already guarantee exposure to hard currency — and most don't know they exist."
+    },
+    "journey": {
+      "title": "The <span class=\"text-gold\">Journey</span>",
+      "description": "The trajectory of someone who left the periphery for the global market.",
+      "step1_date": "Stage 1",
+      "step1_title": "The First Steps",
+      "step1_desc": "Studying since age 10, English, public school, public college, hours and hours of training, First salary, R$180. I knew nothing about investment. But I knew I didn't want that life forever — and that waiting for Brazil to solve it wasn't a plan.",
+      "step2_date": "Stage 2",
+      "step2_title": "The Turning Point",
+      "step2_desc": "An Arab company found my LinkedIn profile. I had put it in English as a trial. They called me with an offer. I embarked. No network, no support, no one who had done that before in my family.",
+      "step3_date": "Stage 3",
+      "step3_title": "Building Abroad",
+      "step3_desc": "I learned that hard currency is not speculation — it's protection. I allocated slowly, making mistakes, adjusting. In 10 years, R$0 turned into more than R$2 million in wealth and more than R$10 million under management. It wasn't miraculous exponential growth. It was consistency with strategy.",
+      "step4_date": "Stage 4",
+      "step4_title": "Return",
+      "step4_desc": "I didn't return to Brazil. I returned to those who are still there. With what I learned about geopolitics, market, offshore investment and real wealth. To say what no one in Brazil will tell you — because no one is looking from the outside."
+    },
+    "footer": {
+      "about": "About",
+      "journey": "Journey",
+      "ecosystem": "Ecosystem",
+      "rights": "&copy; 2026 Investidor Dazarábia Ecosystem. All rights reserved."
+    },
+    "modal": {
+      "title": "Unlock <span class=\"text-gold\">Access</span>",
+      "subtitle": "Fill in your details to access exclusive tools."
+    },
+    "ferramentas": {
+      "hero_badge": "Free Access",
+      "hero_title": "Management and <span class=\"text-gradient-gold\">Planning Tools</span>",
+      "hero_subtitle": "Simulate, calculate and decide based on real data. Knowledge is your greatest protection against inflation and financial mismanagement.",
+      "tool1_title": "Compound Interest Calculator",
+      "tool1_desc": "Put your numbers here and see with your own eyes what happens when money starts working for you — and not you for it.",
+      "tool1_btn": "Access Tool",
+      "tool2_title": "Investor Profile Test",
+      "tool2_desc": "Before investing anything, understand how you think. Wrong profile is wrong strategy — and wrong result.",
+      "tool2_btn": "Take the Test",
+      "tool3_title": "Emergency Fund",
+      "tool3_desc": "How much do you need to save before you start investing for real? Those who skip this step usually go back to square one at the first emergency.",
+      "tool3_btn": "Calculate Now",
+      "footer_brand": "Accelerating your financial freedom through global investments and wealth protection."
+    },
+    "consultoria": {
+      "banner": "1st Free Strategic Session - Limited Spots",
+      "hero_badge": "EXCLUSIVE FOR IMMIGRANTS",
+      "hero_title": "The only consultancy exclusive for immigrants to build <span class=\"text-gradient\">Financial Freedom.</span>",
+      "hero_subtitle": "Receive an investment strategy 100% aligned with your personal goals and build your financial independence with a professional team of consultants at your disposal.",
+      "hero_btn": "SPEAK WITH A CONSULTANT NOW",
+      "stat1": "+10 Million Reais under Management",
+      "stat2": "+19% Average Profitability",
+      "for_you_title": "For you:",
+      "for_you_item1": "Have more financial peace of mind",
+      "for_you_item2": "Achieve personal goals",
+      "for_you_item3": "Build your retirement",
+      "warning": "If you don't have a clear strategy for your investments in the US yet, every passing month is money left on the table.",
+      "philosophy_title": "All because of a simple formula:<br><span class=\"text-gradient\">Compound Interest.</span>"
+    }
+  }
+}

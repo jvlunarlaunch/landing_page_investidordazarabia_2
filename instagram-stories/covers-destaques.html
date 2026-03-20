@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WSWM · Covers Destaques</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    .slide {
+      width: 1080px; height: 1920px;
+      position: fixed; top: 0; left: 0;
+      display: none; overflow: hidden; transform-origin: top left;
+      font-family: var(--font); color: var(--white);
+      flex-direction: column; align-items: center;
+      justify-content: center;
+    }
+    .slide.active { display: flex; }
+
+    .nav-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.7); border: 1px solid rgba(212,175,55,.25);
+      color: #D4AF37; font-size: 2.4rem; width: 52px; height: 110px;
+      cursor: pointer; z-index: 900; transition: background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-btn:hover { background: rgba(212,175,55,.12); }
+    .prev-btn { left: 0; border-radius: 0 12px 12px 0; }
+    .next-btn { right: 0; border-radius: 12px 0 0 12px; }
+    .counter {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      color: #D4AF37; font-size: .8rem; font-weight: 700; letter-spacing: 3px;
+      background: rgba(0,0,0,.8); padding: 7px 20px; border-radius: 20px;
+      border: 1px solid rgba(212,175,55,.2); z-index: 900; font-family: 'Sora', sans-serif;
+    }
+    .dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 900; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,55,.3); cursor: pointer; transition: all .3s; }
+    .dot.active { background: #D4AF37; transform: scale(1.4); }
+
+    /* Cover layout */
+    .cover-icon {
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,.22) 0%, rgba(212,175,55,.05) 65%);
+      border: 2px solid var(--border-strong);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 160px;
+      position: relative; flex-shrink: 0;
+    }
+    .cover-icon::before {
+      content: ""; position: absolute; inset: -22px; border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+    .cover-icon::after {
+      content: ""; position: absolute; inset: -44px; border-radius: 50%;
+      border: 1px dashed rgba(212,175,55,.14);
+    }
+
+    .cover-title {
+      font-size: 148px; font-weight: 800;
+      line-height: .88; letter-spacing: -5px;
+      text-align: center; margin-top: 52px;
+    }
+    .cover-title.lg { font-size: 120px; letter-spacing: -4px; }
+    .cover-title.sm { font-size: 96px;  letter-spacing: -3px; margin-top: 44px; }
+
+    .cover-divider {
+      height: 3px; width: 200px; background: var(--gold-grad-h);
+      border-radius: 2px; margin-top: 52px;
+    }
+    .cover-handle {
+      font-size: 30px; font-weight: 600;
+      color: var(--gray); letter-spacing: 1px; margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Cover 1: Comece Aqui ──────────────────────────────────── -->
+<div class="slide active bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="cover-icon"><i class="ph-fill ph-compass"></i></div>
+  <div class="cover-title gradient">COMECE<br>AQUI</div>
+  <div class="cover-divider"></div>
+  <div class="cover-handle">@investidordazarabia</div>
+</div>
+
+<!-- ── Cover 2: Resultados ───────────────────────────────────── -->
+<div class="slide bg-grid">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="cover-icon"><i class="ph-fill ph-trend-up"></i></div>
+  <div class="cover-title gradient">RESULTA&shy;<br>DOS</div>
+  <div class="cover-divider"></div>
+  <div class="cover-handle">@investidordazarabia</div>
+</div>
+
+<!-- ── Cover 3: Nossa História ───────────────────────────────── -->
+<div class="slide bg-steel">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="cover-icon"><i class="ph-fill ph-book-open"></i></div>
+  <div class="cover-title lg gradient">NOSSA<br>HISTÓRIA</div>
+  <div class="cover-divider"></div>
+  <div class="cover-handle">@investidordazarabia</div>
+</div>
+
+<!-- ── Cover 4: Materiais Gratuitos ─────────────────────────── -->
+<div class="slide bg-dark-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="cover-icon"><i class="ph-fill ph-books"></i></div>
+  <div class="cover-title sm gradient">MATERIAIS<br>GRATUITOS</div>
+  <div class="cover-divider"></div>
+  <div class="cover-handle">@investidordazarabia</div>
+</div>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<div class="counter" id="counter">1 / 4</div>
+<button class="nav-btn prev-btn" onclick="go(-1)">‹</button>
+<button class="nav-btn next-btn" onclick="go(1)">›</button>
+<div class="dots" id="dots"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let cur = 0;
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+  function go(dir) { goTo(cur + dir); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+  function scale() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const s  = Math.min(vw / 1080, vh / 1920);
+    const ox = (vw - 1080 * s) / 2;
+    const oy = (vh - 1920 * s) / 2;
+    slides.forEach(el => {
+      el.style.transformOrigin = 'top left';
+      el.style.transform = `translate(${ox}px, ${oy}px) scale(${s})`;
+    });
+  }
+  scale();
+  window.addEventListener('resize', scale);
+</script>
+</body>
+</html>

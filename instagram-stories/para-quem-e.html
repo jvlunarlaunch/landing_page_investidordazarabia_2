@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WSWM · Para Quem É</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    .slide {
+      width: 1080px; height: 1920px;
+      position: fixed; top: 0; left: 0;
+      display: none; overflow: hidden; transform-origin: top left;
+      font-family: var(--font); color: var(--white);
+      flex-direction: column; align-items: center;
+      padding: 110px 90px 130px;
+    }
+    .slide.active { display: flex; }
+
+    .top-cluster { display: flex; flex-direction: column; align-items: center; gap: 36px; width: 100%; flex-shrink: 0; }
+    .cc { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 0; }
+    .bottom { display: flex; flex-direction: column; align-items: center; gap: 26px; width: 100%; flex-shrink: 0; }
+
+    /* Nav */
+    .nav-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.7); border: 1px solid rgba(212,175,55,.25);
+      color: #D4AF37; font-size: 2.4rem; width: 52px; height: 110px;
+      cursor: pointer; z-index: 900; transition: background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-btn:hover { background: rgba(212,175,55,.12); }
+    .prev-btn { left: 0; border-radius: 0 12px 12px 0; }
+    .next-btn { right: 0; border-radius: 12px 0 0 12px; }
+    .counter {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
+      color: #D4AF37; font-size: .8rem; font-weight: 700; letter-spacing: 3px;
+      background: rgba(0,0,0,.8); padding: 7px 20px; border-radius: 20px;
+      border: 1px solid rgba(212,175,55,.2); z-index: 900; font-family: 'Sora', sans-serif;
+    }
+    .dots { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 900; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(212,175,55,.3); cursor: pointer; transition: all .3s; }
+    .dot.active { background: #D4AF37; transform: scale(1.4); }
+
+    /* Shared */
+    .eyebrow   { font-size: 24px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .eyebrow-g { font-size: 24px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; text-align: center; }
+    .sec-title { font-size: 72px; font-weight: 800; letter-spacing: -2px; text-align: center; line-height: .92; margin-top: 12px; }
+    .truth-box { width: 100%; background: rgba(212,175,55,.06); border: 1px solid var(--border-strong); border-radius: 20px; padding: 34px 44px; text-align: center; }
+    .truth-box p { font-size: 26px; font-weight: 700; line-height: 1.5; }
+
+    /* S1 — Hook */
+    .hook-block { width: 100%; display: flex; flex-direction: column; gap: 28px; margin-top: 52px; }
+    .hook-line {
+      background: rgba(212,175,55,.05); border: 1px solid var(--border);
+      border-radius: 18px; padding: 36px 48px;
+      font-size: 44px; font-weight: 800; line-height: 1.1; text-align: left;
+    }
+    .hook-line.accent { border-color: var(--border-strong); background: rgba(212,175,55,.08); }
+    .q-mark { font-size: 54px; font-weight: 800; }
+
+    /* S2 — Para quem É */
+    .check-list { width: 100%; display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
+    .check-item {
+      display: flex; align-items: center; gap: 22px;
+      background: rgba(212,175,55,.04); border: 1px solid var(--border);
+      border-radius: 16px; padding: 26px 34px;
+    }
+    .check-item .ci-yes { font-size: 32px; color: var(--gold); flex-shrink: 0; }
+    .check-item p { font-size: 26px; line-height: 1.4; font-weight: 600; }
+
+    /* S3 — Para quem NÃO É */
+    .no-list  { width: 100%; display: flex; flex-direction: column; gap: 20px; margin-top: 36px; }
+    .no-item  {
+      display: flex; align-items: flex-start; gap: 22px;
+      background: rgba(255,42,42,.04); border: 1px solid rgba(255,42,42,.2);
+      border-left: 4px solid #ff2a2a; border-radius: 0 18px 18px 0;
+      padding: 28px 36px;
+    }
+    .no-item .ci-no { font-size: 32px; color: #ff6b6b; flex-shrink: 0; margin-top: 2px; }
+    .no-item p { font-size: 26px; color: var(--gray); line-height: 1.4; }
+    .no-item strong { color: #ff8a8a; }
+
+    /* S4 CTA */
+    .big-icon  { font-size: 100px; color: var(--gold); text-align: center; margin-bottom: 24px; }
+    .cta-title { font-size: 76px; font-weight: 800; letter-spacing: -3px; text-align: center; line-height: .92; }
+    .cta-sub   { font-size: 29px; color: var(--gray); text-align: center; line-height: 1.6; max-width: 840px; margin-top: 24px; font-weight: 400; }
+    .cta-card  { width: 100%; margin-top: 52px; background: var(--gold-grad); border-radius: 24px; padding: 48px 44px; text-align: center; }
+    .cta-card h3 { font-size: 34px; font-weight: 800; color: #000; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .cta-card p  { font-size: 24px; color: rgba(0,0,0,.7); }
+  </style>
+</head>
+<body>
+
+<!-- ── S1: Hook ───────────────────────────────────────────────── -->
+<div class="slide active bg-steel">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow">Leia com atenção</div>
+    <div class="hook-block">
+      <div class="hook-line">Você mora nos EUA.</div>
+      <div class="hook-line">Ganha em dólar.</div>
+      <div class="hook-line accent">Mas onde está o seu <span class="gradient">patrimônio?</span></div>
+    </div>
+    <div class="truth-box" style="margin-top:44px;">
+      <p>Se não tem resposta clara pra essa pergunta — esse destaque é <span class="gradient">pra você.</span></p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S2: Para quem É ───────────────────────────────────────── -->
+<div class="slide bg-grid">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow-g">Você se encaixa aqui?</div>
+    <div class="sec-title gradient">PARA<br>QUEM É</div>
+    <div class="check-list">
+      <div class="check-item">
+        <div class="ci-yes"><i class="ph-fill ph-check-circle"></i></div>
+        <p>Imigrante brasileiro nos EUA, Oriente Médio ou Europa</p>
+      </div>
+      <div class="check-item">
+        <div class="ci-yes"><i class="ph-fill ph-check-circle"></i></div>
+        <p>Ganha em moeda forte mas não acumula patrimônio real</p>
+      </div>
+      <div class="check-item">
+        <div class="ci-yes"><i class="ph-fill ph-check-circle"></i></div>
+        <p>Quer investir nos EUA com segurança fiscal e sem medo do IRS</p>
+      </div>
+      <div class="check-item">
+        <div class="ci-yes"><i class="ph-fill ph-check-circle"></i></div>
+        <p>Busca alguém que entenda a realidade de quem vive fora do Brasil</p>
+      </div>
+      <div class="check-item">
+        <div class="ci-yes"><i class="ph-fill ph-check-circle"></i></div>
+        <p>Está disposto a ter consistência e disciplina — sem atalho</p>
+      </div>
+    </div>
+    <div class="truth-box" style="margin-top:28px;">
+      <p>Marcou 3 ou mais? A WSWM foi <span class="gradient">feita pra você.</span></p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S3: Para quem NÃO É ──────────────────────────────────── -->
+<div class="slide bg-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="eyebrow">Seja honesto</div>
+    <div class="sec-title gradient">PARA QUEM<br>NÃO É</div>
+    <div class="no-list">
+      <div class="no-item">
+        <div class="ci-no"><i class="ph-fill ph-x-circle"></i></div>
+        <p><strong>Cidadãos americanos</strong> — as regras fiscais são diferentes e não atendemos esse perfil.</p>
+      </div>
+      <div class="no-item">
+        <div class="ci-no"><i class="ph-fill ph-x-circle"></i></div>
+        <p><strong>Turistas ou quem está de passagem</strong> — a consultoria é para quem está construindo vida no exterior.</p>
+      </div>
+      <div class="no-item">
+        <div class="ci-no"><i class="ph-fill ph-x-circle"></i></div>
+        <p><strong>Quem quer enriquecer rápido</strong> — não fazemos day trade, cripto especulativa nem promessas vazias.</p>
+      </div>
+      <div class="no-item">
+        <div class="ci-no"><i class="ph-fill ph-x-circle"></i></div>
+        <p><strong>Quem não está disposto a ter disciplina</strong> — consistência é o único método que funciona.</p>
+      </div>
+    </div>
+    <div class="truth-box" style="margin-top:28px;">
+      <p>Não atendemos todo mundo. Atendemos quem está <span class="gradient">disposto a construir de verdade.</span></p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── S4: CTA ────────────────────────────────────────────────── -->
+<div class="slide bg-dark-mesh">
+  <div class="top-bar"></div><div class="bottom-bar"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="glow glow-c"></div>
+
+  <div class="top-cluster">
+    <div class="logo"><div class="gradient">Wall Street Wealth Management</div><div class="flags">🇧🇷🇺🇸</div></div>
+    <div class="divider md"></div>
+  </div>
+
+  <div class="cc">
+    <div class="big-icon"><i class="ph-fill ph-rocket-launch"></i></div>
+    <div class="cta-title gradient">SE É PRA VOCÊ<br>— COMECE AGORA</div>
+    <div class="cta-sub">A 1ª Sessão Estratégica é gratuita. Um consultor analisa sua situação e monta um plano personalizado para você.</div>
+    <div class="cta-card">
+      <h3>1ª Sessão Gratuita</h3>
+      <p>Vagas limitadas · Link na bio · @investidordazarabia</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="divider lg"></div>
+    <div class="badge"><i class="ph-fill ph-star"></i> Exclusivo para Imigrantes</div>
+    <div class="handle">@investidordazarabia</div>
+  </div>
+</div>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<div class="counter" id="counter">1 / 4</div>
+<button class="nav-btn prev-btn" onclick="go(-1)">‹</button>
+<button class="nav-btn next-btn" onclick="go(1)">›</button>
+<div class="dots" id="dots"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let cur = 0;
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    document.getElementById('counter').textContent = `${cur + 1} / ${total}`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+  }
+  function go(dir) { goTo(cur + dir); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); });
+  function scale() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const s  = Math.min(vw / 1080, vh / 1920);
+    const ox = (vw - 1080 * s) / 2;
+    const oy = (vh - 1920 * s) / 2;
+    slides.forEach(el => {
+      el.style.transformOrigin = 'top left';
+      el.style.transform = `translate(${ox}px, ${oy}px) scale(${s})`;
+    });
+  }
+  scale();
+  window.addEventListener('resize', scale);
+</script>
+</body>
+</html>

@@ -36,11 +36,17 @@
                 <img src="../assets/logo-dazarabia.png" alt="Investidor Dazarábia" style="height: 40px; width: auto;">
             </a>
             <ul class="nav-menu">
-                <li><a href="../index.html#about" class="nav-link">Sobre</a></li>
-                <li><a href="../index.html#filosofia" class="nav-link">Filosofia</a></li>
-                <li><a href="../index.html#jornada" class="nav-link">Jornada</a></li>
-                <li><a href="../index.html#ecossistema" class="nav-link">Ecossistema</a></li>
-                <li><a href="#" class="nav-link active">Ferramentas</a></li>
+                <li><a href="../index.html#about" class="nav-link" data-i18n="nav.about">Sobre</a></li>
+                <li><a href="../index.html#filosofia" class="nav-link" data-i18n="nav.philosophy">Filosofia</a></li>
+                <li><a href="../index.html#jornada" class="nav-link" data-i18n="nav.journey">Jornada</a></li>
+                <li><a href="../index.html#ecossistema" class="nav-link" data-i18n="nav.ecosystem">Ecossistema</a></li>
+                <li><a href="#" class="nav-link active" data-i18n="nav.tools">Ferramentas</a></li>
+                <li class="desktop-only">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="pt">PT</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
+                </li>
             </ul>
             <div class="hamburger">
                 <i class="ph ph-list"></i>
@@ -54,9 +60,9 @@
         <div class="glow-orb hero-orb-2"></div>
         <div class="container">
             <div class="hero-text text-center" data-animate="fade-up" style="max-width: 900px; margin: 0 auto;">
-                <span class="badge">Acesso Gratuito</span>
-                <h1 class="hero-title">Ferramentas de <span class="text-gradient-gold">Gestão e Planejamento</span></h1>
-                <p class="hero-subtitle">Simule, calcule e decida com base em dados reais. O conhecimento é a sua maior proteção contra a inflação e a má gestão financeira.</p>
+                <span class="badge" data-i18n="ferramentas.hero_badge">Acesso Gratuito</span>
+                <h1 class="hero-title" data-i18n="ferramentas.hero_title" data-i18n-html>Ferramentas de <span class="text-gradient-gold">Gestão e Planejamento</span></h1>
+                <p class="hero-subtitle" data-i18n="ferramentas.hero_subtitle">Simule, calcule e decida com base em dados reais. O conhecimento é a sua maior proteção contra a inflação e a má gestão financeira.</p>
             </div>
         </div>
     </header>
@@ -70,9 +76,9 @@
                     <div class="card-icon">
                         <i class="ph-fill ph-calculator text-gold"></i>
                     </div>
-                    <h3>Calculadora de Juros Compostos</h3>
-                    <p>Coloque seus números aqui e veja com seus próprios olhos o que acontece quando o dinheiro começa a trabalhar por você — e não você por ele.</p>
-                    <button class="btn-primary-outline w-100 unlock-tool" data-target="juros-compostos.html">Acessar Ferramenta</button>
+                    <h3 data-i18n="ferramentas.tool1_title">Calculadora de Juros Compostos</h3>
+                    <p data-i18n="ferramentas.tool1_desc">Coloque seus números aqui e veja com seus próprios olhos o que acontece quando o dinheiro começa a trabalhar por você — e não você por ele.</p>
+                    <button class="btn-primary-outline w-100 unlock-tool" data-target="juros-compostos.html" data-i18n="ferramentas.tool1_btn">Acessar Ferramenta</button>
                 </div>
 
                 <!-- Tool 2 -->
@@ -80,9 +86,9 @@
                     <div class="card-icon">
                         <i class="ph-fill ph-target text-gold"></i>
                     </div>
-                    <h3>Teste de Perfil do Investidor</h3>
-                    <p>Antes de investir qualquer coisa, entenda como você pensa. Perfil errado é estratégia errada — e resultado errado.</p>
-                    <button class="btn-primary-outline w-100 unlock-tool" data-target="perfil-investidor.html">Fazer o Teste</button>
+                    <h3 data-i18n="ferramentas.tool2_title">Teste de Perfil do Investidor</h3>
+                    <p data-i18n="ferramentas.tool2_desc">Antes de investir qualquer coisa, entenda como você pensa. Perfil errado é estratégia errada — e resultado errado.</p>
+                    <button class="btn-primary-outline w-100 unlock-tool" data-target="perfil-investidor.html" data-i18n="ferramentas.tool2_btn">Fazer o Teste</button>
                 </div>
 
                 <!-- Tool 3 -->
@@ -90,9 +96,9 @@
                     <div class="card-icon">
                         <i class="ph-fill ph-shield-check text-gold"></i>
                     </div>
-                    <h3>Reserva de Emergência</h3>
-                    <p>Quanto você precisa guardar antes de começar a investir de verdade? Quem pula essa etapa geralmente volta para a estaca zero na primeira emergência.</p>
-                    <button class="btn-primary-outline w-100 unlock-tool" data-target="reserva-emergencia.html">Calcular Agora</button>
+                    <h3 data-i18n="ferramentas.tool3_title">Reserva de Emergência</h3>
+                    <p data-i18n="ferramentas.tool3_desc">Quanto você precisa guardar antes de começar a investir de verdade? Quem pula essa etapa geralmente volta para a estaca zero na primeira emergência.</p>
+                    <button class="btn-primary-outline w-100 unlock-tool" data-target="reserva-emergencia.html" data-i18n="ferramentas.tool3_btn">Calcular Agora</button>
                 </div>
 
                 <!-- Tool 4 (Extra if needed, but keeping original 3 for now as requested) -->
@@ -117,7 +123,7 @@
             <div class="footer-content" style="justify-content: center; text-align: center;">
                 <div class="footer-brand">
                     <img src="../assets/logo-dazarabia.png" alt="Investidor Dazarábia" style="height: 40px; width: auto; margin-bottom: 1.5rem;">
-                    <p>Acelerando sua liberdade financeira através de investimentos globais e proteção de patrimônio.</p>
+                    <p data-i18n="ferramentas.footer_brand">Acelerando sua liberdade financeira através de investimentos globais e proteção de patrimônio.</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -130,7 +136,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="../js/supabase-config.js"></script>
     <script src="../js/supabase-integration.js"></script>
-    <script src="../js/unified-quiz.js"></script>
+    <script src="../js/i18n.js"></script>
     <script src="../js/main.js"></script>
     
     <script>
