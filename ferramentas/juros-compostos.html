@@ -69,7 +69,15 @@
             <a href="../index.html" class="logo">
                 <img src="../assets/logo-dazarabia.png" alt="Investidor Dazarábia" style="height: 40px; width: auto;">
             </a>
-            <a href="../index.html" class="btn-secondary">Voltar ao Início</a>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="en">
+                        <i class="ph ph-globe"></i>
+                        <span>English</span>
+                    </button>
+                </div>
+                <a href="../index.html" class="btn-secondary">Voltar ao Início</a>
+            </div>
         </div>
     </nav>
 
@@ -183,9 +191,16 @@
 
     <footer class="footer">
         <div class="container text-center">
+            <div class="lang-switcher" style="justify-content: center; margin-bottom: 1.5rem;">
+                <button class="lang-btn" data-lang="en">
+                    <i class="ph ph-globe"></i>
+                    <span>English</span>
+                </button>
+            </div>
             <p>&copy; 2026 Investidor Dazarábia. Dados simulados para fins educacionais.</p>
         </div>
     </footer>
+    <script src="../js/i18n.js"></script>
 
     <!-- Supabase SDK & Config -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

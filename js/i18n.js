@@ -63,10 +63,20 @@ class I18n {
             }
         });
 
-        // Update active state in switchers
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === this.language);
+        // Update all language switchers appearance
+        const switchers = document.querySelectorAll('.lang-switcher');
+        switchers.forEach(switcher => {
+            const nextLang = this.language === 'pt' ? 'en' : 'pt';
+            const langLabel = nextLang === 'en' ? 'English' : 'Português';
+            
+            switcher.innerHTML = `
+                <button class="lang-btn" data-lang="${nextLang}">
+                    <i class="ph ph-globe"></i>
+                    <span>${langLabel}</span>
+                </button>
+            `;
         });
+        this.setupSwitchers();
     }
 
     getNestedValue(obj, path) {
@@ -98,13 +108,18 @@ class I18n {
         const container = document.querySelector(containerSelector);
         if (!container) return;
 
+        const nextLang = this.language === 'pt' ? 'en' : 'pt';
+        const langLabel = nextLang === 'en' ? 'English' : 'Português';
+
         const switcherHtml = `
             <div class="lang-switcher">
-                <button class="lang-btn ${this.language === 'pt' ? 'active' : ''}" data-lang="pt">PT</button>
-                <button class="lang-btn ${this.language === 'en' ? 'active' : ''}" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="${nextLang}">
+                    <i class="ph ph-globe"></i>
+                    <span>${langLabel}</span>
+                </button>
             </div>
         `;
-        container.insertAdjacentHTML('beforeend', switcherHtml);
+        container.innerHTML = switcherHtml; // Using innerHTML to replace if it exists
         this.setupSwitchers();
     }
 }
