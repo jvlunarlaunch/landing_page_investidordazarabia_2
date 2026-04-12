@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master  # ou main, dependendo do seu branch padrão
+  workflow_dispatch:
 
 jobs:
   web-deploy:
