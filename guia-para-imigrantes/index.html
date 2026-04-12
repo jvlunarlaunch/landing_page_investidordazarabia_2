@@ -172,14 +172,50 @@
     }
 
     .popup {
-      background: #fff; border-radius: var(--radius); padding: 32px; width: 100%; max-width: 420px; text-align: center;
+      background: #1a1a1a; border-radius: var(--radius); padding: 32px; width: 100%; max-width: 480px; text-align: center; max-height: 90vh; overflow-y: auto;
     }
-
-    .popup form { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; text-align: left; }
-    .popup input, .popup select { padding: 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #f4f6f9; }
 
     @media (max-width: 768px) {
       .specialist-card { flex-direction: column; text-align: center; }
+    }
+
+    /* === Quiz Multi-Step Variables & Styles === */
+    :root {
+        --gold-gradient: linear-gradient(135deg, #D4AF37, #F5C842);
+        --gold-primary: #D4AF37;
+        --glass-border: rgba(212, 175, 55, 0.2);
+        --text-primary: #eeeeee;
+        --text-secondary: #999999;
+        --bg-darker: #0a0a0a;
+        --font-heading: 'Sora', sans-serif;
+        --font-body: 'Sora', sans-serif;
+    }
+    .quiz-step-container { display: none; animation: fadeIn 0.4s ease; }
+    .quiz-step-container.active { display: block; }
+    .quiz-progress-wrapper { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-bottom: 2rem; overflow: hidden; }
+    .quiz-progress-fill { height: 100%; background: var(--gold-gradient); width: 0%; transition: width 0.4s ease; }
+    .quiz-question-title { font-size: 1.4rem; margin-bottom: 1.5rem; color: var(--gold-primary); }
+    .quiz-choice-list { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+    .quiz-choice-item { padding: 1rem 1.2rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: all 0.3s; text-align: left; color: var(--text-primary); font-size: 1rem; font-weight: 500; }
+    .quiz-choice-item:hover { background: rgba(212,175,55,0.1); border-color: var(--gold-primary); }
+    .quiz-choice-item.selected { background: var(--gold-primary); color: #0a0a0a; font-weight: 700; }
+    .quiz-nav-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; }
+    .quiz-btn { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; }
+    .quiz-btn-next { background: var(--gold-gradient); color: #0a0a0a; border: none; flex: 1; }
+    .quiz-btn-prev { background: transparent; color: var(--text-secondary); border: 1px solid var(--glass-border); }
+    .quiz-btn-prev:hover { color: var(--gold-primary); border-color: var(--gold-primary); }
+    .quiz-input-field { width: 100%; padding: 1rem 1.2rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text-primary); font-size: 1rem; outline: none; margin-bottom: 1.5rem; transition: all 0.3s ease; box-sizing: border-box; }
+    .quiz-input-field:focus { border-color: var(--gold-primary); background: rgba(255,255,255,0.1); }
+    select.quiz-input-field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem; padding-right: 3rem; cursor: pointer; }
+    select.quiz-input-field option { background-color: #1a1a1a; color: var(--text-primary); }
+    .other-input-group { margin-top: 1rem; display: none; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 768px) {
+        .quiz-question-title { font-size: 1.2rem; }
+        .quiz-choice-item { padding: 0.8rem 1rem; font-size: 0.95rem; }
+        .quiz-btn { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
+        .quiz-input-row { flex-direction: column !important; gap: 0 !important; }
+        #quiz-ddi { width: 100% !important; margin-bottom: 0.5rem !important; }
     }
   </style>
 </head>
