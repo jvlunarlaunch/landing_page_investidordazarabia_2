@@ -389,6 +389,7 @@ class UnifiedQuiz {
         const finalPais = this.formData.country_select === 'outro' ? this.formData.country_other : this.formData.country_select || this.formData.pais;
         const finalMoeda = this.formData.currency_select === 'outro' ? this.formData.currency_other : this.formData.currency_select || this.formData.currency;
         const finalWhatsApp = `${this.formData.ddi || ''} ${this.formData.phone || ''}`.trim();
+        const iscaDigital = document.getElementById('toolIscaDigital')?.value || null;
 
         const leadData = {
             nome: this.formData.nome,
@@ -399,7 +400,8 @@ class UnifiedQuiz {
             ocupacao: this.formData.occupation,
             renda: this.formData.income ? `${this.formData.income} ${finalMoeda}` : null,
             moeda: finalMoeda,
-            origem: document.title || 'Lead Form'
+            origem: document.title || 'Lead Form',
+            isca_digital: iscaDigital,
         };
 
         if (window.sendLeadToSupabase) {
@@ -408,13 +410,24 @@ class UnifiedQuiz {
             console.warn("sendLeadToSupabase not found");
         }
 
+        // Trigger PDF download (URL configured via hidden input #toolPdfUrl)
+        const pdfUrl = document.getElementById('toolPdfUrl')?.value || '../assets/Dicionario-do-Dinheiro-Investidor-Dazarabia.pdf';
+        if (pdfUrl) {
+            const pdfLink = document.createElement('a');
+            pdfLink.href = pdfUrl;
+            pdfLink.download = pdfUrl.split('/').pop();
+            document.body.appendChild(pdfLink);
+            pdfLink.click();
+            document.body.removeChild(pdfLink);
+        }
+
         // Success message or redirect
         const container = this.steps[this.currentStep - 1];
         container.innerHTML = `
             <div class="text-center" style="padding: 2rem 0;">
                 <i class="ph-fill ph-check-circle" style="font-size: 5rem; color: var(--gold-primary); margin-bottom: 2rem;"></i>
                 <h3 style="color: #fff;">Sucesso!</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Seus dados foram capturados. Você será redirecionado agora.</p>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Seu download iniciou automaticamente. Você será redirecionado agora.</p>
             </div>
         `;
         

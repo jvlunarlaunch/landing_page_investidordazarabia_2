@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-88J00CNEMC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-88J00CNEMC');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Relatório: Principais Empresas de Inteligência Artificial | Investidor das Arábias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-dark: #2B3845;
+      --color-dark-deeper: #1e2a35;
+      --color-gold: #A78D4D;
+      --color-gold-light: #C9A96E;
+      --gradient-primary: linear-gradient(135deg, #2B3845 0%, #A78D4D 100%);
+      --gradient-gold: linear-gradient(135deg, #A78D4D 0%, #C9A96E 100%);
+      --bg-page: #f4f6f9;
+      --bg-card: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #555555;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-family: 'Sora', sans-serif;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero {
+      background: var(--color-dark);
+      padding: 60px 20px;
+      border-bottom: 3px solid var(--color-gold);
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 48px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero-text { flex: 1; min-width: 280px; }
+
+    .hero-text h1 {
+      font-size: 2.4rem;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 span {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      color: rgba(255,255,255,0.72);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .hero-image { flex: 1; min-width: 240px; display: flex; justify-content: center; }
+
+    .hero-image img {
+      max-width: 320px;
+      width: 100%;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.45));
+    }
+
+    /* ── BUTTON ──────────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      background: var(--gradient-gold);
+      border: none;
+      color: #fff;
+      padding: 18px 40px;
+      font-size: 1rem;
+      border-radius: var(--radius);
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      font-family: 'Sora', sans-serif;
+      box-shadow: 0 6px 22px rgba(167,141,77,0.38);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(167,141,77,0.5);
+    }
+
+    /* ── BENEFIT CARDS ───────────────────────────────────────── */
+    .cards-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin: 60px 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid #e2e6eb;
+      border-top: 3px solid var(--color-gold);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      flex: 1 1 260px;
+      max-width: 340px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--gradient-primary);
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--color-dark);
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── SPECIALIST ──────────────────────────────────────────── */
+    .specialist-card {
+      background: var(--bg-card);
+      border: 1px solid #e2e6eb;
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.07);
+    }
+
+    .specialist-photo-wrapper {
+      width: 180px;
+      flex-shrink: 0;
+      border-radius: var(--radius);
+      padding: 4px;
+      background: var(--gradient-primary);
+    }
+
+    .specialist-photo-wrapper img {
+      width: 100%; height: auto; display: block;
+      border-radius: calc(var(--radius) - 4px);
+    }
+
+    .specialist-info h2 { font-size: 1.5rem; margin-bottom: 6px; color: var(--color-dark); }
+
+    .specialist-handle {
+      font-weight: 600;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .specialist-info p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── COMPANIES PREVIEW ───────────────────────────────────── */
+    .companies-section {
+      background: var(--color-dark);
+      padding: 64px 20px;
+      text-align: center;
+    }
+
+    .companies-section h2 {
+      font-size: 1.9rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .companies-section h2 span {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .companies-section > p {
+      color: rgba(255,255,255,0.62);
+      font-size: 1rem;
+      margin-bottom: 40px;
+    }
+
+    .companies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      max-width: 860px;
+      margin: 0 auto 44px;
+    }
+
+    .company-tile {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(167,141,77,0.22);
+      border-radius: 12px;
+      padding: 22px 14px;
+    }
+
+    .company-tile .ticker {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-gold-light);
+      margin-bottom: 6px;
+    }
+
+    .company-tile .name {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .company-tile.blur-tile {
+      opacity: 0.35;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blur-tile::after {
+      content: '+';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--color-gold-light);
+      opacity: 1;
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────────── */
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 32px;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid #e2e6eb;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 0.97rem;
+      color: var(--text-main);
+    }
+
+    .faq-question span { color: var(--color-gold); font-weight: 700; font-size: 1.3rem; }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 320px;
+      padding: 0 24px 22px;
+    }
+
+    .faq-answer p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── POPUP / OVERLAY ─────────────────────────────────────── */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.72);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup {
+      background: #141414;
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    /* ── QUIZ STYLES ─────────────────────────────────────────── */
+    :root {
+      --gold-gradient: linear-gradient(135deg, #A78D4D 0%, #C9A96E 100%);
+      --gold-primary: #A78D4D;
+      --glass-border: rgba(167,141,77,0.22);
+      --text-primary: #eeeeee;
+      --text-secondary: #999999;
+      --alert-red: #ff4444;
+    }
+
+    .quiz-step-container { display: none; animation: fadeIn 0.4s ease; }
+    .quiz-step-container.active { display: block; }
+    .quiz-progress-wrapper { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-bottom: 2rem; overflow: hidden; }
+    .quiz-progress-fill { height: 100%; background: var(--gold-gradient); width: 0%; transition: width 0.4s ease; }
+    .quiz-question-title { font-size: 1.35rem; margin-bottom: 1.5rem; color: var(--gold-primary); font-family: 'Sora', sans-serif; }
+    .quiz-choice-list { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+    .quiz-choice-item { padding: 1rem 1.2rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; cursor: pointer; transition: all 0.3s; text-align: left; color: var(--text-primary); font-size: 1rem; font-weight: 500; font-family: 'Sora', sans-serif; }
+    .quiz-choice-item:hover { background: rgba(167,141,77,0.1); border-color: var(--gold-primary); }
+    .quiz-choice-item.selected { background: var(--gold-primary); color: #0a0a0a; font-weight: 700; }
+    .quiz-nav-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; }
+    .quiz-btn { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; font-family: 'Sora', sans-serif; }
+    .quiz-btn-next { background: var(--gold-gradient); color: #0a0a0a; border: none; flex: 1; }
+    .quiz-btn-prev { background: transparent; color: var(--text-secondary); border: 1px solid var(--glass-border); }
+    .quiz-btn-prev:hover { color: var(--gold-primary); border-color: var(--gold-primary); }
+    .quiz-input-field { width: 100%; padding: 1rem 1.2rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; color: var(--text-primary); font-size: 1rem; outline: none; margin-bottom: 1.5rem; transition: all 0.3s ease; box-sizing: border-box; font-family: 'Sora', sans-serif; }
+    .quiz-input-field:focus { border-color: var(--gold-primary); background: rgba(255,255,255,0.1); }
+    select.quiz-input-field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23A78D4D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem; padding-right: 3rem; cursor: pointer; }
+    select.quiz-input-field option { background-color: #1a1a1a; color: var(--text-primary); }
+    .other-input-group { margin-top: 1rem; display: none; animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 1.75rem; }
+      .specialist-card { flex-direction: column; text-align: center; }
+      .specialist-photo-wrapper { width: 140px; }
+      .companies-grid { grid-template-columns: repeat(2, 1fr); }
+      .quiz-question-title { font-size: 1.15rem; }
+      .quiz-btn { padding: 0.7rem 1.1rem; font-size: 0.9rem; }
+      .quiz-input-row { flex-direction: column !important; gap: 0 !important; }
+      #quiz-ddi { width: 100% !important; margin-bottom: 0.5rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div style="text-align:center; margin-bottom:36px;">
+      <img src="../assets/logo-dazarabia.png" alt="Investidor das Arábias" style="max-width:220px; display:inline-block;">
+    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Baixe gratuitamente o relatório das <span>principais empresas de Inteligência Artificial</span></h1>
+        <p>Identifique os líderes da revolução da IA, entenda seus fundamentos financeiros e saiba como posicionar seu portfólio nessa megatendência.</p>
+        <button class="btn" id="openPopup">Quero meu relatório gratuito</button>
+      </div>
+      <div class="hero-image">
+        <img src="../assets/capa_relatorio_empresas_de_ia.png" alt="Relatório Empresas de IA">
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFIT CARDS -->
+  <div class="container">
+    <div class="cards-row">
+      <article class="card">
+        <div class="card-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Megatendência Imparável</h3>
+        <p>A IA está transformando todos os setores da economia global. Investir nas empresas certas agora significa se posicionar antes da grande valorização.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h18M7 13l4-6 4 8 4-4"/></svg>
+        </div>
+        <h3>Crescimento Explosivo</h3>
+        <p>Empresas líderes em IA apresentam crescimento de receita histórico. NVIDIA, Microsoft e Google registraram valuations recordes impulsionados pela IA.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Múltiplos Setores</h3>
+        <p>De saúde a finanças, de logística a entretenimento, a IA penetra em todos os mercados. Diversifique sua exposição através das empresas corretas.</p>
+      </article>
+    </div>
+
+    <!-- SPECIALIST -->
+    <div class="specialist-card">
+      <div class="specialist-photo-wrapper">
+        <img src="../assets/eric-zapparoli.jpg" alt="Eric Zapparoli">
+      </div>
+      <div class="specialist-info">
+        <h2>Eric Zapparoli</h2>
+        <span class="specialist-handle">@investidordazarabia</span>
+        <p>Investidor internacional e educador financeiro, com anos de experiência no mercado e mais de 121 mil seguidores em suas redes sociais. Eric possui mais de R$1.000.000,00 investidos publicamente e é idealizador de projetos como Neobankless. Sua missão é ajudar imigrantes a alcançarem a liberdade financeira investindo corretamente.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPANIES PREVIEW -->
+  <section class="companies-section">
+    <h2>Uma amostra do que você vai encontrar <span>no relatório</span></h2>
+    <p>Análise das empresas que lideram a corrida pela Inteligência Artificial. Acesse gratuitamente.</p>
+    <div class="companies-grid">
+      <div class="company-tile"><span class="ticker">NVDA</span><span class="name">NVIDIA</span></div>
+      <div class="company-tile"><span class="ticker">MSFT</span><span class="name">Microsoft</span></div>
+      <div class="company-tile"><span class="ticker">GOOGL</span><span class="name">Alphabet</span></div>
+      <div class="company-tile"><span class="ticker">META</span><span class="name">Meta Platforms</span></div>
+      <div class="company-tile"><span class="ticker">AMZN</span><span class="name">Amazon AWS</span></div>
+      <div class="company-tile"><span class="ticker">PLTR</span><span class="name">Palantir</span></div>
+      <div class="company-tile"><span class="ticker">ORCL</span><span class="name">Oracle</span></div>
+      <div class="company-tile"><span class="ticker">IBM</span><span class="name">IBM</span></div>
+      <div class="company-tile blur-tile"><span class="ticker" style="visibility:hidden">???</span><span class="name" style="visibility:hidden">Mais</span></div>
+    </div>
+    <button class="btn" onclick="document.getElementById('overlay').style.display='flex'">Ver análise completa gratuitamente</button>
+  </section>
+
+  <!-- FAQ -->
+  <div class="container">
+    <h2 class="section-title" style="margin-top:40px;">PERGUNTAS FREQUENTES</h2>
+    <div class="faq-content-wrapper">
+      <div class="faq-item">
+        <div class="faq-question">O relatório é realmente gratuito? <span>+</span></div>
+        <div class="faq-answer"><p>Sim, 100% gratuito. O download iniciará automaticamente assim que você preencher o formulário. Nossa missão é democratizar o acesso a análises de qualidade.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">O boom da IA é uma bolha? <span>+</span></div>
+        <div class="faq-answer"><p>Diferente de bolhas especulativas passadas, a IA tem adoção real e receitas crescentes em empresas estabelecidas. NVIDIA, Microsoft e Google já converteram IA em bilhões de dólares em receita. No relatório, analisamos quais valuations são justificados e quais são mais arriscados.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Quais empresas têm a melhor posição em IA? <span>+</span></div>
+        <div class="faq-answer"><p>Empresas com infraestrutura de computação (como NVIDIA), acesso a dados em escala (Google, Meta) e distribuição (Microsoft via Azure e Office) têm vantagens estruturais significativas. Analisamos cada uma no relatório.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Como investir em IA sem comprar ações individuais? <span>+</span></div>
+        <div class="faq-answer"><p>Existem ETFs temáticos de IA como o AIQ (Global X Artificial Intelligence & Technology) e o BOTZ (Global X Robotics & Artificial Intelligence) que oferecem exposição diversificada. Abordamos as opções e seus trade-offs no relatório.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Qual o risco da regulação sobre empresas de IA? <span>+</span></div>
+        <div class="faq-answer"><p>A regulação é um risco real — Europa já implementou o AI Act e os EUA discutem legislações. Empresas maiores tendem a absorver melhor esse custo regulatório, enquanto startups podem ser mais impactadas. Analisamos esse cenário no relatório.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">O que diferencia líderes de seguidores em IA? <span>+</span></div>
+        <div class="faq-answer"><p>Acesso a dados proprietários, capacidade de computação (GPUs), talentos em IA e integração nos produtos existentes. Empresas que combinam esses elementos têm vantagem competitiva sustentável sobre as demais.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <span id="closePopup" style="float:right; cursor:pointer; font-size:26px; color:#888;">&times;</span>
+      <p style="font-weight:700; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-size:1.2rem; margin-bottom:1.2rem; clear:both;">Acesse o Relatório agora</p>
+      <form id="popupForm"></form>
+      <input type="hidden" id="toolRedirectUrl" value="../obrigado/index.html">
+      <input type="hidden" id="toolIscaDigital" value="Relatório Empresas de IA">
+      <input type="hidden" id="toolPdfUrl" value="../assets/relatorio_empresas-ia.pdf">
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/supabase-integration.js"></script>
+  <script src="../js/unified-quiz.js"></script>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => q.parentElement.classList.toggle('active'));
+    });
+
+    const overlay = document.getElementById('overlay');
+    document.getElementById('openPopup').onclick = () => overlay.style.display = 'flex';
+    document.getElementById('closePopup').onclick = () => overlay.style.display = 'none';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.initUnifiedQuiz) {
+        window.leadQuiz = window.initUnifiedQuiz('popupForm', 'overlay');
+      }
+    });
+  </script>
+</body>
+</html>
